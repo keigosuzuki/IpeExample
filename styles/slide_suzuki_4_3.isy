@@ -15,8 +15,14 @@
 <preamble>
 
 \usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
-\setsansfont{Noto Sans Medium}
-\setsansjfont{Source Han Sans JP Medium}
+\setsansfont{Noto Sans Medium}[
+    BoldFont=Noto Sans Bold,
+    ItalicFont=Noto Sans Italic,
+    BoldItalicFont=Noto Sans Bold Italic,
+]
+\setsansjfont{Source Han Sans JP Medium}[
+    BoldFont=Source Han Sans JP Bold,
+]
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 
