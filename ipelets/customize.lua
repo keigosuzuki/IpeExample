@@ -15,8 +15,8 @@ prefs.styles = { "basic", "preamble" }
 -- prefs.tex_engine = "luatex"
 -- default latex autorun setting
 -- prefs.auto_run_latex = false
--- -- auto export document when saved as .ipe
--- prefs.auto_export = {"pdf"}
+-- auto export document when saved as .ipe
+prefs.auto_export = {"pdf"}
 
 -- -- check shortcuts.lua for additional shortcut parameters
 shortcuts.previous_view = "Up"
