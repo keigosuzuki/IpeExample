@@ -1,0 +1,57 @@
+<ipestyle name="slide_suzuki_4_3">
+
+<layout paper="360 270" origin="12 16" frame="336 224" skip="0" crop="no"/>
+<titlestyle pos="0 232" color="white" size="LARGE" halign="left" valign="baseline"/>
+<pagenumberstyle pos="336 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
+
+<gridsize name="1 pts" value="1"/>
+<gridsize name="2 pts" value="2"/>
+
+<color name="jaxa_blue" value="0 0.376 0.69"/>
+<color name="jaxa_red" value="0.69 0.024 0"/>
+<color name="jaxa_green" value="0.663 0.69 0"/>
+<color name="isas_purple" value="0.275 0.008 0.557"/>
+
+<preamble>
+
+\usepackage{newtxtext}
+\usepackage[whole]{bxcjkjatype}
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{\textbullet}
+\renewcommand{\labelitemiv}{\textbullet}
+
+\usepackage[yyyymmdd]{datetime}
+
+</preamble>
+
+<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+
+<symbol name="Background"  xform="yes">
+<group>
+
+<path fill="jaxa_blue">
+-11 253 m
+-11 226 l
+348 226 l
+348 253 l
+h
+</path>
+
+<path fill="isas_purple">
+-12 0 m
+-12 -4 l
+348 -4 l
+348 0 l
+h
+</path>
+
+<text pos="0 -12" halign="left" valign="baseline" size="footnote">\today</text>
+
+</group>
+</symbol>
+
+</ipestyle>
