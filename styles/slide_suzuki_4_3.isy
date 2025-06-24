@@ -27,12 +27,15 @@
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \usepackage{enumitem}
+\setlist{nosep}
 \renewcommand{\labelitemi}{$\bullet$}
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelitemiii}{\textbullet}
 \renewcommand{\labelitemiv}{\textbullet}
 
 \usepackage[yyyymmdd]{datetime}
+
+\renewcommand{\baselinestretch}{1.3}
 
 </preamble>
 
