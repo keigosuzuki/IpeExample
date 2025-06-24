@@ -14,9 +14,11 @@
 
 <preamble>
 
-\usepackage{newtxtext}
-\usepackage[whole]{bxcjkjatype}
-\renewcommand\familydefault{\sfdefault}
+\usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
+\setsansfont{Noto Sans Medium}
+\setsansjfont{Source Han Sans JP Medium}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \usepackage{enumitem}
 \renewcommand{\labelitemi}{$\bullet$}

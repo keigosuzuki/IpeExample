@@ -11,6 +11,8 @@ prefs.editor_size = { 500, 500 }
 prefs.editable_textfile = config.latexdir .. "/temp.tex"
 -- default stylesheets added to newly created docs
 prefs.styles = { "basic", "preamble" }
+-- default latex engine setting
+-- prefs.tex_engine = "luatex"
 -- default latex autorun setting
 -- prefs.auto_run_latex = false
 -- -- auto export document when saved as .ipe
