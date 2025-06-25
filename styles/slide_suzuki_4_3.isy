@@ -27,7 +27,7 @@
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \usepackage{enumitem}
-\setlist{nosep}
+\setlist{nosep, leftmargin=*}
 \renewcommand{\labelitemi}{$\bullet$}
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelitemiii}{\textbullet}
