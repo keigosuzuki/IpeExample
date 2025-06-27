@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250625092434" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250627152716" tex="luatex"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -353,10 +353,10 @@ h
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand{\labelitemii}{$\circ$}
-\renewcommand{\labelitemiii}{\textbullet}
-\renewcommand{\labelitemiv}{\textbullet}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage[yyyymmdd]{datetime}
 

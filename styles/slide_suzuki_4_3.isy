@@ -28,10 +28,10 @@
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand{\labelitemii}{$\circ$}
-\renewcommand{\labelitemiii}{\textbullet}
-\renewcommand{\labelitemiv}{\textbullet}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage[yyyymmdd]{datetime}
 
