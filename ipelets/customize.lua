@@ -8,13 +8,13 @@ prefs.editor_size = { 500, 500 }
 -- elseif config.platform == "apple" then
 -- 	prefs.external_editor = "code --wait %s"
 -- end
-prefs.editable_textfile = config.latexdir .. "/temp.tex"
+-- prefs.editable_textfile = config.latexdir .. "/temp.tex"
 -- default stylesheets added to newly created docs
 prefs.styles = { "basic", "preamble" }
 -- default latex engine setting
--- prefs.tex_engine = "luatex"
+prefs.tex_engine = "luatex"
 -- default latex autorun setting
--- prefs.auto_run_latex = false
+prefs.auto_run_latex = false
 -- auto export document when saved as .ipe
 prefs.auto_export = {"pdf"}
 
