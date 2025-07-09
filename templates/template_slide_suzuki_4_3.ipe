@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250627152716" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250709225715" tex="luatex"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -339,7 +339,8 @@ h
 <textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
 <preamble>
 
-\usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
+\usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+\usepackage{notomath}
 \setsansfont{Noto Sans Medium}[
     BoldFont=Noto Sans Bold,
     ItalicFont=Noto Sans Italic,
@@ -376,13 +377,13 @@ h
 <view layers="alpha" active="alpha"/>
 <text layer="pagenumbers_format" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
 <text transformations="translations" pos="336 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="10.44" depth="5.47" valign="top" size="huge">Presentation Title</text>
+<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="10.51" depth="5.4" valign="top" size="huge">Presentation Title</text>
 <text transformations="translations" pos="336 128" stroke="black" type="label" width="28.603" height="7.123" depth="0.09" halign="right" valign="baseline">Name</text>
 <path matrix="0.966667 0 0 1 11.6 0" stroke="black">
 -12 112 m
 348 112 l
 </path>
-<text transformations="translations" pos="0 96" stroke="black" type="minipage" width="336" height="15.155" depth="10.19" valign="top">\begin{itemize}
+<text transformations="translations" pos="0 96" stroke="black" type="minipage" width="336" height="15.225" depth="10.12" valign="top">\begin{itemize}
   \item Topic
   \begin{itemize}
     \item Subtopic
@@ -405,7 +406,7 @@ h
 <layer name="pagenumbers_appendix"/>
 <layer name="pagenumbers_dont_count"/>
 <view layers="alpha" active="alpha"/>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="12.813" depth="7.85" valign="top" size="huge">Appendix</text>
+<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="12.883" depth="7.78" valign="top" size="huge">Appendix</text>
 <path matrix="0.966667 0 0 1 11.6 0" stroke="black">
 -12 112 m
 348 112 l

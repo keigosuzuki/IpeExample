@@ -14,7 +14,8 @@
 
 <preamble>
 
-\usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
+\usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+\usepackage{notomath}
 \setsansfont{Noto Sans Medium}[
     BoldFont=Noto Sans Bold,
     ItalicFont=Noto Sans Italic,
