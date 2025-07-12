@@ -34,6 +34,10 @@
 \renewcommand{\labelitemiii}{\color{black}{\textbullet}}
 \renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
+\usepackage{tikzsymbols}
+\newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
+\newcommand{\bad}{\textcolor{white}{\Changey[1.2][jaxa_red]{-1.5}}}
+
 \usepackage[yyyymmdd]{datetime}
 
 \renewcommand{\baselinestretch}{1.3}
