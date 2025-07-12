@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250709225715" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250713002650" tex="luatex"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -364,7 +364,7 @@ h
 \renewcommand{\baselinestretch}{1.3}
 
 </preamble>
-<layout paper="360 270" origin="12 16" frame="336 224" crop="no"/>
+<layout paper="360 270" origin="12 16" frame="336 221" crop="no"/>
 <pagenumberstyle pos="336 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
 <titlestyle pos="0 232" size="LARGE" color="white"  valign="baseline"/>
 </ipestyle>
