@@ -1,6 +1,6 @@
 <ipestyle name="slide_suzuki_4_3">
 
-<layout paper="360 270" origin="12 16" frame="336 224" skip="0" crop="no"/>
+<layout paper="360 270" origin="12 16" frame="336 221" skip="0" crop="no"/>
 <titlestyle pos="0 232" color="white" size="LARGE" halign="left" valign="baseline"/>
 <pagenumberstyle pos="336 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
 
