@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250713003852" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250713004834" tex="luatex"/>
 <preamble>\renewcommand{\itcUnitlength}{4bp}
-\renewcommand{\itcLinewidth}{0.4bp}</preamble>
+\renewcommand{\itcLinewidth}{0.4bp}
+\renewcommand{\today}{XXXX/XX/XX}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -329,7 +330,7 @@ h
 348 0 l
 h
 </path>
-<text pos="0 -12" stroke="0" type="label" width="42.592" height="5.788" depth="0.07" valign="baseline" size="footnote">\today</text>
+<text pos="0 -12" stroke="0" type="label" width="45.015" height="5.691" depth="0" valign="baseline" size="footnote">\today</text>
 </group>
 </symbol>
 <color name="isas_purple" value="0.275 0.008 0.557"/>
@@ -364,6 +365,10 @@ h
 \usepackage[yyyymmdd]{datetime}
 
 \renewcommand{\baselinestretch}{1.3}
+
+\usepackage{siunitx}
+\usepackage{url}
+\urlstyle{same}
 
 </preamble>
 <layout paper="360 270" origin="12 16" frame="336 221" crop="no"/>
