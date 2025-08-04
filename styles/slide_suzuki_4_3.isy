@@ -16,18 +16,29 @@
 
 <preamble>
 
-\usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-\usepackage{notomath}
-\setsansfont{Noto Sans Medium}[
-    BoldFont=Noto Sans Bold,
-    ItalicFont=Noto Sans Italic,
-    BoldItalicFont=Noto Sans Bold Italic,
-]
-\setsansjfont{Source Han Sans JP Medium}[
-    BoldFont=Source Han Sans JP Bold,
-]
-\renewcommand{\familydefault}{\sfdefault}
-\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{iftex}
+
+\ifluatex
+    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+    \usepackage{notomath}
+    \setsansfont{Noto Sans Medium}[
+        BoldFont=Noto Sans Bold,
+        ItalicFont=Noto Sans Italic,
+        BoldItalicFont=Noto Sans Bold Italic,
+    ]
+    \setsansjfont{Source Han Sans JP Medium}[
+        BoldFont=Source Han Sans JP Bold,
+    ]
+    \renewcommand{\familydefault}{\sfdefault}
+    \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+\else\ifpdftex
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+    \renewcommand\familydefault{\sfdefault}
+
+\else
+\fi\fi
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}

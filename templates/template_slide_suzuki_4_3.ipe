@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250713055318" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250804223831" tex="luatex"/>
 <preamble>\renewcommand{\itcUnitlength}{4bp}
 \renewcommand{\itcLinewidth}{0.4bp}
 \renewcommand{\today}{XXXX/XX/XX}</preamble>
@@ -330,7 +330,7 @@ h
 348 0 l
 h
 </path>
-<text pos="0 -12" stroke="0" type="label" valign="baseline" size="footnote">\today</text>
+<text pos="0 -12" stroke="0" type="label" width="45.015" height="5.691" depth="0" valign="baseline" size="footnote">\today</text>
 </group>
 </symbol>
 <color name="isas_purple" value="0.275 0.008 0.557"/>
@@ -343,18 +343,29 @@ h
 <textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
 <preamble>
 
-\usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-\usepackage{notomath}
-\setsansfont{Noto Sans Medium}[
-    BoldFont=Noto Sans Bold,
-    ItalicFont=Noto Sans Italic,
-    BoldItalicFont=Noto Sans Bold Italic,
-]
-\setsansjfont{Source Han Sans JP Medium}[
-    BoldFont=Source Han Sans JP Bold,
-]
-\renewcommand{\familydefault}{\sfdefault}
-\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{iftex}
+
+\ifluatex
+    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+    \usepackage{notomath}
+    \setsansfont{Noto Sans Medium}[
+        BoldFont=Noto Sans Bold,
+        ItalicFont=Noto Sans Italic,
+        BoldItalicFont=Noto Sans Bold Italic,
+    ]
+    \setsansjfont{Source Han Sans JP Medium}[
+        BoldFont=Source Han Sans JP Bold,
+    ]
+    \renewcommand{\familydefault}{\sfdefault}
+    \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+\else\ifpdftex
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+    \renewcommand\familydefault{\sfdefault}
+
+\else
+\fi\fi
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
