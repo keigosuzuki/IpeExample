@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250804223831" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20250804225615" tex="luatex"/>
 <preamble>\renewcommand{\itcUnitlength}{4bp}
 \renewcommand{\itcLinewidth}{0.4bp}
 \renewcommand{\today}{XXXX/XX/XX}</preamble>
@@ -360,8 +360,10 @@ h
     \renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \else\ifpdftex
+    \usepackage{amsmath}
     \usepackage{newtxtext}
     \usepackage[whole]{bxcjkjatype}
+    \usepackage{notomath}
     \renewcommand\familydefault{\sfdefault}
 
 \else

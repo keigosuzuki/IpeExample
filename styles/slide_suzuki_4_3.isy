@@ -33,8 +33,10 @@
     \renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \else\ifpdftex
+    \usepackage{amsmath}
     \usepackage{newtxtext}
     \usepackage[whole]{bxcjkjatype}
+    \usepackage{notomath}
     \renewcommand\familydefault{\sfdefault}
 
 \else
