@@ -1,398 +1,3 @@
-<?xml version="1.0"?>
-<!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250624180918" modified="D:20250804225615" tex="luatex"/>
-<preamble>\renewcommand{\itcUnitlength}{4bp}
-\renewcommand{\itcLinewidth}{0.4bp}
-\renewcommand{\today}{XXXX/XX/XX}</preamble>
-<ipestyle name="basic">
-<symbol name="arrow/arc(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/farc(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/ptarc(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0 0 m
--1 0.333 l
--0.8 0 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/fptarc(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--0.8 0 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="mark/circle(sx)" transformations="translations">
-<path fill="sym-stroke">
-0.6 0 0 0.6 0 0 e
-0.4 0 0 0.4 0 0 e
-</path>
-</symbol>
-<symbol name="mark/disk(sx)" transformations="translations">
-<path fill="sym-stroke">
-0.6 0 0 0.6 0 0 e
-</path>
-</symbol>
-<symbol name="mark/fdisk(sfx)" transformations="translations">
-<group>
-<path fill="sym-fill">
-0.5 0 0 0.5 0 0 e
-</path>
-<path fill="sym-stroke" fillrule="eofill">
-0.6 0 0 0.6 0 0 e
-0.4 0 0 0.4 0 0 e
-</path>
-</group>
-</symbol>
-<symbol name="mark/box(sx)" transformations="translations">
-<path fill="sym-stroke" fillrule="eofill">
--0.6 -0.6 m
-0.6 -0.6 l
-0.6 0.6 l
--0.6 0.6 l
-h
--0.4 -0.4 m
-0.4 -0.4 l
-0.4 0.4 l
--0.4 0.4 l
-h
-</path>
-</symbol>
-<symbol name="mark/square(sx)" transformations="translations">
-<path fill="sym-stroke">
--0.6 -0.6 m
-0.6 -0.6 l
-0.6 0.6 l
--0.6 0.6 l
-h
-</path>
-</symbol>
-<symbol name="mark/fsquare(sfx)" transformations="translations">
-<group>
-<path fill="sym-fill">
--0.5 -0.5 m
-0.5 -0.5 l
-0.5 0.5 l
--0.5 0.5 l
-h
-</path>
-<path fill="sym-stroke" fillrule="eofill">
--0.6 -0.6 m
-0.6 -0.6 l
-0.6 0.6 l
--0.6 0.6 l
-h
--0.4 -0.4 m
-0.4 -0.4 l
-0.4 0.4 l
--0.4 0.4 l
-h
-</path>
-</group>
-</symbol>
-<symbol name="mark/cross(sx)" transformations="translations">
-<group>
-<path fill="sym-stroke">
--0.43 -0.57 m
-0.57 0.43 l
-0.43 0.57 l
--0.57 -0.43 l
-h
-</path>
-<path fill="sym-stroke">
--0.43 0.57 m
-0.57 -0.43 l
-0.43 -0.57 l
--0.57 0.43 l
-h
-</path>
-</group>
-</symbol>
-<symbol name="arrow/fnormal(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/pointed(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0 0 m
--1 0.333 l
--0.8 0 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/fpointed(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--0.8 0 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/linear(spx)">
-<path stroke="sym-stroke" pen="sym-pen">
--1 0.333 m
-0 0 l
--1 -0.333 l
-</path>
-</symbol>
-<symbol name="arrow/fdouble(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
--1 0 m
--2 0.333 l
--2 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/double(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
--1 0 m
--2 0.333 l
--2 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-normal(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0.5 0 m
--0.5 0.333 l
--0.5 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-fnormal(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0.5 0 m
--0.5 0.333 l
--0.5 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-pointed(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0.5 0 m
--0.5 0.333 l
--0.3 0 l
--0.5 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-fpointed(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0.5 0 m
--0.5 0.333 l
--0.3 0 l
--0.5 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-double(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-1 0 m
-0 0.333 l
-0 -0.333 l
-h
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/mid-fdouble(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-1 0 m
-0 0.333 l
-0 -0.333 l
-h
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
-</path>
-</symbol>
-<anglesize name="22.5 deg" value="22.5"/>
-<anglesize name="30 deg" value="30"/>
-<anglesize name="45 deg" value="45"/>
-<anglesize name="60 deg" value="60"/>
-<anglesize name="90 deg" value="90"/>
-<arrowsize name="large" value="10"/>
-<arrowsize name="small" value="5"/>
-<arrowsize name="tiny" value="3"/>
-<color name="blue" value="0 0 1"/>
-<color name="brown" value="0.647 0.165 0.165"/>
-<color name="darkblue" value="0 0 0.545"/>
-<color name="darkcyan" value="0 0.545 0.545"/>
-<color name="darkgray" value="0.663"/>
-<color name="darkgreen" value="0 0.392 0"/>
-<color name="darkmagenta" value="0.545 0 0.545"/>
-<color name="darkorange" value="1 0.549 0"/>
-<color name="darkred" value="0.545 0 0"/>
-<color name="gold" value="1 0.843 0"/>
-<color name="gray" value="0.745"/>
-<color name="green" value="0 1 0"/>
-<color name="lightblue" value="0.678 0.847 0.902"/>
-<color name="lightcyan" value="0.878 1 1"/>
-<color name="lightgray" value="0.827"/>
-<color name="lightgreen" value="0.565 0.933 0.565"/>
-<color name="lightyellow" value="1 1 0.878"/>
-<color name="navy" value="0 0 0.502"/>
-<color name="orange" value="1 0.647 0"/>
-<color name="pink" value="1 0.753 0.796"/>
-<color name="purple" value="0.627 0.125 0.941"/>
-<color name="red" value="1 0 0"/>
-<color name="seagreen" value="0.18 0.545 0.341"/>
-<color name="turquoise" value="0.251 0.878 0.816"/>
-<color name="violet" value="0.933 0.51 0.933"/>
-<color name="yellow" value="1 1 0"/>
-<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
-<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
-<dashstyle name="dashed" value="[4] 0"/>
-<dashstyle name="dotted" value="[1 3] 0"/>
-<gridsize name="10 pts (~3.5 mm)" value="10"/>
-<gridsize name="14 pts (~5 mm)" value="14"/>
-<gridsize name="16 pts (~6 mm)" value="16"/>
-<gridsize name="20 pts (~7 mm)" value="20"/>
-<gridsize name="28 pts (~10 mm)" value="28"/>
-<gridsize name="32 pts (~12 mm)" value="32"/>
-<gridsize name="4 pts" value="4"/>
-<gridsize name="56 pts (~20 mm)" value="56"/>
-<gridsize name="8 pts (~3 mm)" value="8"/>
-<opacity name="10%" value="0.1"/>
-<opacity name="30%" value="0.3"/>
-<opacity name="50%" value="0.5"/>
-<opacity name="75%" value="0.75"/>
-<pen name="fat" value="1.2"/>
-<pen name="heavier" value="0.8"/>
-<pen name="ultrafat" value="2"/>
-<symbolsize name="large" value="5"/>
-<symbolsize name="small" value="2"/>
-<symbolsize name="tiny" value="1.1"/>
-<textsize name="Huge" value="\Huge"/>
-<textsize name="LARGE" value="\LARGE"/>
-<textsize name="Large" value="\Large"/>
-<textsize name="footnote" value="\footnotesize"/>
-<textsize name="huge" value="\huge"/>
-<textsize name="large" value="\large"/>
-<textsize name="script" value="\scriptsize"/>
-<textsize name="small" value="\small"/>
-<textsize name="tiny" value="\tiny"/>
-<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
-<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
-<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
-<tiling name="falling" angle="-60" step="4" width="1"/>
-<tiling name="rising" angle="30" step="4" width="1"/>
-</ipestyle>
-<ipestyle name="slide_suzuki_4_3">
-<symbol name="Background" transformations="translations" xform="yes">
-<group>
-<path fill="jaxa_blue">
--11 253 m
--11 226 l
-348 226 l
-348 253 l
-h
-</path>
-<path fill="isas_purple">
--12 0 m
--12 -4 l
-348 -4 l
-348 0 l
-h
-</path>
-<text pos="0 -12" stroke="0" type="label" width="45.015" height="5.691" depth="0" valign="baseline" size="footnote">\today</text>
-</group>
-</symbol>
-<color name="isas_purple" value="0.275 0.008 0.557"/>
-<color name="jaxa_blue" value="0 0.376 0.69"/>
-<color name="jaxa_green" value="0.663 0.69 0"/>
-<color name="jaxa_red" value="0.69 0.024 0"/>
-<color name="light_black" value="0.235"/>
-<gridsize name="1 pts" value="1"/>
-<gridsize name="2 pts" value="2"/>
-<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
-<preamble>
-
-\usepackage{iftex}
-
-\ifluatex
-    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-    \usepackage{notomath}
-    \setsansfont{Noto Sans Medium}[
-        BoldFont=Noto Sans Bold,
-        ItalicFont=Noto Sans Italic,
-        BoldItalicFont=Noto Sans Bold Italic,
-    ]
-    \setsansjfont{Source Han Sans JP Medium}[
-        BoldFont=Source Han Sans JP Bold,
-    ]
-    \renewcommand{\familydefault}{\sfdefault}
-    \renewcommand{\kanjifamilydefault}{\gtdefault}
-
-\else\ifpdftex
-    \usepackage{amsmath}
-    \usepackage{newtxtext}
-    \usepackage[whole]{bxcjkjatype}
-    \usepackage{notomath}
-    \renewcommand\familydefault{\sfdefault}
-
-\else
-\fi\fi
-
-\usepackage{enumitem}
-\setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{\color{light_black}{$\bullet$}}
-\renewcommand{\labelitemii}{\color{light_black}{$\circ$}}
-\renewcommand{\labelitemiii}{\color{light_black}{\textbullet}}
-\renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
-
-\usepackage{tikzsymbols}
-\newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
-\newcommand{\bad}{\textcolor{white}{\Changey[1.2][jaxa_red]{-1.5}}}
-
-\usepackage[yyyymmdd]{datetime}
-
-\renewcommand{\baselinestretch}{1.3}
-
-\usepackage{siunitx}
-\usepackage{url}
-\urlstyle{same}
-
-</preamble>
-<layout paper="360 270" origin="12 16" frame="336 221" crop="no"/>
-<pagenumberstyle pos="336 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
-<titlestyle pos="0 232" size="LARGE" color="white"  valign="baseline"/>
-</ipestyle>
 <ipestyle name="ipetikzcircuit">
 <preamble>
 \makeatletter
@@ -420,7 +25,7 @@ h
 \catcode`P=12
 \catcode`T=12
 \lowercase{
-\def\itc@rmpt@x{\def\itc@rmpt##1.##2PT{##1\ifnum##2&gt;0.##2\fi}}}
+\def\itc@rmpt@x{\def\itc@rmpt##1.##2PT{##1\ifnum##2>0.##2\fi}}}
 \expandafter\endgroup\itc@rmpt@x
 \def\itcrmpt{\expandafter\itc@rmpt\the}
 \edef\itc@color{black}
@@ -452,7 +57,7 @@ h
         \ifx#1t%
             \draw [line width=\itcLinewidth,color=\itc@color,-|] (0,0)--(1.5,0);
         \else%
-            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcUnitlength,angle&apos;=30]}] (0,0)--(1.5,0);
+            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcUnitlength,angle'=30]}] (0,0)--(1.5,0);
         \fi%
     \end{tikzpicture}%
 }
@@ -521,21 +126,21 @@ h
     \begin{tikzpicture}[x=\itcUnitlength,y=\itcUnitlength]
         \useasboundingbox (0,-1) rectangle (\the\itc@tempcnta,2);
         \draw [line width=\itcLinewidth,line cap=round,color=\itc@color] (\the\itc@tempcnta,0)--++(-0.752762,0) arc[start angle=0,end angle=228,radius=0.747238];
-        \ifnum#1&gt;1%
+        \ifnum#1>1%
             \itc@tempcntb=1
             \loop
                 \itc@tempdima=\itc@tempcntb\p@
                 \advance \itc@tempdima 2\p@
                 \draw [line width=\itcLinewidth,line cap=round,color=\itc@color](\itcrmpt\itc@tempdima,-0.555306) arc [start angle=-48,end angle=228,radius=0.747238];
                 \advance\itc@tempcntb 1
-            \ifnum#1&gt;\itc@tempcntb\repeat%
+            \ifnum#1>\itc@tempcntb\repeat%
         \fi
         \draw [line width=\itcLinewidth,line cap=round,color=\itc@color] (2,-0.555306) arc [start angle=-48,end angle=180,radius=0.747238]--(0,0);
-        \ifnum#3&gt;0%
+        \ifnum#3>0%
             \itc@tempdima=\itc@tempcnta\p@
             \advance\itc@tempdima -0.752762\p@
             \draw [line width=\itcLinewidth,color=\itc@color](0.752762,1.25)--(\itcrmpt\itc@tempdima,1.25);
-            \ifnum#3&gt;1%
+            \ifnum#3>1%
                 \draw [line width=\itcLinewidth,color=\itc@color](0.752762,1.75)--(\itcrmpt\itc@tempdima,1.75);
             \fi
         \fi
@@ -586,7 +191,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color] (\itcrmpt\itc@tempdima,0)+(0,-1.5)--+(0,1.5);
                     \fill[color=\itc@color] (\itcrmpt\itc@tempdima,0)+(0.5,-0.5) rectangle +(1,0.5);
                     \advance\itc@tempcnta 1
-                \ifnum#1&gt;\itc@tempcnta\repeat
+                \ifnum#1>\itc@tempcnta\repeat
             \end{tikzpicture}%
         \else
             \itc@tempdima=#1\p@
@@ -604,7 +209,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color] (\itcrmpt\itc@tempdima,0)+(0,-1.5)--+(0,1.5);
                     \fill[color=\itc@color] (\itcrmpt\itc@tempdima,0)+(0.5,-0.5) rectangle +(1,0.5);
                 \advance\itc@tempcnta 1
-                \ifnum#1&gt;\itc@tempcnta\repeat%
+                \ifnum#1>\itc@tempcnta\repeat%
             \end{tikzpicture}%
         \fi
     \fi%
@@ -653,7 +258,7 @@ h
         \draw [line width=\itcLinewidth,color=\itc@color] (2,0) circle[radius=1.25];
         \itc@tempdima=\itcUnitlength
         \itc@tempdima=0.75\itc@tempdima
-        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\the\itc@tempdima,angle&apos;=30]}] (1,0)--(3,0);
+        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\the\itc@tempdima,angle'=30]}] (1,0)--(3,0);
     \end{tikzpicture}%
 }
 \def\itcAC_#1{%
@@ -842,8 +447,8 @@ h
     \fill[color=\itc@color] (2,0)+(1,1) rectangle +(0.714286,-1);
     \itc@tempdima=\itcUnitlength
     \itc@tempdima=0.75\itc@tempdima
-    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](2.25,1.75)--(3.5,3);
-    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](2.75,1.25)--(4,2.5);
+    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](2.25,1.75)--(3.5,3);
+    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](2.75,1.25)--(4,2.5);
     \end{tikzpicture}%
 }
 \def\itcPD{%
@@ -855,8 +460,8 @@ h
     \fill[color=\itc@color] (2,0)+(1,1) rectangle +(0.714286,-1);
     \itc@tempdima=\itcUnitlength
     \itc@tempdima=0.75\itc@tempdima
-    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](0.5,-3)--(1.75,-1.75);
-    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](0,-2.5)--(1.25,-1.25);
+    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](0.5,-3)--(1.75,-1.75);
+    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](0,-2.5)--(1.25,-1.25);
     \end{tikzpicture}%
 }% 定電流ダイオード
 \def\itcCRD{%
@@ -899,18 +504,18 @@ h
         \itc@tempdima=\itcUnitlength
         \if#2p%
             \if#3l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,2.015565)--(2.2,0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,2.015565)--(2.2,0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4.02,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,-2.015565)--(2.2,-0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,-2.015565)--(2.2,-0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \else
             \if#3l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,0.52)--(4,2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,0.52)--(4,2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,-0.52)--(4,-2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,-0.52)--(4,-2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \fi
@@ -932,25 +537,25 @@ h
         \itc@tempdima=0.6\itc@tempdima
         \if#2p%
             \if#3c%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](1.875,0)--(0.75,0);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](1.875,0)--(0.75,0);
                 \draw [line width=\itcLinewidth,color=\itc@color](0,0)--(0.75,0);
             \else
                 \if#3l%
-                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=40]}](1.875,1)--(1,1);
+                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=40]}](1.875,1)--(1,1);
                     \draw [line width=\itcLinewidth,color=\itc@color](0,1)--(1,1);
                 \else
-                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=40]}](1.875,-1)--(1,-1);
+                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=40]}](1.875,-1)--(1,-1);
                     \draw [line width=\itcLinewidth,color=\itc@color](0,-1)--(1,-1);
                 \fi
             \fi
         \else
             \if#3c%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](0,0)--(1.93,0);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](0,0)--(1.93,0);
             \else
                 \if#3l%
-                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=40]}](0,1)--(1.93,1);
+                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=40]}](0,1)--(1.93,1);
                 \else
-                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=40]}](0,-1)--(1.93,-1);
+                    \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=40]}](0,-1)--(1.93,-1);
                 \fi
             \fi
         \fi
@@ -1011,9 +616,9 @@ h
         \itc@tempdima=\itcUnitlength
         \itc@tempdima=0.75\itc@tempdima
         \if#2p%
-            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}] (2.625,0)--(4,0);
+            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}] (2.625,0)--(4,0);
         \else
-            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]},cap=rect] (4,0)--(2.625,0);
+            \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]},cap=rect] (4,0)--(2.625,0);
         \fi
     \end{tikzpicture}%
 }
@@ -1071,18 +676,18 @@ h
         \itc@tempdima=\itcUnitlength
         \if#2p%
             \if\itc@temparg l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,2.015565)--(2.2,0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,2.015565)--(2.2,0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4.02,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,-2.015565)--(2.2,-0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,-2.015565)--(2.2,-0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \else
             \if\itc@temparg l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,0.52)--(4,2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,0.52)--(4,2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,-0.52)--(4,-2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,-0.52)--(4,-2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \fi
@@ -1261,7 +866,7 @@ h
             \fi
         \fi
         \ifodd#1%
-            \ifnum#1&gt;2
+            \ifnum#1>2
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,1)--++(0.860698342,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.859301657,1)circle[radius=0.28];
@@ -1275,7 +880,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,0)--++(1.625128869,0);
                 \fi
             \fi
-            \ifnum#1&gt;4
+            \ifnum#1>4
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,2)--++(0.936230893,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.783769107,2)circle[radius=0.28];
@@ -1286,7 +891,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-2)--++(1.508410442,0);
                 \fi
             \fi
-            \ifnum#1&gt;6
+            \ifnum#1>6
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,3)--++(1.057259848,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.662740152,3)circle[radius=0.28];
@@ -1297,7 +902,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-3)--++(1.617976878,0);
                \fi
             \fi
-            \ifnum#1&gt;8
+            \ifnum#1>8
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,4)--++(0.765047787,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.954952213,4)circle[radius=0.28];
@@ -1308,7 +913,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-4)--++(1.354950998,0);
                 \fi
             \fi
-            \ifnum#1&gt;10
+            \ifnum#1>10
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,5)--++(0.993428945,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.726571055,5)circle[radius=0.28];
@@ -1319,7 +924,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-5)--++(1.560087736,0);
                 \fi
             \fi
-            \ifnum#1&gt;12
+            \ifnum#1>12
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,6)--++(1.033508530,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.686491470,6)circle[radius=0.28];
@@ -1331,7 +936,7 @@ h
                 \fi
             \fi
         \else
-            \ifnum#1&gt;3
+            \ifnum#1>3
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,0.5)--++(1.015550361,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.704449639,0.5)circle[radius=0.28];
@@ -1348,7 +953,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-1.5)--++(1.305048223,0);
                 \fi
             \fi
-            \ifnum#1&gt;5
+            \ifnum#1>5
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,2.5)--++(1.047389937,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.672610063,2.5)circle[radius=0.28];
@@ -1359,7 +964,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-2.5)--++(1.609011051,0);
                 \fi
             \fi
-            \ifnum#1&gt;7
+            \ifnum#1>7
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,3.5)--++(0.967034455,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.752965545,3.5)circle[radius=0.28];
@@ -1370,7 +975,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-3.5)--++(1.536217212,0);
                 \fi
             \fi
-            \ifnum#1&gt;9
+            \ifnum#1>9
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,4.5)--++(0.815527137,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.904472863,4.5)circle[radius=0.28];
@@ -1381,7 +986,7 @@ h
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,-4.5)--++(1.400007507,0);
                 \fi
             \fi
-            \ifnum#1&gt;11
+            \ifnum#1>11
                 \if#2n%
                     \draw [line width=\itcLinewidth,color=\itc@color](-6,5.5)--++(1.063163843,0);
                     \draw [line width=\itcLinewidth,color=\itc@color](-4.656836157,5.5)circle[radius=0.28];
@@ -1456,7 +1061,7 @@ h
             \ifnum#1=4
                 \draw [line width=\itcLinewidth,color=\itc@color](-4.841589558,-2) arc (16.601549599:30:2.8) --++ (0,0) arc(-30:30:2.8) --++ (0,0) arc (-30:-16.601549599:2.8);
             \fi
-            \ifnum4&gt;#1
+            \ifnum4>#1
             \draw [line width=\itcLinewidth,color=\itc@color](-5.1,-1.4) arc (-30:30:2.8);
             \fi
         \fi
@@ -1564,80 +1169,27 @@ h
         \itc@tempdima=\itcUnitlength
         \if#2p%
             \if#3l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,2.015565)--(2.2,0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,2.015565)--(2.2,0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4.02,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](4,-2.015565)--(2.2,-0.52);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](4,-2.015565)--(2.2,-0.52);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \else
             \if#3l%
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,0.52)--(4,2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,0.52)--(4,2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,-0.52)--(4,-2.015565);
             \else
-                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=30]}](2.2,-0.52)--(4,-2.015565);
+                \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=30]}](2.2,-0.52)--(4,-2.015565);
                 \draw [line width=\itcLinewidth,color=\itc@color](2.2,0.52)--(4,2.015565);
             \fi
         \fi
         \itc@tempdima=\itcUnitlength
         \itc@tempdima=0.75\itc@tempdima
-        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](0.95,0)--(1.85,-0.9);
-        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle&apos;=25]}](0.95,0.9)--(1.85,0);
+        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](0.95,0)--(1.85,-0.9);
+        \draw [line width=\itcLinewidth,color=\itc@color,arrows={-Stealth[inset=0pt,length=\itcrmpt\itc@tempdima,angle'=25]}](0.95,0.9)--(1.85,0);
     \end{tikzpicture}%
 }
 </preamble>
 </ipestyle>
-<page>
-<layer name="alpha"/>
-<layer name="pagenumbers_page" edit="no"/>
-<layer name="BACKGROUND"/>
-<layer name="pagenumbers_format"/>
-<layer name="pagenumbers_dont_count"/>
-<view layers="alpha" active="alpha"/>
-<text layer="pagenumbers_format" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
-<text transformations="translations" pos="336 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="light_black" type="minipage" width="336" height="10.51" depth="5.4" valign="top" size="huge">Presentation Title</text>
-<text transformations="translations" pos="336 128" stroke="light_black" type="label" width="28.603" height="7.123" depth="0.09" halign="right" valign="baseline">Name</text>
-<path matrix="0.966667 0 0 1 11.6 0" stroke="black">
--12 112 m
-348 112 l
-</path>
-<text transformations="translations" pos="0 96" stroke="light_black" type="minipage" width="336" height="15.225" depth="10.12" valign="top">\begin{itemize}
-  \item Topic
-  \begin{itemize}
-    \item Subtopic
-  \end{itemize}
-\end{itemize}</text>
-<text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="12.178" height="5.788" depth="0.07" halign="right" valign="baseline" size="footnote">0/1</text>
-<text transformations="translations" pos="336 -12" stroke="black" type="label" width="12.178" height="5.788" depth="0.07" halign="right" valign="baseline" size="footnote">0/1</text>
-</page>
-<page title="Page Title">
-<layer name="alpha"/>
-<layer name="pagenumbers_page" edit="no"/>
-<view layers="alpha pagenumbers_page" active="alpha"/>
-<text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="12.178" height="5.691" depth="0" halign="right" valign="baseline" size="footnote">1/1</text>
-<text transformations="translations" pos="336 -12" stroke="black" type="label" width="12.178" height="5.691" depth="0" halign="right" valign="baseline" size="footnote">1/1</text>
-</page>
-<page>
-<layer name="alpha"/>
-<layer name="pagenumbers_page" edit="no"/>
-<layer name="BACKGROUND"/>
-<layer name="pagenumbers_appendix"/>
-<layer name="pagenumbers_dont_count"/>
-<view layers="alpha" active="alpha"/>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="light_black" type="minipage" width="336" height="12.883" depth="7.78" valign="top" size="huge">Appendix</text>
-<path matrix="0.966667 0 0 1 11.6 0" stroke="black">
--12 112 m
-348 112 l
-</path>
-<text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="12.178" height="5.691" depth="0" halign="right" valign="baseline" size="footnote">1/1</text>
-<text transformations="translations" pos="336 -12" stroke="black" type="label" width="12.178" height="5.691" depth="0" halign="right" valign="baseline" size="footnote">1/1</text>
-</page>
-<page>
-<layer name="alpha"/>
-<layer name="pagenumbers_page" edit="no"/>
-<view layers="alpha pagenumbers_page" active="alpha"/>
-<text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="12.178" height="5.77" depth="0" halign="right" valign="baseline" size="footnote">2/1</text>
-<text transformations="translations" pos="336 -12" stroke="black" type="label" width="12.178" height="5.77" depth="0" halign="right" valign="baseline" size="footnote">2/1</text>
-</page>
-</ipe>
+\makeatother

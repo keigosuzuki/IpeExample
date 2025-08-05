@@ -1,0 +1,68 @@
+<ipestyle name="slide_suzuki_2_two_column">
+
+<color name="light_black" value="0 0 0"/>
+
+<color name="jaxa_blue" value="0 0.376 0.69"/>
+<color name="jaxa_red" value="0.69 0.024 0"/>
+<color name="jaxa_green" value="0.663 0.69 0"/>
+<color name="isas_purple" value="0.275 0.008 0.557"/>
+
+<preamble>
+
+% IEEE uses Times font, so we'll default to times.
+
+% These three commands make up the entire times.sty package.
+
+\renewcommand{\sfdefault}{phv}
+
+\renewcommand{\rmdefault}{ptm}
+
+\renewcommand{\ttdefault}{pcr}
+
+% enable Times now - so that all class options can see the correct font families
+\normalfont\selectfont
+
+\RequirePackage{amsmath}
+
+\makeatletter
+\g@addto@macro\small{%
+  \setlength\abovedisplayskip{0pt}%
+  \setlength\belowdisplayskip{0pt}%
+  \setlength\abovedisplayshortskip{0pt}%
+  \setlength\belowdisplayshortskip{0pt}%
+}
+\g@addto@macro\footnotesize{%
+  \setlength\abovedisplayskip{0pt}%
+  \setlength\belowdisplayskip{0pt}%
+  \setlength\abovedisplayshortskip{0pt}%
+  \setlength\belowdisplayshortskip{0pt}%
+}
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{0pt}%
+  \setlength\belowdisplayskip{0pt}%
+  \setlength\abovedisplayshortskip{0pt}%
+  \setlength\belowdisplayshortskip{0pt}%
+}
+\makeatother
+
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*}
+\renewcommand{\labelitemi}{\color{light_black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{light_black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{light_black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
+
+\usepackage{tikzsymbols}
+\newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
+\newcommand{\bad}{\textcolor{white}{\Changey[1.2][jaxa_red]{-1.5}}}
+
+\renewcommand{\baselinestretch}{1.3}
+
+\usepackage{setspace}
+\usepackage{siunitx}
+
+</preamble>
+
+<layout paper="245 680" origin="0 0" frame="245 680"/>
+
+</ipestyle>
