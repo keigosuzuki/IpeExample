@@ -14,7 +14,7 @@ prefs.styles = { "basic", "preamble" }
 -- default latex engine setting
 -- prefs.tex_engine = "luatex"
 -- default latex autorun setting
-prefs.auto_run_latex = false
+prefs.auto_run_latex = true
 -- auto export document when saved as .ipe
 prefs.auto_export = {"pdf"}
 
