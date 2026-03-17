@@ -4,6 +4,8 @@
 <titlestyle pos="8 804" color="white" size="Huge" valign="top" halign="left"/>
 <pagenumberstyle pos="576 0" color="black" size="LARGE" valign="bottom" halign="right"/>
 
+<color name="light_black" value="0 0 0"/>
+
 <color name="jaxa_blue" value="0 0.376 0.69"/>
 <color name="jaxa_red" value="0.69 0.024 0"/>
 <color name="jaxa_green" value="0.663 0.69 0"/>
@@ -39,10 +41,10 @@
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{\color{light_black}{$\bullet$}}
-\renewcommand{\labelitemii}{\color{light_black}{$\circ$}}
-\renewcommand{\labelitemiii}{\color{light_black}{\textbullet}}
-\renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage{tikzsymbols}
 \newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
