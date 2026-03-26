@@ -23,6 +23,8 @@
 \normalfont\selectfont
 
 \RequirePackage{amsmath}
+\usepackage{newtxtext}
+\usepackage[whole]{bxcjkjatype}
 
 \makeatletter
 \g@addto@macro\small{%
