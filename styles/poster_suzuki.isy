@@ -7,6 +7,7 @@
 <color name="light_black" value="0 0 0"/>
 
 <color name="jaxa_blue" value="0 0.376 0.69"/>
+<color name="jaxa_blue" value="0 0.376 0.92"/>
 <color name="jaxa_red" value="0.69 0.024 0"/>
 <color name="jaxa_green" value="0.663 0.69 0"/>
 <color name="isas_purple" value="0.275 0.008 0.557"/>
@@ -47,8 +48,8 @@
 \renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage{tikzsymbols}
-\newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
-\newcommand{\bad}{\textcolor{white}{\Changey[1.2][jaxa_red]{-1.5}}}
+\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_green]{1.5}}}}
+\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_red]{-1.5}}}}
 
 \usepackage[yyyymmdd]{datetime}
 
@@ -68,9 +69,9 @@
 
 <path fill="jaxa_blue" fillrule="wind">
 0 816 m
-0 768 l
-368 768 l
-400 816 l
+0 736 l
+368 736 l
+416 816 l
 h
 </path>
 <path stroke="jaxa_blue" pen="fat">
