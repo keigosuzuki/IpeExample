@@ -50,8 +50,8 @@
 \renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
 
 \usepackage{tikzsymbols}
-\newcommand{\good}{\textcolor{white}{\Changey[1.2][jaxa_green]{1.5}}}
-\newcommand{\bad}{\textcolor{white}{\Changey[1.2][jaxa_red]{-1.5}}}
+\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_green]{1.5}}}}
+\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_red]{-1.5}}}}
 
 \usepackage[yyyymmdd]{datetime}
 
