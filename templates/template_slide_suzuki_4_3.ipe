@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.3.1">
-<info created="D:20250624180918" modified="D:20260731141242" tex="luatex"/>
+<info created="D:20250624180918" modified="D:20260803005337" tex="luatex"/>
 <preamble>\renewcommand{\itcUnitlength}{4bp}
 \renewcommand{\itcLinewidth}{0.4bp}
 \renewcommand{\today}{XXXX/XX/XX}</preamble>
@@ -377,8 +377,8 @@ h
 \renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
 
 \usepackage{tikzsymbols}
-\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_green]{1.5}}}}
-\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.15][jaxa_red]{-1.5}}}}
+\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_green]{1.5}}}}
+\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_red]{-1.5}}}}
 
 \usepackage[yyyymmdd]{datetime}
 
