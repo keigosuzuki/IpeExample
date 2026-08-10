@@ -1,4 +1,4 @@
-# Ipe Example Files for EEIC Power
+# Ipe Example Files
 
 このレポジトリは，Ipeの公式バイナリに含まれないオリジナルのIpeのテンプレートやスクリプトなどを管理しています。
 
