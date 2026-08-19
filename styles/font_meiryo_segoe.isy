@@ -1,0 +1,36 @@
+<ipestyle name="font_meiryo_segoe">
+
+<preamble>
+
+\usepackage{iftex}
+
+\ifluatex
+    % No dedicated math font ships with Segoe UI/Meiryo, so load amsmath
+    % directly (font_notosans/font_plexsans get it transitively via
+    % notomath/unicode-math instead).
+    \usepackage{amsmath}
+    \usepackage[no-math,deluxe]{luatexja-preset}
+    \setsansfont{Segoe UI}[
+        BoldFont=Segoe UI Bold,
+        ItalicFont=Segoe UI Italic,
+        BoldItalicFont=Segoe UI Bold Italic,
+    ]
+    % Meiryo has no italic; Ipe/LaTeX will fake-slant it if asked for one.
+    \setsansjfont{Meiryo}[
+        BoldFont=Meiryo Bold,
+    ]
+    \renewcommand{\familydefault}{\sfdefault}
+    \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+\else\ifpdftex
+    \usepackage{amsmath}
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+    \renewcommand\familydefault{\sfdefault}
+
+\else
+\fi\fi
+
+</preamble>
+
+</ipestyle>
