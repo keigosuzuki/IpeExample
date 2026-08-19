@@ -23,3 +23,5 @@ shortcuts.previous_view = "Up"
 shortcuts.next_view = "Down"
 shortcuts.previous_page = "Left"
 shortcuts.next_page = "Right"
+
+shortcuts.ipelet_1_rounded_rectangle = "Alt+B"
