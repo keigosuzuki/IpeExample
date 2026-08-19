@@ -25,10 +25,10 @@
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{\color{light_black}{$\bullet$}}
-\renewcommand{\labelitemii}{\color{light_black}{$\circ$}}
-\renewcommand{\labelitemiii}{\color{light_black}{\textbullet}}
-\renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage{tikzsymbols}
 \newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_green]{1.5}}}}

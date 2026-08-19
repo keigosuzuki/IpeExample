@@ -1,4 +1,4 @@
-<!-- color_jaxa.isy より後に読み込むこと。light_black を投影時の視認性向上のためグレーに上書きする。 -->
+<!-- basic.isy より後に読み込むこと。組み込みの black を投影時の視認性向上のためグレーに上書きする。 -->
 <ipestyle name="color_mode_projector">
-<color name="light_black" value="0.235 0.235 0.235"/>
+<color name="black" value="0.235 0.235 0.235"/>
 </ipestyle>

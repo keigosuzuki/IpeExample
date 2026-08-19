@@ -318,10 +318,9 @@ h
 <color name="jaxa_blue" value="0 0.376 0.69"/>
 <color name="jaxa_green" value="0.663 0.69 0"/>
 <color name="jaxa_red" value="0.69 0.024 0"/>
-<color name="light_black" value="0 0 0"/>
 </ipestyle>
 <ipestyle name="color_mode_projector">
-<color name="light_black" value="0.235 0.235 0.235"/>
+<color name="black" value="0.235 0.235 0.235"/>
 </ipestyle>
 <ipestyle name="font_notosans">
 <preamble>
@@ -394,10 +393,10 @@ h
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{\color{light_black}{$\bullet$}}
-\renewcommand{\labelitemii}{\color{light_black}{$\circ$}}
-\renewcommand{\labelitemiii}{\color{light_black}{\textbullet}}
-\renewcommand{\labelitemiv}{\color{light_black}{\textbullet}}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
 
 \usepackage{tikzsymbols}
 \newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_green]{1.5}}}}
@@ -1619,13 +1618,13 @@ h
 <view layers="alpha" active="alpha"/>
 <text layer="pagenumbers_format" matrix="1 0 0 1 118 -194" transformations="translations" pos="320 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
 <text transformations="translations" pos="336 -12" stroke="black" type="label" width="50.299" height="6.06" depth="1.91" halign="right" valign="baseline" size="footnote">[page]/[total]</text>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="light_black" type="minipage" width="336" height="10.51" depth="5.4" valign="top" size="huge">Presentation Title</text>
-<text transformations="translations" pos="336 128" stroke="light_black" type="label" width="28.603" height="7.123" depth="0.09" halign="right" valign="baseline">Name</text>
+<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="10.51" depth="5.4" valign="top" size="huge">Presentation Title</text>
+<text transformations="translations" pos="336 128" stroke="black" type="label" width="28.603" height="7.123" depth="0.09" halign="right" valign="baseline">Name</text>
 <path matrix="0.966667 0 0 1 11.6 0" stroke="black">
 -12 112 m
 348 112 l
 </path>
-<text transformations="translations" pos="0 96" stroke="light_black" type="minipage" width="336" height="15.225" depth="10.12" valign="top">\begin{itemize}
+<text transformations="translations" pos="0 96" stroke="black" type="minipage" width="336" height="15.225" depth="10.12" valign="top">\begin{itemize}
   \item Topic
   \begin{itemize}
     \item Subtopic
@@ -1648,7 +1647,7 @@ h
 <layer name="pagenumbers_appendix"/>
 <layer name="pagenumbers_dont_count"/>
 <view layers="alpha" active="alpha"/>
-<text layer="alpha" transformations="translations" pos="0 192" stroke="light_black" type="minipage" width="336" height="12.883" depth="7.78" valign="top" size="huge">Appendix</text>
+<text layer="alpha" transformations="translations" pos="0 192" stroke="black" type="minipage" width="336" height="12.883" depth="7.78" valign="top" size="huge">Appendix</text>
 <path matrix="0.966667 0 0 1 11.6 0" stroke="black">
 -12 112 m
 348 112 l
