@@ -1,0 +1,59 @@
+<ipestyle name="slide_suzuki_16_9">
+
+<layout paper="480 270" origin="12 16" frame="456 221" skip="0" crop="no"/>
+<titlestyle pos="0 232" color="white" size="LARGE" halign="left" valign="baseline"/>
+<pagenumberstyle pos="456 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
+
+<gridsize name="1 pts" value="1"/>
+<gridsize name="2 pts" value="2"/>
+
+<preamble>
+
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*}
+\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
+\renewcommand{\labelitemii}{\color{black}{$\circ$}}
+\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
+\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
+
+\usepackage{tikzsymbols}
+\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_green]{1.5}}}}
+\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_red]{-1.5}}}}
+
+\usepackage[yyyymmdd]{datetime}
+
+\renewcommand{\baselinestretch}{1.3}
+
+\usepackage{siunitx}
+\usepackage{url}
+\urlstyle{same}
+
+</preamble>
+
+<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+
+<symbol name="Background"  xform="yes">
+<group>
+
+<path fill="jaxa_blue">
+-11 253 m
+-11 226 l
+468 226 l
+468 253 l
+h
+</path>
+
+<path fill="isas_purple">
+-12 0 m
+-12 -4 l
+468 -4 l
+468 0 l
+h
+</path>
+
+<text pos="0 -12" halign="left" valign="baseline" size="footnote">\today</text>
+
+</group>
+</symbol>
+
+</ipestyle>
