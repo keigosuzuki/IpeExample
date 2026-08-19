@@ -31,8 +31,8 @@ end
 -- in override priority. Mode comes before font so the two groups
 -- never reshuffle relative to each other between calls.
 local MODE_GROUP = { "color_mode_projector" }
-local FONT_GROUP = { "font_notosans", "font_weight_medium", "font_times" }
-local ALL_MANAGED = { "color_mode_projector", "font_notosans", "font_weight_medium", "font_times" }
+local FONT_GROUP = { "font_notosans", "font_weight_medium", "font_times", "font_plexsans" }
+local ALL_MANAGED = { "color_mode_projector", "font_notosans", "font_weight_medium", "font_times", "font_plexsans" }
 
 local function findSheetIndex(doc, name)
   for i = 1, doc:sheets():count() do
@@ -134,6 +134,8 @@ local function setFont(model, choice)
     -- index) than font_notosans so its preamble is emitted after
     -- font_notosans's \usepackage{iftex} -- see insertSheets.
     files = { "font_weight_medium.isy", "font_notosans.isy" }
+  elseif choice == "plexsans" then
+    files = { "font_plexsans.isy" }
   else
     files = { "font_times.isy" }
   end
@@ -166,6 +168,7 @@ methods = {
   { label = "Font: Noto Sans (Regular)", run = function(model) setFont(model, "regular") end },
   { label = "Font: Noto Sans (Medium, for slides)", run = function(model) setFont(model, "medium") end },
   { label = "Font: Times / Helvetica", run = function(model) setFont(model, "times") end },
+  { label = "Font: IBM Plex Sans", run = function(model) setFont(model, "plexsans") end },
   { label = "Color mode: Projector (gray)", run = function(model) setProjectorMode(model, true) end },
   { label = "Color mode: Print (black)", run = function(model) setProjectorMode(model, false) end },
 }

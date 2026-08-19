@@ -1,0 +1,31 @@
+<ipestyle name="font_plexsans">
+
+<preamble>
+
+\usepackage{iftex}
+
+\ifluatex
+    \usepackage[sans=true, math=true]{plex-otf}
+    % plex-otf doesn't pull in luatexja; load it separately for
+    % \setsansjfont, telling it to leave math to plex-otf's unicode-math.
+    \usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
+    \renewcommand{\familydefault}{\sfdefault}
+    % IBM Plex has no Japanese counterpart in TeX Live, so pair with
+    % Source Han Sans JP (same CJK family font_notosans.isy uses).
+    \setsansjfont{Source Han Sans JP Medium}[
+        BoldFont=Source Han Sans JP Bold,
+    ]
+    \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+\else\ifpdftex
+    \usepackage{amsmath}
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+    \renewcommand\familydefault{\sfdefault}
+
+\else
+\fi\fi
+
+</preamble>
+
+</ipestyle>
