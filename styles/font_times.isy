@@ -15,9 +15,19 @@
 % enable Times now - so that all class options can see the correct font families
 \normalfont\selectfont
 
-\RequirePackage{amsmath}
-\usepackage{newtxtext}
-\usepackage[whole]{bxcjkjatype}
+\usepackage{iftex}
+
+\ifluatex
+    \RequirePackage{amsmath}
+    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+
+\else\ifpdftex
+    \RequirePackage{amsmath}
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+
+\else
+\fi\fi
 
 </preamble>
 
