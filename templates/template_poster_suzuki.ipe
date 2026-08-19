@@ -310,32 +310,14 @@ h
 <tiling name="falling" angle="-60" step="4" width="1"/>
 <tiling name="rising" angle="30" step="4" width="1"/>
 </ipestyle>
-<ipestyle name="poster_suzuki">
-<symbol name="Background" transformations="translations" xform="yes">
-<group>
-<path fill="jaxa_blue" fillrule="wind">
-0 816 m
-0 736 l
-368 736 l
-416 816 l
-h
-</path>
-<path stroke="jaxa_blue" pen="fat">
-0 816 m
-576 816 l
-</path>
-<path stroke="isas_purple" pen="ultrafat">
-0 64 m
-576 64 l
-</path>
-</group>
-</symbol>
+<ipestyle name="color_jaxa">
 <color name="isas_purple" value="0.275 0.008 0.557"/>
-<color name="jaxa_blue" value="0 0.376 0.92"/>
+<color name="jaxa_blue" value="0 0.376 0.69"/>
 <color name="jaxa_green" value="0.663 0.69 0"/>
 <color name="jaxa_red" value="0.69 0.024 0"/>
-<color name="light_black" value="0"/>
-<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+<color name="light_black" value="0 0 0"/>
+</ipestyle>
+<ipestyle name="font_notosans">
 <preamble>
 
 \usepackage{iftex}
@@ -363,6 +345,31 @@ h
 
 \else
 \fi\fi
+
+</preamble>
+</ipestyle>
+<ipestyle name="poster_suzuki">
+<symbol name="Background" transformations="translations" xform="yes">
+<group>
+<path fill="jaxa_blue" fillrule="wind">
+0 816 m
+0 736 l
+368 736 l
+416 816 l
+h
+</path>
+<path stroke="jaxa_blue" pen="fat">
+0 816 m
+576 816 l
+</path>
+<path stroke="isas_purple" pen="ultrafat">
+0 64 m
+576 64 l
+</path>
+</group>
+</symbol>
+<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+<preamble>
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}

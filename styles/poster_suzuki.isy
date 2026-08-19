@@ -4,41 +4,7 @@
 <titlestyle pos="8 804" color="white" size="Huge" valign="top" halign="left"/>
 <pagenumberstyle pos="576 0" color="black" size="LARGE" valign="bottom" halign="right"/>
 
-<color name="light_black" value="0 0 0"/>
-
-<color name="jaxa_blue" value="0 0.376 0.69"/>
-<color name="jaxa_blue" value="0 0.376 0.92"/>
-<color name="jaxa_red" value="0.69 0.024 0"/>
-<color name="jaxa_green" value="0.663 0.69 0"/>
-<color name="isas_purple" value="0.275 0.008 0.557"/>
-
 <preamble>
-
-\usepackage{iftex}
-
-\ifluatex
-    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-    \usepackage{notomath}
-    \setsansfont{Noto Sans Regular}[
-        BoldFont=Noto Sans Bold,
-        ItalicFont=Noto Sans Italic,
-        BoldItalicFont=Noto Sans Bold Italic,
-    ]
-    \setsansjfont{Source Han Sans JP Medium}[
-        BoldFont=Source Han Sans JP Bold,
-    ]
-    \renewcommand{\familydefault}{\sfdefault}
-    \renewcommand{\kanjifamilydefault}{\gtdefault}
-
-\else\ifpdftex
-    \usepackage{amsmath}
-    \usepackage{newtxtext}
-    \usepackage[whole]{bxcjkjatype}
-    \usepackage{notomath}
-    \renewcommand\familydefault{\sfdefault}
-
-\else
-\fi\fi
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}

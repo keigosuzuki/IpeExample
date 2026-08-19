@@ -1,0 +1,33 @@
+<ipestyle name="font_notosans">
+
+<preamble>
+
+\usepackage{iftex}
+
+\ifluatex
+    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+    \usepackage{notomath}
+    \setsansfont{Noto Sans Regular}[
+        BoldFont=Noto Sans Bold,
+        ItalicFont=Noto Sans Italic,
+        BoldItalicFont=Noto Sans Bold Italic,
+    ]
+    \setsansjfont{Source Han Sans JP Medium}[
+        BoldFont=Source Han Sans JP Bold,
+    ]
+    \renewcommand{\familydefault}{\sfdefault}
+    \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+\else\ifpdftex
+    \usepackage{amsmath}
+    \usepackage{newtxtext}
+    \usepackage[whole]{bxcjkjatype}
+    \usepackage{notomath}
+    \renewcommand\familydefault{\sfdefault}
+
+\else
+\fi\fi
+
+</preamble>
+
+</ipestyle>

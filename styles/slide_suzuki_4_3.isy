@@ -7,40 +7,7 @@
 <gridsize name="1 pts" value="1"/>
 <gridsize name="2 pts" value="2"/>
 
-<color name="light_black" value="0.235 0.235 0.235"/>
-
-<color name="jaxa_blue" value="0 0.376 0.69"/>
-<color name="jaxa_red" value="0.69 0.024 0"/>
-<color name="jaxa_green" value="0.663 0.69 0"/>
-<color name="isas_purple" value="0.275 0.008 0.557"/>
-
 <preamble>
-
-\usepackage{iftex}
-
-\ifluatex
-    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-    \usepackage{notomath}
-    \setsansfont{Noto Sans Medium}[
-        BoldFont=Noto Sans Bold,
-        ItalicFont=Noto Sans Italic,
-        BoldItalicFont=Noto Sans Bold Italic,
-    ]
-    \setsansjfont{Source Han Sans JP Medium}[
-        BoldFont=Source Han Sans JP Bold,
-    ]
-    \renewcommand{\familydefault}{\sfdefault}
-    \renewcommand{\kanjifamilydefault}{\gtdefault}
-
-\else\ifpdftex
-    \usepackage{amsmath}
-    \usepackage{newtxtext}
-    \usepackage[whole]{bxcjkjatype}
-    \usepackage{notomath}
-    \renewcommand\familydefault{\sfdefault}
-
-\else
-\fi\fi
 
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
