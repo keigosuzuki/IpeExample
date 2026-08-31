@@ -5,12 +5,4 @@
 <dashstyle name="loose dashed" value="[8] 0"/>
 <dashstyle name="dense dotted" value="[0.5 1.5] 0"/>
 <dashstyle name="loose dotted" value="[1 4] 0"/>
-<dashstyle name="dashed [3] 0" value="[3] 0"/>
-<dashstyle name="dotted [1 1] 0" value="[1 1] 0"/>
-<dashstyle name="dotted [1 2] 0" value="[1 2] 0"/>
-<dashstyle name="dotted [2 2] 0" value="[2 2] 0"/>
-<dashstyle name="dotted [0 1] 0" value="[0 1] 0"/>
-<dashstyle name="dotted [0 2] 0" value="[0 2] 0"/>
-<dashstyle name="dotted [0 3] 0" value="[0 3] 0"/>
-<dashstyle name="dotted [0 4] 0" value="[0 4] 0"/>
 </ipestyle>

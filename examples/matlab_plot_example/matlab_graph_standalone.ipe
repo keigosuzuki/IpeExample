@@ -11,73 +11,355 @@
 h
 </path>
 </symbol>
-<arrowsize name="normal" value="10"/>
-<arrowsize name="large" value="14"/>
-<arrowsize name="small" value="7"/>
-<arrowsize name="tiny" value="5"/>
-<color name="red" value="1 0 0"/>
-<color name="green" value="0 1 0"/>
+<symbol name="arrow/farc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/ptarc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fptarc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path>
+</symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</group>
+</symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+</path>
+</symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+-0.5 -0.5 m
+0.5 -0.5 l
+0.5 0.5 l
+-0.5 0.5 l
+h
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group>
+<path fill="sym-stroke">
+-0.43 -0.57 m
+0.57 0.43 l
+0.43 0.57 l
+-0.57 -0.43 l
+h
+</path>
+<path fill="sym-stroke">
+-0.43 0.57 m
+0.57 -0.43 l
+0.43 -0.57 l
+-0.57 0.43 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="arrow/fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/linear(spx)">
+<path stroke="sym-stroke" pen="sym-pen">
+-1 0.333 m
+0 0 l
+-1 -0.333 l
+</path>
+</symbol>
+<symbol name="arrow/fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-normal(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.3 0 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.3 0 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+1 0 m
+0 0.333 l
+0 -0.333 l
+h
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+1 0 m
+0 0.333 l
+0 -0.333 l
+h
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<anglesize name="22.5 deg" value="22.5"/>
+<anglesize name="30 deg" value="30"/>
+<anglesize name="45 deg" value="45"/>
+<anglesize name="60 deg" value="60"/>
+<anglesize name="90 deg" value="90"/>
+<arrowsize name="large" value="10"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
 <color name="blue" value="0 0 1"/>
-<color name="yellow" value="1 1 0"/>
-<color name="orange" value="1 0.647 0"/>
+<color name="brown" value="0.647 0.165 0.165"/>
+<color name="darkblue" value="0 0 0.545"/>
+<color name="darkcyan" value="0 0.545 0.545"/>
+<color name="darkgray" value="0.663"/>
+<color name="darkgreen" value="0 0.392 0"/>
+<color name="darkmagenta" value="0.545 0 0.545"/>
+<color name="darkorange" value="1 0.549 0"/>
+<color name="darkred" value="0.545 0 0"/>
 <color name="gold" value="1 0.843 0"/>
-<color name="purple" value="0.627 0.125 0.941"/>
 <color name="gray" value="0.745"/>
-<color name="white" value="1"/>
-<color name="black" value="0"/>
-<color name="lightgray" value="0.9"/>
-<pen name="normal" value="0.6"/>
-<pen name="heavier" value="1.2"/>
-<pen name="fat" value="1.8"/>
-<pen name="ultrafat" value="2.4"/>
-<pen name="ultrathin" value="0.2"/>
-<pen name="thin" value="0.4"/>
-<textsize name="normal" value="10"/>
-<textsize name="large" value="12"/>
-<textsize name="Large" value="14"/>
-<textsize name="LARGE" value="18"/>
-<textsize name="huge" value="20"/>
-<textsize name="small" value="8"/>
-<textsize name="footnote" value="7"/>
-<textsize name="tiny" value="6"/>
+<color name="green" value="0 1 0"/>
+<color name="lightblue" value="0.678 0.847 0.902"/>
+<color name="lightcyan" value="0.878 1 1"/>
+<color name="lightgray" value="0.827"/>
+<color name="lightgreen" value="0.565 0.933 0.565"/>
+<color name="lightyellow" value="1 1 0.878"/>
+<color name="navy" value="0 0 0.502"/>
+<color name="orange" value="1 0.647 0"/>
+<color name="pink" value="1 0.753 0.796"/>
+<color name="purple" value="0.627 0.125 0.941"/>
+<color name="red" value="1 0 0"/>
+<color name="seagreen" value="0.18 0.545 0.341"/>
+<color name="turquoise" value="0.251 0.878 0.816"/>
+<color name="violet" value="0.933 0.51 0.933"/>
+<color name="yellow" value="1 1 0"/>
+<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
+<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="dense dashed" value="[2] 0"/>
+<dashstyle name="dense dotted" value="[0.5 1.5] 0"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<dashstyle name="loose dashed" value="[8] 0"/>
+<dashstyle name="loose dotted" value="[1 4] 0"/>
+<gridsize name="10 pts (~3.5 mm)" value="10"/>
+<gridsize name="14 pts (~5 mm)" value="14"/>
+<gridsize name="16 pts (~6 mm)" value="16"/>
+<gridsize name="20 pts (~7 mm)" value="20"/>
+<gridsize name="28 pts (~10 mm)" value="28"/>
+<gridsize name="32 pts (~12 mm)" value="32"/>
+<gridsize name="4 pts" value="4"/>
+<gridsize name="56 pts (~20 mm)" value="56"/>
+<gridsize name="8 pts (~3 mm)" value="8"/>
 <opacity name="10%" value="0.1"/>
 <opacity name="30%" value="0.3"/>
 <opacity name="50%" value="0.5"/>
 <opacity name="75%" value="0.75"/>
-<layout paper="410 290" origin="0 0" frame="410 290" crop="yes"/>
+<pen name="fat" value="1.2"/>
+<pen name="heavier" value="0.8"/>
+<pen name="ultrafat" value="2"/>
+<symbolsize name="large" value="5"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="large" value="\large"/>
+<textsize name="script" value="\scriptsize"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
+<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
+<tiling name="falling" angle="-60" step="4" width="1"/>
+<tiling name="rising" angle="30" step="4" width="1"/>
 </ipestyle>
 <ipestyle name="color_matlab">
+<color name="matlab_b" value="0 0 1"/>
 <color name="matlab_blue" value="0 0.447 0.714"/>
-<color name="matlab_red" value="0.850 0.325 0.098"/>
+<color name="matlab_brown" value="0.635 0.078 0.184"/>
+<color name="matlab_c" value="0 1 1"/>
+<color name="matlab_cyan" value="0.301 0.745 0.933"/>
+<color name="matlab_g" value="0 1 0"/>
+<color name="matlab_green" value="0.466 0.674 0.188"/>
+<color name="matlab_k" value="0"/>
+<color name="matlab_m" value="1 0 1"/>
 <color name="matlab_orange" value="0.929 0.694 0.125"/>
 <color name="matlab_purple" value="0.494 0.184 0.556"/>
-<color name="matlab_green" value="0.466 0.674 0.188"/>
-<color name="matlab_cyan" value="0.301 0.745 0.933"/>
-<color name="matlab_brown" value="0.635 0.078 0.184"/>
+<color name="matlab_r" value="1 0 0"/>
+<color name="matlab_red" value="0.85 0.325 0.098"/>
+<color name="matlab_w" value="1"/>
+<color name="matlab_y" value="1 1 0"/>
 </ipestyle>
 <ipestyle name="font_notosans">
 <preamble>
+
 \usepackage{iftex}
+
 \ifluatex
     \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-    \usepackage{amsmath,amssymb}
-    \setsansfont{Noto Sans}[
+    \usepackage{notomath}
+    \setsansfont{Noto Sans Regular}[
         BoldFont=Noto Sans Bold,
         ItalicFont=Noto Sans Italic,
         BoldItalicFont=Noto Sans Bold Italic,
     ]
-    \setsansjfont{Noto Sans CJK JP}[
-        BoldFont=Noto Sans CJK JP Bold,
+    \setsansjfont{Source Han Sans JP Medium}[
+        BoldFont=Source Han Sans JP Bold,
     ]
     \renewcommand{\familydefault}{\sfdefault}
     \renewcommand{\kanjifamilydefault}{\gtdefault}
+
 \else\ifpdftex
     \usepackage{amsmath}
     \usepackage{newtxtext}
     \usepackage[whole]{bxcjkjatype}
+    \usepackage{notomath}
     \renewcommand\familydefault{\sfdefault}
+
 \else
 \fi\fi
+
 </preamble>
 </ipestyle>
 <page>
@@ -87,12 +369,11 @@ h
 <layer name="labels"/>
 <layer name="annotations"/>
 <view layers="background grid_and_axes plots labels annotations" active="annotations"/>
-
-<!-- Graph objects from MATLAB -->
 <group layer="plots">
 <path matrix="0.04 0 0 0.04 0 0" fill="black">
-18 0 0 18 0 0 e</path>
-<path fill="1.000000 1.000000 1.000000">
+18 0 0 18 0 0 e
+</path>
+<path fill="1">
 40.2 251.231 m
 40.2 32.2312 l
 365.7 32.2312 l
@@ -100,7 +381,7 @@ h
 40.2 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.7 251.231 m
 40.7 32.2312 l
 39.7 32.2312 l
@@ -108,7 +389,7 @@ h
 40.7 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 105.8 251.231 m
 105.8 32.2312 l
 104.8 32.2312 l
@@ -116,7 +397,7 @@ h
 105.8 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 170.9 251.231 m
 170.9 32.2312 l
 169.9 32.2312 l
@@ -124,7 +405,7 @@ h
 170.9 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 236 251.231 m
 236 32.2312 l
 235 32.2312 l
@@ -132,7 +413,7 @@ h
 236 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 301.1 251.231 m
 301.1 32.2312 l
 300.1 32.2312 l
@@ -140,7 +421,7 @@ h
 301.1 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 366.2 251.231 m
 366.2 32.2312 l
 365.2 32.2312 l
@@ -148,7 +429,7 @@ h
 366.2 251.231 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 32.7312 m
 365.7 32.7312 l
 365.7 31.7312 l
@@ -156,7 +437,7 @@ h
 40.2 32.7312 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 57.0646 m
 365.7 57.0646 l
 365.7 56.0646 l
@@ -164,7 +445,7 @@ h
 40.2 57.0646 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 81.3979 m
 365.7 81.3979 l
 365.7 80.3979 l
@@ -172,7 +453,7 @@ h
 40.2 81.3979 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 105.731 m
 365.7 105.731 l
 365.7 104.731 l
@@ -180,7 +461,7 @@ h
 40.2 105.731 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 130.065 m
 365.7 130.065 l
 365.7 129.065 l
@@ -188,7 +469,7 @@ h
 40.2 130.065 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 154.398 m
 365.7 154.398 l
 365.7 153.398 l
@@ -196,7 +477,7 @@ h
 40.2 154.398 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 178.731 m
 365.7 178.731 l
 365.7 177.731 l
@@ -204,7 +485,7 @@ h
 40.2 178.731 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 203.065 m
 365.7 203.065 l
 365.7 202.065 l
@@ -212,7 +493,7 @@ h
 40.2 203.065 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 227.398 m
 365.7 227.398 l
 365.7 226.398 l
@@ -220,7 +501,7 @@ h
 40.2 227.398 l
 h
 </path>
-<path fill="gray" opacity="30%" fillrule="wind">
+<path fill="gray" fillrule="wind" opacity="30%">
 40.2 251.731 m
 365.7 251.731 l
 365.7 250.731 l
@@ -228,147 +509,147 @@ h
 40.2 251.731 l
 h
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 32.2312 m
 365.7 32.2312 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 251.231 m
 365.7 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 32.2312 m
 40.2 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 247.976 m
 40.2 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 105.3 32.2312 m
 105.3 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 105.3 247.976 m
 105.3 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 170.4 32.2312 m
 170.4 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 170.4 247.976 m
 170.4 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 235.5 32.2312 m
 235.5 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 235.5 247.976 m
 235.5 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 300.6 32.2312 m
 300.6 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 300.6 247.976 m
 300.6 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 365.7 32.2312 m
 365.7 35.4862 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 365.7 247.976 m
 365.7 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 32.2312 m
 40.2 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 365.7 32.2312 m
 365.7 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 32.2312 m
 43.455 32.2312 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 32.2312 m
 365.7 32.2312 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 56.5646 m
 43.455 56.5646 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 56.5646 m
 365.7 56.5646 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 80.8979 m
 43.455 80.8979 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 80.8979 m
 365.7 80.8979 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 105.231 m
 43.455 105.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 105.231 m
 365.7 105.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 129.565 m
 43.455 129.565 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 129.565 m
 365.7 129.565 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 153.898 m
 43.455 153.898 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 153.898 m
 365.7 153.898 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 178.231 m
 43.455 178.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 178.231 m
 365.7 178.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 202.565 m
 43.455 202.565 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 202.565 m
 365.7 202.565 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 226.898 m
 43.455 226.898 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 226.898 m
 365.7 226.898 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 40.2 251.231 m
 43.455 251.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="black" cap="2" join="1">
 362.445 251.231 m
 365.7 251.231 l
 </path>
@@ -1878,7 +2159,7 @@ h
 365.048 129.564 l
 365.7 129.564 l
 </path>
-<path fill="1.000000 1.000000 1.000000">
+<path fill="1">
 282.45 242.981 m
 282.45 202.481 l
 357.45 202.481 l
@@ -1898,7 +2179,7 @@ h
 285.432 210.094 m
 315.25 210.094 l
 </path>
-<path stroke="black" pen="normal">
+<path stroke="black">
 282.45 202.481 m
 282.45 242.981 l
 357.45 242.981 l
@@ -1907,38 +2188,27 @@ h
 h
 </path>
 </group>
-
-<!-- LaTeX Text Labels -->
-<text layer="labels" pos="203 262" halign="center" valign="baseline" size="large" stroke="black">減衰振動応答 ($y(t) = e^{-\zeta \omega_n t} \cos(\omega_d t)$)</text>
-<text layer="labels" pos="203 12" halign="center" valign="baseline" size="normal" stroke="black">時間 $t\ [\mathrm{s}]$</text>
-<text layer="labels" pos="14 142" halign="center" valign="baseline" size="normal" stroke="black" matrix="0 1 -1 0 156 128">応答 $y(t)$</text>
-
-<!-- X-axis ticks -->
-<text layer="labels" pos="40 22" halign="center" valign="baseline" size="small" stroke="black">0</text>
-<text layer="labels" pos="105 22" halign="center" valign="baseline" size="small" stroke="black">1</text>
-<text layer="labels" pos="170 22" halign="center" valign="baseline" size="small" stroke="black">2</text>
-<text layer="labels" pos="235 22" halign="center" valign="baseline" size="small" stroke="black">3</text>
-<text layer="labels" pos="300 22" halign="center" valign="baseline" size="small" stroke="black">4</text>
-<text layer="labels" pos="365 22" halign="center" valign="baseline" size="small" stroke="black">5</text>
-
-<!-- Y-axis ticks -->
-<text layer="labels" pos="34 30" halign="right" valign="center" size="small" stroke="black">-1</text>
-<text layer="labels" pos="34 79" halign="right" valign="center" size="small" stroke="black">-0.5</text>
-<text layer="labels" pos="34 128" halign="right" valign="center" size="small" stroke="black">0</text>
-<text layer="labels" pos="34 177" halign="right" valign="center" size="small" stroke="black">0.5</text>
-<text layer="labels" pos="34 226" halign="right" valign="center" size="small" stroke="black">1</text>
-
-<!-- Legend LaTeX Text -->
-<text layer="labels" pos="318 233" halign="left" valign="center" size="small" stroke="black">$\zeta = 0.1$</text>
-<text layer="labels" pos="318 220" halign="left" valign="center" size="small" stroke="black">$\zeta = 0.3$</text>
-<text layer="labels" pos="318 207" halign="left" valign="center" size="small" stroke="black">$\zeta = 0.6$</text>
-
-<!-- Annotations in Ipe -->
-<text layer="annotations" pos="140 180" halign="left" valign="baseline" size="small" stroke="matlab_red">減衰比 $\zeta$ が大きいほど速やかに減衰</text>
-<path layer="annotations" stroke="matlab_red" pen="thin" arrow="normal/normal">
+<text layer="labels" pos="203 262" stroke="black" type="label" halign="center" valign="baseline" size="large">減衰振動応答 ($y(t) = e^{-\zeta \omega_n t} \cos(\omega_d t)$)</text>
+<text pos="203 12" stroke="black" type="label" halign="center" valign="baseline">時間 $t\ [\mathrm{s}]$</text>
+<text matrix="0 1 -1 0 156 128" pos="14 142" stroke="black" type="label" halign="center" valign="baseline">応答 $y(t)$</text>
+<text pos="40 22" stroke="black" type="label" halign="center" valign="baseline" size="small">0</text>
+<text pos="105 22" stroke="black" type="label" halign="center" valign="baseline" size="small">1</text>
+<text pos="170 22" stroke="black" type="label" halign="center" valign="baseline" size="small">2</text>
+<text pos="235 22" stroke="black" type="label" halign="center" valign="baseline" size="small">3</text>
+<text pos="300 22" stroke="black" type="label" halign="center" valign="baseline" size="small">4</text>
+<text pos="365 22" stroke="black" type="label" halign="center" valign="baseline" size="small">5</text>
+<text pos="34 30" stroke="black" type="label" halign="right" valign="center" size="small">-1</text>
+<text pos="34 79" stroke="black" type="label" halign="right" valign="center" size="small">-0.5</text>
+<text pos="34 128" stroke="black" type="label" halign="right" valign="center" size="small">0</text>
+<text pos="34 177" stroke="black" type="label" halign="right" valign="center" size="small">0.5</text>
+<text pos="34 226" stroke="black" type="label" halign="right" valign="center" size="small">1</text>
+<text pos="318 233" stroke="black" type="label" valign="center" size="small" style="math">\zeta = 0.1</text>
+<text pos="318 220" stroke="black" type="label" valign="center" size="small" style="math">\zeta = 0.3</text>
+<text pos="318 207" stroke="black" type="label" valign="center" size="small" style="math">\zeta = 0.6</text>
+<text layer="annotations" pos="140 180" stroke="matlab_red" type="label" valign="baseline" size="small">減衰比 $\zeta$ が大きいほど速やかに減衰</text>
+<path stroke="matlab_red" pen="thin" arrow="normal/normal">
 135 178 m
 95 150 l
 </path>
-
 </page>
 </ipe>
