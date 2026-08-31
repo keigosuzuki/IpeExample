@@ -31,6 +31,7 @@
 </preamble>
 
 <textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+<textstyle name="enumerate" begin="\begin{enumerate}" end="\end{enumerate}"/>
 
 <symbol name="Background"  xform="yes">
 <group>
