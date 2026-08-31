@@ -9,12 +9,18 @@ Ipe に関係する.exeファイルが入っています。
 
 ### ipelets
 Ipe に機能を付け加えたり設定するためのファイルが入っています。
+- `matlab_import.lua`: MATLAB で出力したベクター PDF / IPE をスライドや図面に直接インポートし、MATLAB カラーパレット（`color_matlab.isy`）の自動適用、スケーリング、不要な白背景の除去を行う ipelet。
+- `style_switcher.lua`: フォントやプロジェクター用カラーモードを切り替える ipelet。
+- `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
 
 ### styles
 Ipe のスタイルシート (.isy) が入っています。
 
 ### templates
 Ipe を用いたテンプレート(プレゼンテーション用スライドなど)が入っています。
+
+### examples
+MATLAB グラフ連携のサンプルスクリプトやテンプレート (`examples/matlab_plot_example/`) が入っています。
 
 ## カラーパレット・フォントの追加方法
 
