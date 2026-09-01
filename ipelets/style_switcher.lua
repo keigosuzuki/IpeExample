@@ -31,8 +31,8 @@ end
 -- in override priority. Mode comes before font so the two groups
 -- never reshuffle relative to each other between calls.
 local MODE_GROUP = { "color_mode_projector" }
-local FONT_GROUP = { "font_notosans", "font_weight_medium", "font_times", "font_plexsans", "font_meiryo_segoe" }
-local ALL_MANAGED = { "color_mode_projector", "font_notosans", "font_weight_medium", "font_times", "font_plexsans", "font_meiryo_segoe" }
+local FONT_GROUP = { "font_notosans", "font_times", "font_plexsans", "font_meiryo_segoe" }
+local ALL_MANAGED = { "color_mode_projector", "font_notosans", "font_times", "font_plexsans", "font_meiryo_segoe" }
 
 local function findSheetIndex(doc, name)
   for i = 1, doc:sheets():count() do
@@ -80,12 +80,7 @@ end
 -- so re-inserting a collected snapshot reproduces it faithfully.
 --
 -- Ipe concatenates <preamble> text from lowest-priority (highest
--- index) sheets first, highest-priority (index 1) sheets last. E.g.
--- font_notosans defines \ifluatex (via iftex) and font_weight_medium
--- consumes it, so font_weight_medium's preamble must be emitted AFTER
--- font_notosans's -- meaning font_weight_medium needs the lower index
--- (higher priority). Callers building a fresh sheet list must order it
--- accordingly (most-specific/dependent first).
+-- index) sheets first, highest-priority (index 1) sheets last.
 local function insertSheets(doc, sheets)
   local anchor = findSheetIndex(doc, "basic") or findSheetIndex(doc, "standard")
     or (doc:sheets():count() + 1)
@@ -127,13 +122,8 @@ end
 
 local function setFont(model, choice)
   local files
-  if choice == "regular" then
+  if choice == "notosans" or choice == "regular" then
     files = { "font_notosans.isy" }
-  elseif choice == "medium" then
-    -- font_weight_medium must end up higher-priority (lower cascade
-    -- index) than font_notosans so its preamble is emitted after
-    -- font_notosans's \usepackage{iftex} -- see insertSheets.
-    files = { "font_weight_medium.isy", "font_notosans.isy" }
   elseif choice == "plexsans" then
     files = { "font_plexsans.isy" }
   elseif choice == "meiryo_segoe" then
@@ -167,8 +157,7 @@ local function setProjectorMode(model, on)
 end
 
 methods = {
-  { label = "Font: Noto Sans (Regular)", run = function(model) setFont(model, "regular") end },
-  { label = "Font: Noto Sans (Medium, for slides)", run = function(model) setFont(model, "medium") end },
+  { label = "Font: Noto Sans", run = function(model) setFont(model, "notosans") end },
   { label = "Font: Times / Helvetica", run = function(model) setFont(model, "times") end },
   { label = "Font: IBM Plex Sans", run = function(model) setFont(model, "plexsans") end },
   { label = "Font: Meiryo + Segoe UI", run = function(model) setFont(model, "meiryo_segoe") end },

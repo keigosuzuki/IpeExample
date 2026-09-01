@@ -12,8 +12,8 @@
         ItalicFont=Noto Sans Italic,
         BoldItalicFont=Noto Sans Bold Italic,
     ]
-    \setsansjfont{Source Han Sans JP Medium}[
-        BoldFont=Source Han Sans JP Bold,
+    \setsansjfont{Source Han Sans JP Regular}[
+        BoldFont=Source Han Sans JP Medium,
     ]
     \renewcommand{\familydefault}{\sfdefault}
     \renewcommand{\kanjifamilydefault}{\gtdefault}

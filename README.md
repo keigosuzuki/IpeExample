@@ -79,7 +79,7 @@ MATLAB グラフ連携のサンプルスクリプトやテンプレート (`exam
 
 2. **数式フォントを忘れないこと。** `\dfrac` や `\int` などは `amsmath` が無いと未定義エラーになります。`notomath`(Noto Sans)や `unicode-math` + 専用数式フォント(IBM Plex Sans の `plex-otf` など)があれば読み込んでください。専用の数式フォントが無いフォント(Times, Segoe UI/Meiryo など)は、`\usepackage{amsmath}` を明示的に読み込むだけで構いません(既定の Latin Modern Math になり本文とは字形が揃いませんが、それ自体は許容しています)。
 3. `plex-otf` のように `luatexja` を内包しないパッケージで和文フォントを併用する場合は、`\usepackage[no-math,deluxe]{luatexja-preset}` を別途読み込んで `\setsansjfont` を有効にしてください(`no-math` を付けて数式フォント側と競合しないようにします)。
-4. ウェイト違いなど状況に応じて切り替えたいものは、カラーパレットと同様に「後から読み込んで一部だけ上書きする」差分ファイルにします。`font_weight_medium.isy`(`font_notosans.isy` の後に読み込むと Sans を Medium ウェイトに上書き)が実例です。
+4. ウェイト違いなど状況に応じて切り替えたいものは、カラーパレットと同様に「後から読み込んで一部だけ上書きする」差分ファイルとして追加可能です。
 
 #### システムに目的のフォントが無い場合
 
