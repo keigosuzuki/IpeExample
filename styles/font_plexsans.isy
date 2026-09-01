@@ -5,14 +5,17 @@
 \usepackage{iftex}
 
 \ifluatex
-    \usepackage[sans=true, math=true, SSstyle=SemiBold]{plex-otf}
-    % plex-otf doesn't pull in luatexja; load it separately for
-    % \setsansjfont, telling it to leave math to plex-otf's unicode-math.
-    \usepackage[no-math,deluxe,expert,haranoaji]{luatexja-preset}
-    \renewcommand{\familydefault}{\sfdefault}
+    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
+    \usepackage{notomath}
+    \setsansfont{IBMPlexSans-Regular.otf}[
+        BoldFont=IBMPlexSans-SemiBold.otf,
+        ItalicFont=IBMPlexSans-Italic.otf,
+        BoldItalicFont=IBMPlexSans-SemiBoldItalic.otf,
+    ]
     \setsansjfont{IBM Plex Sans JP Medium}[
         BoldFont=IBM Plex Sans JP SemiBold,
     ]
+    \renewcommand{\familydefault}{\sfdefault}
     \renewcommand{\kanjifamilydefault}{\gtdefault}
 
 \else\ifpdftex
