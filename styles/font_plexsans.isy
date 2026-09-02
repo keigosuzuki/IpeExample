@@ -7,12 +7,12 @@
 \ifluatex
     \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
     \usepackage{notomath}
-    \setsansfont{IBMPlexSans-Regular.otf}[
+    \setsansfont{IBMPlexSans-Text.otf}[
         BoldFont=IBMPlexSans-SemiBold.otf,
-        ItalicFont=IBMPlexSans-Italic.otf,
+        ItalicFont=IBMPlexSans-TextItalic.otf,
         BoldItalicFont=IBMPlexSans-SemiBoldItalic.otf,
     ]
-    \setsansjfont{IBM Plex Sans JP Medium}[
+    \setsansjfont{IBM Plex Sans JP Text}[
         BoldFont=IBM Plex Sans JP SemiBold,
     ]
     \renewcommand{\familydefault}{\sfdefault}
