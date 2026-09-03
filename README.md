@@ -4,7 +4,7 @@
 
 ## 各ディレクトリの説明
 
-## bin
+### bin
 Ipe に関係する.exeファイルが入っています。
 
 ### ipelets
@@ -21,6 +21,42 @@ Ipe を用いたテンプレート(プレゼンテーション用スライドな
 
 ### examples
 MATLAB グラフ連携のサンプルスクリプトやテンプレート (`examples/matlab_plot_example/`) が入っています。
+
+## Ipe の設定（参照先パスの設定）
+
+本リポジトリで管理しているスタイルシート（`styles/`）や ipelet（`ipelets/`）を Ipe に自動認識させるための設定手順です。
+
+### Linux / macOS の設定 (`ipe.conf`)
+
+`~/.config/ipe/ipe.conf`（存在しない場合は新規作成）に以下の設定を記述します。
+
+```ini
+IPESTYLES = /path/to/IpeExample/styles:_
+IPELETPATH = /path/to/IpeExample/ipelets:_
+```
+
+- パス区切りにはコロン `:` を使用します。
+- `_`（アンダースコア）は Ipe 標準の組み込みディレクトリを表します。
+- `_` の前に本リポジトリのパスを記述することで、リポジトリ内のスタイルシート（`basic.isy` など）が Ipe 標準のスタイルより優先して適用されます。
+
+### Windows の設定（環境変数）
+
+Windows では、「システム環境変数の編集」（または PowerShell 等）からユーザー環境変数を追加・設定します。
+
+- `IPESTYLES`: `C:\path\to\IpeExample\styles;_`
+- `IPELETPATH`: `C:\path\to\IpeExample\ipelets;_`
+
+※ パス区切りにはセミコロン `;` を使用し、末尾に `;_` を付加します。
+
+### 既存ドキュメントへのスタイル更新の反映
+
+参照先のスタイルシート（`.isy`）を編集・更新した際、すでに作成済みの `.ipe` ファイルへ最新の定義を反映するには以下のいずれかを実行します。
+
+- GUI: Ipe でファイルを開き、メニューの `Edit` > `Update stylesheets`（ショートカット: `Ctrl+Shift+U` / macOS: `Cmd+Shift+U`）を実行して保存
+- CLI: `ipescript` コマンドを使用
+  ```sh
+  ipescript update-styles <file>.ipe
+  ```
 
 ## カラーパレット・フォントの追加方法
 
@@ -81,26 +117,57 @@ MATLAB グラフ連携のサンプルスクリプトやテンプレート (`exam
 3. `plex-otf` のように `luatexja` を内包しないパッケージで和文フォントを併用する場合は、`\usepackage[no-math,deluxe]{luatexja-preset}` を別途読み込んで `\setsansjfont` を有効にしてください(`no-math` を付けて数式フォント側と競合しないようにします)。
 4. ウェイト違いなど状況に応じて切り替えたいものは、カラーパレットと同様に「後から読み込んで一部だけ上書きする」差分ファイルとして追加可能です。
 
-#### システムに目的のフォントが無い場合
+#### 追加済みフォント一覧と入手先
 
-Noto Sans や Source Han Sans、IBM Plex は TeX Live やシステムに標準で入っていることが多いですが、Segoe UI や Meiryo、Hiragino のような OS 付属フォントは別途用意する必要があります。これらは商用フォントで自由に再配布できないため、**自分が正当にライセンスを持つ環境から個人利用の範囲でコピーする**必要があります(インターネット上から拾ってくることはしないでください)。
+本リポジトリのスタイルシートで使用しているフォントと、そのダウンロード元・入手先の一覧です。
 
-1. ライセンス済みの Windows/macOS 環境(実機・VM・デュアルブートなど)からフォントファイルを取り出す。
-    - Windows: `C:\Windows\Fonts\` 以下(例: `segoeui.ttf`, `meiryo.ttc`)
-    - macOS: `/System/Library/Fonts/` および `/Library/Fonts/` 以下(例: `Helvetica Neue.ttc`, `ヒラギノ角ゴシック W3.ttc`)
-2. 取り出したファイルを Linux 側のユーザーフォントディレクトリにコピーし、フォントキャッシュを更新する。
+| スタイルシート | 欧文フォント | 和文フォント | 入手方法 / ダウンロード元 |
+|---|---|---|---|
+| [`font_notosans.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_notosans.isy) | Noto Sans Regular | Source Han Sans JP (源ノ角ゴシック) | <ul><li>欧文: [Google Fonts: Noto Sans](https://fonts.google.com/specimen/Noto+Sans)</li><li>和文: [GitHub: adobe-fonts/source-han-sans](https://github.com/adobe-fonts/source-han-sans) (または [Google Fonts: Noto Sans JP](https://fonts.google.com/specimen/Noto+Sans+JP))</li></ul> |
+| [`font_plexsans.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_plexsans.isy) | IBM Plex Sans | IBM Plex Sans JP | <ul><li>欧文: [Google Fonts: IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) / [GitHub: IBM/plex](https://github.com/IBM/plex)</li><li>和文: [Google Fonts: IBM Plex Sans JP](https://fonts.google.com/specimen/IBM+Plex+Sans+JP)</li></ul> |
+| [`font_meiryo_segoe.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_meiryo_segoe.isy) | Segoe UI | Meiryo (メイリオ) | Windows 標準搭載フォント（Windows 以外の環境ではライセンスを持つ Windows PC からコピー） |
+| [`font_times.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_times.isy) | Times / Helvetica | 原ノ味フォント (Harano Aji) | TeX Live 標準同梱（追加インストール不要） |
 
-    ```sh
-    mkdir -p ~/.local/share/fonts
-    cp <コピーしたフォントファイル> ~/.local/share/fonts/
-    fc-cache -f ~/.local/share/fonts
-    ```
-3. 認識されたか確認する。
+#### OS別フォント追加手順
 
-    ```sh
-    fc-list | grep -i "<フォント名>"
-    ```
-4. `.isy` の `\setsansfont`/`\setsansjfont` に指定した名前が `fc-list` の family 名と一致しているか確認してから、実際に Ipe(または `iperender`)でコンパイルして確かめてください。太字・斜体が別ファイルのフォントは `BoldFont=`/`ItalicFont=` に family 名をそのまま指定して問題ありません。
+ダウンロードしたフォントファイル（`.otf`, `.ttf`, `.ttc`）は、各 OS のフォントディレクトリに配置してシステムおよび LuaTeX から参照できるようにします。
+
+##### Linux
+1. フォントファイルをユーザーフォントディレクトリに配置します。
+   ```sh
+   mkdir -p ~/.local/share/fonts
+   cp <フォントファイル> ~/.local/share/fonts/
+   ```
+2. フォントキャッシュを更新します。
+   ```sh
+   fc-cache -fv ~/.local/share/fonts
+   ```
+3. フォントが認識されているか確認します。
+   ```sh
+   fc-list | grep -i "<フォント名>"
+   ```
+
+##### macOS
+- GUI: フォントファイルをダブルクリックして「フォントをインストール」をクリックするか、「Font Book」アプリを開いてフォントファイルをドラッグ＆ドロップします。
+- 手動 / CLI: フォントファイルを `~/Library/Fonts/` にコピーします。
+  ```sh
+  cp <フォントファイル> ~/Library/Fonts/
+  fc-cache -f ~/Library/Fonts
+  ```
+- 確認: ターミナルで `fc-list | grep -i "<フォント名>"` または「Font Book」アプリで検索して確認します。
+
+##### Windows
+- GUI: フォントファイルを右クリックし、「すべてのユーザーに対してインストール」（または「インストール」）を選択します。
+- 設定アプリ: 「設定」 > 「個人用設定」 > 「フォント」を開き、フォントファイルをドラッグ＆ドロップしてインストールします。
+
+#### OS付属フォント（Segoe UI / Meiryo / Hiragino 等）の移行について
+
+Segoe UI や Meiryo、ヒラギノなどの商用・OS 付属フォントは再配布が禁止されているため、Web 上から直接ダウンロードすることはできません。別 OS（Linux 等）で使用する場合は、**自身が正当なライセンスを保持する環境から個人利用の範囲でコピー**して使用してください。
+
+- Windows からのフォント抽出: `C:\Windows\Fonts\` 以下（例: `segoeui*.ttf`, `meiryo*.ttc`）
+- macOS からのフォント抽出: `/System/Library/Fonts/` および `/Library/Fonts/` 以下（例: `ヒラギノ角ゴシック*.ttc`）
+
+フォントをコピーした後は、上記の OS 別手順に従ってフォントディレクトリへ配置・登録してください。`.isy` 内の `\setsansfont` / `\setsansjfont` に指定する名称は、`fc-list` で出力される family 名と一致させる必要があります。
 
 ### Style Switcher ipelet への登録
 
