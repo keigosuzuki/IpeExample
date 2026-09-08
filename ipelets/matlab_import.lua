@@ -172,7 +172,7 @@ local function cleanAndMergeMatlabIpeXml(content)
         local first = grp.items[1]
         local last = grp.items[#grp.items]
         local midY = (first.ty + last.ty) / 2
-        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY)
+        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY, fullStr)
         mergedXmlList[#mergedXmlList + 1] = xml
       end
     else
