@@ -15,7 +15,8 @@ Ipe に機能を付け加えたり設定するためのファイルが入って�
 - `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
 - `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
 - `pagenumbers.lua`: ページ番号自動付与フック。
-- `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、**「Insert TeX Table...」**（学術3本線表・等価回路表・FEMモード表テンプレートおよび TSV / Markdown からの LaTeX `tabular` 一括生成挿入）、**「Inspect selected object Z-order」**（選択オブジェクトの前後順・レイヤー・内容の確認）、**前後移動コマンド（`Ctrl+F`, `Ctrl+B`, `Ctrl+Shift+F/B`）時のリアルタイム Z 順フィードバック**、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）を統合定義。
+- `table.lua`: LaTeX `tabular` による表挿入 ipelet（学術3本線表・グリッド生成、および Excel/TSV/CSV/Markdown からの一括自動変換挿入）。
+- `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、**「Inspect selected object Z-order」**（選択オブジェクトの前後順・レイヤー・内容の確認）、**前後移動コマンド（`Ctrl+F`, `Ctrl+B`, `Ctrl+Shift+F/B`）時のリアルタイム Z 順フィードバック**、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）を統合定義。
 
 ### styles
 Ipe のスタイルシート (.isy) が入っています。
