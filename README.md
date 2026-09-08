@@ -15,7 +15,7 @@ Ipe に機能を付け加えたり設定するためのファイルが入って�
 - `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
 - `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
 - `pagenumbers.lua`: ページ番号自動付与フック。
-- `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）を統合定義。
+- `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、**「Inspect selected object Z-order」**（選択オブジェクトの前後順・レイヤー・内容の即座確認、`Alt+Z`）、**前後移動コマンド（`Ctrl+F`, `Ctrl+B`, `Ctrl+Shift+F/B`）時のリアルタイム Z 順フィードバック**、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W`, `Alt+Z` 等）を統合定義。
 
 ### styles
 Ipe のスタイルシート (.isy) が入っています。
