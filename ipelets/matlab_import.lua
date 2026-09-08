@@ -6,7 +6,7 @@
 -- 1. Seamlessly imports MATLAB vector plots (PDF / IPE):
 --    - Supports both transparent background PDFs (from export_ipe_plot)
 --      and traditional white-background PDFs.
---    - Converts grid lines to light subtle gray.
+--    - Converts grid lines to light subtle gray (fill="0.88 0.88 0.88").
 --    - Maps MATLAB RGB curve colors to symbolic colors in color_matlab.isy
 --      (matlab_blue, matlab_red, matlab_orange, matlab_purple, etc.).
 -- 2. Smart LaTeX Typography & Alignment:
@@ -15,7 +15,7 @@
 --    - Automatically sets halign="right" on Y-axis tick numbers.
 --    - Rotates Y-axis labels with transformations="rigid" and halign="center".
 -- 3. Automatically attaches MATLAB color palette (color_matlab.isy).
--- 4. Single-click import with interactive placement options.
+-- 4. Instant one-click import with auto-fit centering.
 --
 ----------------------------------------------------------------------
 
@@ -58,7 +58,6 @@ local function ensureMatlabColors(model)
     sheet = ipe.Sheet("styles/color_matlab.isy")
   end
   if not sheet then
-    model:warning("Could not load color_matlab.isy", "Looked in: " .. sPath)
     return false
   end
 
@@ -88,7 +87,7 @@ local function ensureMatlabColors(model)
   return true
 end
 
-local function cleanAndMergeMatlabIpeXml(content, discardText)
+local function cleanAndMergeMatlabIpeXml(content)
   -- 1. Remove full-page solid background if present
   content = content:gsub('<path fill="1%.0+ 1%.0+ 1%.0+">\n%s*[%-%d%.]+%s+[%-%d%.]+%s+m\n.-h\n%s*</path>', function(p)
     if p:find("%-1%.05") or p:find("369%.45") or p:find("0%.73") then
@@ -121,11 +120,6 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
   content = content:gsub('stroke="0%.12941%d+ 0%.12941%d+ 0%.12941%d+" pen="[^"]*"', 'stroke="black" pen="normal"')
   content = content:gsub('stroke="0%.12941%d+ 0%.12941%d+ 0%.12941%d+"', 'stroke="black"')
 
-  if discardText then
-    content = content:gsub('<text[^>]*>.-</text>%s*', '')
-    return content
-  end
-
   -- 5. Text processing: Parse isolated text elements and merge them
   local textPattern = '<text[^>]*matrix="([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)"[^>]*>([^<]*)</text>'
   
@@ -150,7 +144,6 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
     return content
   end
 
-  -- Group texts by alignment line
   local groups = {}
   for _, item in ipairs(textBlocks) do
     local isRotated = (math.abs(item.b or 0) > 0.1 or math.abs(item.c or 0) > 0.1)
@@ -179,20 +172,20 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
         local first = grp.items[1]
         local last = grp.items[#grp.items]
         local midY = (first.ty + last.ty) / 2
-        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="small" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY)
+        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY)
         mergedXmlList[#mergedXmlList + 1] = xml
       end
     else
       table.sort(grp.items, function(u, v) return u.tx < v.tx end)
       
-      local isTitle = (grp.ty >= maxY - 5)
-      local isXLabel = (grp.ty <= minY + 5)
+      local isTitle = (grp.ty >= maxY - 8)
+      local isXLabel = (grp.ty <= minY + 8)
 
       local cluster = { grp.items[1] }
       for i = 2, #grp.items do
         local prev = grp.items[i-1]
         local curr = grp.items[i]
-        if (curr.tx - prev.tx) > 20 then
+        if (curr.tx - prev.tx) > 25 then
           local strAcc = ""
           for _, it in ipairs(cluster) do
             if it.str then strAcc = strAcc .. it.str end
@@ -206,10 +199,9 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
               fontSize = "small"
               halign = ' halign="center"'
             elseif isXLabel then
-              fontSize = "small"
+              fontSize = "footnote"
               halign = ' halign="center"'
             elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
-              -- Tick numbers: use halign="right"
               halign = ' halign="right"'
             end
             mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, halign, strAcc)
@@ -233,7 +225,7 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
           fontSize = "small"
           halign = ' halign="center"'
         elseif isXLabel then
-          fontSize = "small"
+          fontSize = "footnote"
           halign = ' halign="center"'
         elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
           halign = ' halign="right"'
@@ -251,34 +243,16 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
 end
 
 local function importPlot(model)
-  local win = (model.ui and model.ui.win and model.ui:win()) or nil
   local filter = {
     "PDF, IPE (*.pdf *.ipe *.xml)", "*.pdf;*.ipe;*.xml",
     "PDF Files (*.pdf)", "*.pdf",
     "IPE Files (*.ipe *.xml)", "*.ipe;*.xml",
     "All files (*.*)", "*.*"
   }
-  local file = ipeui.fileDialog(win, "open", "Select MATLAB Vector PDF or IPE File", filter, nil, nil)
+  local file = ipeui.fileDialog(nil, "open", "Select MATLAB Vector PDF or IPE File", filter, nil, nil)
   if not file then return end
 
-  local d = ipeui.Dialog(win, "MATLAB Plot Import Options")
-  d:add("lbl1", "label", { label = "Import Scale / Placement Mode:" }, 1, 1)
-  local modeOptions = { "Auto-Fit to Slide Frame (Recommended)", "Original 1:1 Size", "Clean Line Art Only (Discard Text)" }
-  d:add("mode", "combo", modeOptions, 2, 1)
-  d:add("attach_colors", "checkbox", { label = "Ensure MATLAB color palette attached (color_matlab.isy)" }, 3, 1)
-  d:set("attach_colors", true)
-  d:addButton("ok", "&Import", "accept")
-  d:addButton("cancel", "&Cancel", "reject")
-  if not d:execute() then return end
-
-  local modeIdx = d:get("mode")
-  local scaleMode = (modeIdx == 1 and "fit") or "original"
-  local discardText = (modeIdx == 3)
-  local doAttachColors = d:get("attach_colors")
-
-  if doAttachColors then
-    ensureMatlabColors(model)
-  end
+  ensureMatlabColors(model)
 
   local tmpipe = nil
   local is_pdf = (file:lower():match("%.pdf$") ~= nil)
@@ -300,7 +274,7 @@ local function importPlot(model)
       if f then
         local rawXml = f:read("*all")
         f:close()
-        local cleanedXml = cleanAndMergeMatlabIpeXml(rawXml, discardText)
+        local cleanedXml = cleanAndMergeMatlabIpeXml(rawXml)
         local fw = io.open(tmpipe, "w")
         if fw then
           fw:write(cleanedXml)
@@ -320,7 +294,7 @@ local function importPlot(model)
   end
 
   local layout = model.doc:sheets():find("layout")
-  local fs = layout and layout.framesize or ipe.Vector(400, 300)
+  local fs = layout and layout.framesize or ipe.Vector(336, 221)
 
   for pageNum, p in doc:pages() do
     if #p == 0 then break end
@@ -335,7 +309,7 @@ local function importPlot(model)
     local totalW = totalBox:width()
     local totalH = totalBox:height()
 
-    -- Remove full-page background rectangles if any remain
+    -- Remove solid full-page background rectangles
     local skipIndices = {}
     for i = 1, math.min(3, #p) do
       local b = p:bbox(i)
@@ -362,21 +336,18 @@ local function importPlot(model)
     local curW = contentBox:width()
     local curH = contentBox:height()
 
+    -- Auto-scale: fits comfortably within 80% of slide frame
+    local maxTargetW = fs.x * 0.82
+    local maxTargetH = fs.y * 0.72
     local scale = 1.0
-    if scaleMode == "fit" then
-      local maxTargetW = fs.x * 0.82
-      local maxTargetH = fs.y * 0.78
-      if curW > maxTargetW or curH > maxTargetH then
-        local scaleW = maxTargetW / curW
-        local scaleH = maxTargetH / curH
-        scale = math.min(scaleW, scaleH)
-      end
-    else
-      scale = 1.0
+    if curW > maxTargetW or curH > maxTargetH then
+      local scaleW = maxTargetW / curW
+      local scaleH = maxTargetH / curH
+      scale = math.min(scaleW, scaleH)
     end
 
     local targetCenterX = fs.x / 2
-    local targetCenterY = fs.y / 2
+    local targetCenterY = fs.y / 2 - 10 -- slightly lower to leave room for title/bullets
 
     local srcCenterX = contentBox:left() + curW / 2
     local srcCenterY = contentBox:bottom() + curH / 2

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.3.1">
-<info created="D:20260908165000" modified="D:20260908165000" tex="luatex"/>
+<info created="D:20260908170000" modified="D:20260908170000" tex="luatex"/>
 <ipestyle name="slide_suzuki_4_3">
 
 <layout paper="360 270" origin="12 16" frame="336 221" skip="0" crop="no"/>
@@ -314,7 +314,7 @@ end="\end{itemize}"/>
 \item LuaTeX による高品質数式組版と MATLAB シンボリックカラーパレット
 \end{itemize}
 </text>
-<group layer="graph" matrix="0.52 0 0 0.52 42 8">
+<group layer="graph" matrix="0.52 0 0 0.52 74 12">
 <path matrix="0.04 0 0 0.04 0 0" fill="black">
 18 0 0 18 0 0 e</path>
 <path stroke="0.850967 0.850967 0.850967" pen="0.75" join="1">
@@ -2428,27 +2428,31 @@ end="\end{itemize}"/>
 h
 </path>
 <!-- Clean LaTeX typography -->
-<text stroke="black" pos="180 20" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="18 150" matrix="0 1 -1 0 18 150" transformations="rigid" size="small" halign="center" valign="baseline">Response $y(t)$</text>
-<text stroke="black" pos="180 268" transformations="translations" size="normal" halign="center" valign="baseline">\textbf{Step Response ($w_n = 4\,\mathrm{rad/s}$)}</text>
-<!-- Ticks -->
-<text stroke="black" pos="36 32" transformations="translations" size="script" halign="center" valign="baseline">0</text>
-<text stroke="black" pos="96 32" transformations="translations" size="script" halign="center" valign="baseline">1</text>
-<text stroke="black" pos="156 32" transformations="translations" size="script" halign="center" valign="baseline">2</text>
-<text stroke="black" pos="216 32" transformations="translations" size="script" halign="center" valign="baseline">3</text>
-<text stroke="black" pos="276 32" transformations="translations" size="script" halign="center" valign="baseline">4</text>
-<text stroke="black" pos="336 32" transformations="translations" size="script" halign="center" valign="baseline">5</text>
-<text stroke="black" pos="30 45" transformations="translations" size="script" halign="right" valign="baseline">-0.6</text>
-<text stroke="black" pos="30 80" transformations="translations" size="script" halign="right" valign="baseline">-0.4</text>
-<text stroke="black" pos="30 115" transformations="translations" size="script" halign="right" valign="baseline">-0.2</text>
-<text stroke="black" pos="30 150" transformations="translations" size="script" halign="right" valign="baseline">0</text>
-<text stroke="black" pos="30 185" transformations="translations" size="script" halign="right" valign="baseline">0.2</text>
-<text stroke="black" pos="30 220" transformations="translations" size="script" halign="right" valign="baseline">0.4</text>
-<text stroke="black" pos="30 255" transformations="translations" size="script" halign="right" valign="baseline">0.6</text>
+<text stroke="black" pos="198 5.03" transformations="translations" size="footnote" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="0 0" matrix="0 1 -1 0 11.25 154" transformations="rigid" size="footnote" halign="center" valign="baseline">Response $y(t)$</text>
+<text stroke="black" pos="198 284" transformations="translations" size="small" halign="center" valign="baseline">\textbf{Step Response ($w_n = 4\,\mathrm{rad/s}$)}</text>
+<!-- X Ticks -->
+<text stroke="black" pos="43.00 21.32" transformations="translations" size="script" halign="center" valign="baseline">0</text>
+<text stroke="black" pos="104.50 21.32" transformations="translations" size="script" halign="center" valign="baseline">1</text>
+<text stroke="black" pos="166.00 21.32" transformations="translations" size="script" halign="center" valign="baseline">2</text>
+<text stroke="black" pos="227.50 21.32" transformations="translations" size="script" halign="center" valign="baseline">3</text>
+<text stroke="black" pos="289.00 21.32" transformations="translations" size="script" halign="center" valign="baseline">4</text>
+<text stroke="black" pos="350.50 21.32" transformations="translations" size="script" halign="center" valign="baseline">5</text>
+<!-- Y Ticks -->
+<text stroke="black" pos="36 33.72" transformations="translations" size="script" halign="right" valign="baseline">$-0.8$</text>
+<text stroke="black" pos="36 60.30" transformations="translations" size="script" halign="right" valign="baseline">$-0.6$</text>
+<text stroke="black" pos="36 86.88" transformations="translations" size="script" halign="right" valign="baseline">$-0.4$</text>
+<text stroke="black" pos="36 113.47" transformations="translations" size="script" halign="right" valign="baseline">$-0.2$</text>
+<text stroke="black" pos="36 140.05" transformations="translations" size="script" halign="right" valign="baseline">$0$</text>
+<text stroke="black" pos="36 166.63" transformations="translations" size="script" halign="right" valign="baseline">$0.2$</text>
+<text stroke="black" pos="36 193.22" transformations="translations" size="script" halign="right" valign="baseline">$0.4$</text>
+<text stroke="black" pos="36 219.80" transformations="translations" size="script" halign="right" valign="baseline">$0.6$</text>
+<text stroke="black" pos="36 246.38" transformations="translations" size="script" halign="right" valign="baseline">$0.8$</text>
+<text stroke="black" pos="36 272.96" transformations="translations" size="script" halign="right" valign="baseline">$1.0$</text>
 <!-- Legend -->
-<text stroke="black" pos="285 240" transformations="translations" size="script" valign="baseline">$\zeta = 0.1$</text>
-<text stroke="black" pos="285 225" transformations="translations" size="script" valign="baseline">$\zeta = 0.3$</text>
-<text stroke="black" pos="285 210" transformations="translations" size="script" valign="baseline">$\zeta = 0.6$</text>
+<text stroke="black" pos="306.25 256.82" transformations="translations" size="script" valign="baseline">$\zeta = 0.1$</text>
+<text stroke="black" pos="306.25 242.95" transformations="translations" size="script" valign="baseline">$\zeta = 0.3$</text>
+<text stroke="black" pos="306.25 229.07" transformations="translations" size="script" valign="baseline">$\zeta = 0.6$</text>
 </group>
 </page>
 <page title="MATLAB Composite Multi-Plot Integration">
@@ -2461,7 +2465,7 @@ h
 \item スライド領域にジャストフィットし、True-Size LaTeX による数式配置
 \end{itemize}
 </text>
-<group layer="graph" matrix="0.44 0 0 0.44 26 8">
+<group layer="graph" matrix="0.46 0 0 0.46 56 10">
 <path matrix="0.04 0 0 0.04 0 0" fill="black">
 18 0 0 18 0 0 e</path>
 <path stroke="0.850967 0.850967 0.850967" pen="0.75" join="1">
@@ -11197,17 +11201,17 @@ h
 476.491 29.4 l
 </path>
 <!-- Subplot 1 (Top Left) -->
-<text stroke="black" pos="130 170" transformations="translations" size="script" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="22 235" matrix="0 1 -1 0 22 235" transformations="rigid" size="script" halign="center" valign="baseline">Displacement $y(t)$</text>
+<text stroke="black" pos="136 172" transformations="translations" size="script" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="0 0" matrix="0 1 -1 0 16 242" transformations="rigid" size="script" halign="center" valign="baseline">Displacement $y(t)$</text>
 <!-- Subplot 2 (Top Right) -->
-<text stroke="black" pos="370 170" transformations="translations" size="script" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="265 235" matrix="0 1 -1 0 265 235" transformations="rigid" size="script" halign="center" valign="baseline">Velocity $\dot{y}(t)$</text>
+<text stroke="black" pos="376 172" transformations="translations" size="script" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="0 0" matrix="0 1 -1 0 256 242" transformations="rigid" size="script" halign="center" valign="baseline">Velocity $\dot{y}(t)$</text>
 <!-- Subplot 3 (Bottom Left) -->
-<text stroke="black" pos="130 18" transformations="translations" size="script" halign="center" valign="baseline">Displacement $y(t)$</text>
-<text stroke="black" pos="22 85" matrix="0 1 -1 0 22 85" transformations="rigid" size="script" halign="center" valign="baseline">Velocity $\dot{y}(t)$</text>
+<text stroke="black" pos="136 12" transformations="translations" size="script" halign="center" valign="baseline">Displacement $y(t)$</text>
+<text stroke="black" pos="0 0" matrix="0 1 -1 0 16 82" transformations="rigid" size="script" halign="center" valign="baseline">Velocity $\dot{y}(t)$</text>
 <!-- Subplot 4 (Bottom Right) -->
-<text stroke="black" pos="370 18" transformations="translations" size="script" halign="center" valign="baseline">Frequency $f$ [Hz]</text>
-<text stroke="black" pos="265 85" matrix="0 1 -1 0 265 85" transformations="rigid" size="script" halign="center" valign="baseline">Magnitude $|G(j\omega)|$</text>
+<text stroke="black" pos="376 12" transformations="translations" size="script" halign="center" valign="baseline">Frequency $f$ [Hz]</text>
+<text stroke="black" pos="0 0" matrix="0 1 -1 0 256 82" transformations="rigid" size="script" halign="center" valign="baseline">Magnitude $|G(j\omega)|$</text>
 </group>
 </page>
 </ipe>
