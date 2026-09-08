@@ -1,322 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.3.1">
-<info created="D:20260908160000" modified="D:20260908160000" tex="luatex"/>
-<ipestyle name="slide_suzuki_4_3">
-
-<layout paper="360 270" origin="12 16" frame="336 221" skip="0" crop="no"/>
-<titlestyle pos="0 232" color="white" size="LARGE" halign="left" valign="baseline"/>
-<pagenumberstyle pos="336 -12" color="black" size="footnote" halign="right" valign="baseline">\arabic{ipePage}/\arabic{ipePages}</pagenumberstyle>
-
-<gridsize name="1 pts" value="1"/>
-<gridsize name="2 pts" value="2"/>
-
-<preamble>
-
-\usepackage{enumitem}
-\setlist{nosep, leftmargin=*}
-\renewcommand{\labelitemi}{\color{black}{$\bullet$}}
-\renewcommand{\labelitemii}{\color{black}{$\circ$}}
-\renewcommand{\labelitemiii}{\color{black}{\textbullet}}
-\renewcommand{\labelitemiv}{\color{black}{\textbullet}}
-
-\usepackage{tikzsymbols}
-\newcommand{\good}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_green]{1.5}}}}
-\newcommand{\bad}{\raisebox{-0.25ex}[0pt][0pt]{\textcolor{white}{\Changey[1.1][jaxa_red]{-1.5}}}}
-
-\usepackage[yyyymmdd]{datetime}
-
-\renewcommand{\baselinestretch}{1.3}
-
-\usepackage{siunitx}
-\usepackage{url}
-\urlstyle{same}
-
-</preamble>
-
-<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
-<textstyle name="enumerate" begin="\begin{enumerate}" end="\end{enumerate}"/>
-
-<symbol name="Background"  xform="yes">
-<group>
-
-<path fill="jaxa_blue">
--11 253 m
--11 226 l
-348 226 l
-348 253 l
-h
-</path>
-
-<path fill="isas_purple">
--12 0 m
--12 -4 l
-348 -4 l
-348 0 l
-h
-</path>
-
-<text pos="0 -12" halign="left" valign="baseline" size="footnote">\today</text>
-
-</group>
-</symbol>
-
+<ipe version="70000" creator="pdftoipe 2021/09/08">
+<ipestyle>
+<layout paper="359 295" frame="359 295" origin="0 0"/>
+<symbol name="bullet"><path matrix="0.04 0 0 0.04 0 0" fill="black">
+18 0 0 18 0 0 e</path></symbol>
 </ipestyle>
-<ipestyle name="basic">
-<color name="red" value="1 0 0"/>
-<color name="green" value="0 1 0"/>
-<color name="blue" value="0 0 1"/>
-<color name="yellow" value="1 1 0"/>
-<color name="orange" value="1 0.647 0"/>
-<color name="gold" value="1 0.843 0"/>
-<color name="purple" value="0.627 0.125 0.941"/>
-<color name="gray" value="0.745 0.745 0.745"/>
-<color name="brown" value="0.647 0.165 0.165"/>
-<color name="navy" value="0 0 0.502"/>
-<color name="pink" value="1 0.753 0.796"/>
-<color name="seagreen" value="0.18 0.545 0.341"/>
-<color name="turquoise" value="0.251 0.878 0.816"/>
-<color name="violet" value="0.933 0.51 0.933"/>
-<color name="darkblue" value="0 0 0.545"/>
-<color name="darkcyan" value="0 0.545 0.545"/>
-<color name="darkgray" value="0.663 0.663 0.663"/>
-<color name="darkgreen" value="0 0.392 0"/>
-<color name="darkmagenta" value="0.545 0 0.545"/>
-<color name="darkorange" value="1 0.549 0"/>
-<color name="darkred" value="0.545 0 0"/>
-<color name="lightblue" value="0.678 0.847 0.902"/>
-<color name="lightcyan" value="0.878 1 1"/>
-<color name="lightgray" value="0.827 0.827 0.827"/>
-<color name="lightgreen" value="0.565 0.933 0.565"/>
-<color name="lightyellow" value="1 1 0.878"/>
-<dashstyle name="dashed" value="[4] 0"/>
-<dashstyle name="dense dashed" value="[2] 0"/>
-<dashstyle name="loose dashed" value="[8] 0"/>
-<dashstyle name="dotted" value="[1 3] 0"/>
-<dashstyle name="dense dotted" value="[0.5 1.5] 0"/>
-<dashstyle name="loose dotted" value="[1 4] 0"/>
-<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
-<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
-<pen name="heavier" value="0.8"/>
-<pen name="fat" value="1.2"/>
-<pen name="ultrafat" value="2"/>
-<textsize name="large" value="\large"/>
-<textsize name="Large" value="\Large"/>
-<textsize name="LARGE" value="\LARGE"/>
-<textsize name="huge" value="\huge"/>
-<textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
-<textsize name="footnote" value="\footnotesize"/>
-<textsize name="script" value="\scriptsize"/>
-<textsize name="tiny" value="\tiny"/>
-<symbolsize name="small" value="2"/>
-<symbolsize name="tiny" value="1.1"/>
-<symbolsize name="large" value="5"/>
-<arrowsize name="small" value="5"/>
-<arrowsize name="tiny" value="3"/>
-<arrowsize name="large" value="10"/>
-<gridsize name="4 pts" value="4"/>
-<gridsize name="8 pts (~3 mm)" value="8"/>
-<gridsize name="16 pts (~6 mm)" value="16"/>
-<gridsize name="32 pts (~12 mm)" value="32"/>
-<gridsize name="10 pts (~3.5 mm)" value="10"/>
-<gridsize name="20 pts (~7 mm)" value="20"/>
-<gridsize name="14 pts (~5 mm)" value="14"/>
-<gridsize name="28 pts (~10 mm)" value="28"/>
-<gridsize name="56 pts (~20 mm)" value="56"/>
-<anglesize name="90 deg" value="90"/>
-<anglesize name="60 deg" value="60"/>
-<anglesize name="45 deg" value="45"/>
-<anglesize name="30 deg" value="30"/>
-<anglesize name="22.5 deg" value="22.5"/>
-<symbol name="mark/circle(sx)" transformations="translations">
-<path fill="sym-stroke">
-0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
-</path></symbol>
-<symbol name="mark/disk(sx)" transformations="translations">
-<path fill="sym-stroke">
-0.6 0 0 0.6 0 0 e
-</path></symbol>
-<symbol name="mark/fdisk(sfx)" transformations="translations">
-<group><path fill="sym-fill">
-0.5 0 0 0.5 0 0 e
-</path><path fill="sym-stroke" fillrule="eofill">
-0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
-</path></group></symbol>
-<symbol name="mark/box(sx)" transformations="translations">
-<path fill="sym-stroke" fillrule="eofill">
--0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
--0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></symbol>
-<symbol name="mark/square(sx)" transformations="translations">
-<path fill="sym-stroke">
--0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h</path></symbol>
-<symbol name="mark/fsquare(sfx)" transformations="translations">
-<group><path fill="sym-fill">
--0.5 -0.5 m 0.5 -0.5 l 0.5 0.5 l -0.5 0.5 l h</path>
-<path fill="sym-stroke" fillrule="eofill">
--0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
--0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></group></symbol>
-<symbol name="mark/cross(sx)" transformations="translations">
-<group><path fill="sym-stroke">
--0.43 -0.57 m 0.57 0.43 l 0.43 0.57 l -0.57 -0.43 l h</path>
-<path fill="sym-stroke">
--0.43 0.57 m 0.57 -0.43 l 0.43 -0.57 l -0.57 0.43 l h</path>
-</group></symbol>
-<symbol name="arrow/arc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/farc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/ptarc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fptarc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fnormal(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/pointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fpointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/linear(spx)">
-<path pen="sym-pen" stroke="sym-stroke">
--1.0 0.333 m 0 0 l -1.0 -0.333 l</path></symbol>
-<symbol name="arrow/linear-wide(spx)">
-<path pen="sym-pen" stroke="sym-stroke">
--0.866 0.5 m 0 0 l -0.866 -0.5 l</path></symbol>
-<symbol name="arrow/fdouble(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h
--1 0 m -2.0 0.333 l -2.0 -0.333 l h
-</path></symbol>
-<symbol name="arrow/double(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h
--1 0 m -2.0 0.333 l -2.0 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-normal(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-fnormal(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-pointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
-<symbol name="arrow/mid-fpointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
-<symbol name="arrow/mid-linear(spx)">
-<path pen="sym-pen" stroke="sym-stroke">
--0.5 0.333 m 0.5 0 l -0.5 -0.333 l</path></symbol>
-<symbol name="arrow/mid-linear-wide(spx)">
-<path pen="sym-pen" stroke="sym-stroke">
--0.433 0.5 m 0.433 0 l -0.433 -0.5 l</path></symbol>
-<symbol name="arrow/mid-double(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-1 0 m -0 0.333 l 0 -0.333 l h
-0 0 m -1 0.333 l -1 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-fdouble(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-1 0 m -0 0.333 l 0 -0.333 l h
-0 0 m -1 0.333 l -1 -0.333 l h
-</path></symbol>
-<opacity name="10%" value="0.1"/>
-<opacity name="30%" value="0.3"/>
-<opacity name="50%" value="0.5"/>
-<opacity name="75%" value="0.75"/>
-<tiling name="falling" angle="-60" width="1" step="4"/>
-<tiling name="rising" angle="30" width="1" step="4"/>
-<textstyle name="center" begin="\begin{center}"
-end="\end{center}"/>
-<textstyle name="itemize" begin="\begin{itemize}"
-end="\end{itemize}"/>
-<textstyle name="item" begin="\begin{itemize}\item{}"
-end="\end{itemize}"/>
-</ipestyle>
-<ipestyle name="font_notosans">
-
-<preamble>
-
-\usepackage{iftex}
-
-\ifluatex
-    \usepackage[deluxe,expert,haranoaji]{luatexja-preset}
-    \usepackage{notomath}
-    \setsansfont{Noto Sans Regular}[
-        BoldFont=Noto Sans Bold,
-        ItalicFont=Noto Sans Italic,
-        BoldItalicFont=Noto Sans Bold Italic,
-    ]
-    \setsansjfont{Source Han Sans JP Regular}[
-        BoldFont=Source Han Sans JP Medium,
-    ]
-    \renewcommand{\familydefault}{\sfdefault}
-    \renewcommand{\kanjifamilydefault}{\gtdefault}
-
-\else\ifpdftex
-    \usepackage{amsmath}
-    \usepackage{newtxtext}
-    \usepackage[whole]{bxcjkjatype}
-    \usepackage{notomath}
-    \renewcommand\familydefault{\sfdefault}
-
-\else
-\fi\fi
-
-</preamble>
-
-</ipestyle>
-<ipestyle name="color_cud">
-<color name="cud_red" value="1 0.294 0"/>
-<color name="cud_yellow" value="1 0.945 0"/>
-<color name="cud_green" value="0.012 0.686 0.478"/>
-<color name="cud_blue" value="0 0.353 1"/>
-<color name="cud_sky" value="0.302 0.769 1"/>
-<color name="cud_pink" value="1 0.502 0.510"/>
-<color name="cud_orange" value="0.965 0.667 0"/>
-<color name="cud_purple" value="0.6 0 0.6"/>
-<color name="cud_brown" value="0.502 0.251 0"/>
-</ipestyle>
-<ipestyle name="color_matlab">
-<color name="matlab_k" value="0 0 0"/>
-<color name="matlab_r" value="1 0 0"/>
-<color name="matlab_g" value="0 1 0"/>
-<color name="matlab_b" value="0 0 1"/>
-<color name="matlab_y" value="1 1 0"/>
-<color name="matlab_m" value="1 0 1"/>
-<color name="matlab_c" value="0 1 1"/>
-<color name="matlab_w" value="1 1 1"/>
-
-<color name="matlab_blue" value="0 0.447 0.714"/>
-<color name="matlab_red" value="0.850 0.325 0.098"/>
-<color name="matlab_orange" value="0.929 0.694 0.125"/>
-<color name="matlab_purple" value="0.494 0.184 0.556"/>
-<color name="matlab_green" value="0.466 0.674 0.188"/>
-<color name="matlab_cyan" value="0.301 0.745 0.933"/>
-<color name="matlab_brown" value="0.635 0.078 0.184"/>
-</ipestyle>
-<page title="Damped Oscillation Step Response">
-<layer name="alpha"/>
-<layer name="graph"/>
-<view layers="alpha graph" active="graph"/>
-<text layer="alpha" pos="30 290" stroke="black" type="minipage" width="340" height="20" size="small" valign="top">
-\begin{itemize}
-\item MATLAB \texttt{setup\_ipe\_plot(fig, 'slide\_single')} による一発整形
-\item \textbf{True-Size LaTeX Fonts} (10pt normal) \&amp; \textbf{MATLAB Symbolic Colors}
-\end{itemize}
-</text>
-<group layer="graph" matrix="1 0 0 1 20 -20">
-<path matrix="0.04 0 0 0.04 0 0" fill="black">
-18 0 0 18 0 0 e</path>
+<!-- Page: 1 1 -->
+<page>
 <path fill="1.000000 1.000000 1.000000">
 46.2527 276.085 m
 46.2527 36.835 l
@@ -389,526 +80,605 @@ h
 46.2527 276.085 m
 353.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 172.342 5.03375">T</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 181.731 5.03375">i</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 185.342 5.03375">m</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 196.175 5.03375">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 206.286 5.03375">t</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 215.314 5.03375">[</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 218.925 5.03375">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 224.053 5.03375">]</text>
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 36.835 m
 353.753 36.835 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 276.085 m
 353.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 36.835 m
 46.2527 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 273.01 m
 46.2527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 107.753 36.835 m
 107.753 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 107.753 273.01 m
 107.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 169.253 36.835 m
 169.253 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 169.253 273.01 m
 169.253 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 230.753 36.835 m
 230.753 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 230.753 273.01 m
 230.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 292.253 36.835 m
 292.253 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 292.253 273.01 m
 292.253 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 353.753 36.835 m
 353.753 39.91 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 353.753 273.01 m
 353.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 58.5527 36.835 m
 58.5527 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 58.5527 274.547 m
 58.5527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 70.8527 36.835 m
 70.8527 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 70.8527 274.547 m
 70.8527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 83.1527 36.835 m
 83.1527 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 83.1527 274.547 m
 83.1527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 95.4527 36.835 m
 95.4527 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 95.4527 274.547 m
 95.4527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 120.053 36.835 m
 120.053 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 120.053 274.547 m
 120.053 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 132.353 36.835 m
 132.353 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 132.353 274.547 m
 132.353 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 144.653 36.835 m
 144.653 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 144.653 274.547 m
 144.653 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 156.953 36.835 m
 156.953 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 156.953 274.547 m
 156.953 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 181.553 36.835 m
 181.553 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 181.553 274.547 m
 181.553 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 193.853 36.835 m
 193.853 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 193.853 274.547 m
 193.853 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 206.153 36.835 m
 206.153 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 206.153 274.547 m
 206.153 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 218.453 36.835 m
 218.453 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 218.453 274.547 m
 218.453 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 243.053 36.835 m
 243.053 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 243.053 274.547 m
 243.053 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 255.353 36.835 m
 255.353 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 255.353 274.547 m
 255.353 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 267.653 36.835 m
 267.653 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 267.653 274.547 m
 267.653 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 279.953 36.835 m
 279.953 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 279.953 274.547 m
 279.953 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 304.553 36.835 m
 304.553 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 304.553 274.547 m
 304.553 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 316.853 36.835 m
 316.853 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 316.853 274.547 m
 316.853 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 329.153 36.835 m
 329.153 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 329.153 274.547 m
 329.153 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 341.453 36.835 m
 341.453 38.3724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 341.453 274.547 m
 341.453 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 43.0027 21.315">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 104.503 21.315">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 166.003 21.315">2</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 227.503 21.315">3</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 289.003 21.315">4</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 350.503 21.315">5</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 117.127">R</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 126.697">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 132.475">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 137.602">p</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 145.186">o</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 151.686">n</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 158.908">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 164.036">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 174.147">y</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 180.987">(</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 186.043">t</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0 0.75 -0.75 0 11.25 190.737">)</text>
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 36.835 m
 46.2527 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 353.753 36.835 m
 353.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 36.835 m
 49.3277 36.835 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 36.835 m
 353.753 36.835 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 63.4183 m
 49.3277 63.4183 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 63.4183 m
 353.753 63.4183 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 90.0016 m
 49.3277 90.0016 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 90.0016 m
 353.753 90.0016 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 116.585 m
 49.3277 116.585 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 116.585 m
 353.753 116.585 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 143.168 m
 49.3277 143.168 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 143.168 m
 353.753 143.168 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 169.752 m
 49.3277 169.752 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 169.752 m
 353.753 169.752 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 196.335 m
 49.3277 196.335 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 196.335 m
 353.753 196.335 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 222.918 m
 49.3277 222.918 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 222.918 m
 353.753 222.918 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 249.502 m
 49.3277 249.502 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 249.502 m
 353.753 249.502 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 276.085 m
 49.3277 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 350.678 276.085 m
 353.753 276.085 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 43.4808 m
 47.7902 43.4808 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 43.4808 m
 353.753 43.4808 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 50.1266 m
 47.7902 50.1266 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 50.1266 m
 353.753 50.1266 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 56.7724 m
 47.7902 56.7724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 56.7724 m
 353.753 56.7724 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 70.0641 m
 47.7902 70.0641 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 70.0641 m
 353.753 70.0641 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 76.7099 m
 47.7902 76.7099 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 76.7099 m
 353.753 76.7099 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 83.3558 m
 47.7902 83.3558 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 83.3558 m
 353.753 83.3558 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 96.6475 m
 47.7902 96.6475 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 96.6475 m
 353.753 96.6475 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 103.293 m
 47.7902 103.293 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 103.293 m
 353.753 103.293 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 109.939 m
 47.7902 109.939 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 109.939 m
 353.753 109.939 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 123.231 m
 47.7902 123.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 123.231 m
 353.753 123.231 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 129.877 m
 47.7902 129.877 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 129.877 m
 353.753 129.877 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 136.522 m
 47.7902 136.522 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 136.522 m
 353.753 136.522 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 149.814 m
 47.7902 149.814 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 149.814 m
 353.753 149.814 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 156.46 m
 47.7902 156.46 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 156.46 m
 353.753 156.46 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 163.106 m
 47.7902 163.106 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 163.106 m
 353.753 163.106 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 176.397 m
 47.7902 176.397 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 176.397 m
 353.753 176.397 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 183.043 m
 47.7902 183.043 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 183.043 m
 353.753 183.043 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 189.689 m
 47.7902 189.689 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 189.689 m
 353.753 189.689 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 202.981 m
 47.7902 202.981 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 202.981 m
 353.753 202.981 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 209.627 m
 47.7902 209.627 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 209.627 m
 353.753 209.627 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 216.272 m
 47.7902 216.272 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 216.272 m
 353.753 216.272 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 229.564 m
 47.7902 229.564 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 229.564 m
 353.753 229.564 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 236.21 m
 47.7902 236.21 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 236.21 m
 353.753 236.21 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 242.856 m
 47.7902 242.856 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 242.856 m
 353.753 242.856 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 256.147 m
 47.7902 256.147 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 256.147 m
 353.753 256.147 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 262.793 m
 47.7902 262.793 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 262.793 m
 353.753 262.793 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 46.2527 269.439 m
 47.7902 269.439 l
 </path>
-<path stroke="black" pen="normal" join="1" cap="2">
+<path stroke="0.129410 0.129410 0.129410" pen="0.75" join="1" cap="2">
 352.215 269.439 m
 353.753 269.439 l
 </path>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 20.7082 33.715">-</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 33.715">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 33.715">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 33.715">8</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 20.7082 60.2983">-</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 60.2983">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 60.2983">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 60.2983">6</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 20.7082 86.8817">-</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 86.8817">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 86.8817">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 86.8817">4</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 20.7082 113.465">-</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 113.465">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 113.465">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 113.465">2</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 140.048">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 166.632">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 166.632">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 166.632">2</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 193.215">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 193.215">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 193.215">4</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 219.798">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 219.798">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 219.798">6</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 25.0415 246.382">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 31.5416 246.382">.</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 246.382">8</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="17" valign="baseline" matrix="0.75 0 0 0.75 35.1527 272.965">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 109.217 283.75">S</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 116.995 283.75">t</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 122.439 283.75">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 128.661 283.75">p</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 141.106 283.75">R</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 151.411 283.75">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 157.634 283.75">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 163.156 283.75">p</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 171.323 283.75">o</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 178.323 283.75">n</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 186.1 283.75">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 191.623 283.75">e</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 202.512 283.75">(</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 207.956 283.75">w</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="13" valign="baseline" matrix="0.75 0 0 0.75 217.979 281.65">n</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 228.45 283.75">=</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 243.228 283.75">4</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 252.561 283.75">r</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 258.044 283.75">a</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 265.044 283.75">d</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 272.822 283.75">=</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 279.822 283.75">s</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="18" valign="baseline" matrix="0.75 0 0 0.75 285.344 283.75">)</text>
 <path stroke="0.066666 0.443130 0.745087" pen="1.25" join="1">
 46.2527 276.085 m
 46.8689 275.448 l
@@ -1913,7 +1683,7 @@ h
 353.136 143.496 l
 353.753 143.489 l
 </path>
-<path stroke="matlab_orange" pen="heavier" join="1">
+<path stroke="0.929398 0.694107 0.125488" pen="1.25" join="1">
 46.2527 276.085 m
 46.8689 272.86 l
 47.4852 269.583 l
@@ -2431,11 +2201,26 @@ h
 274.232 245.71 m
 304.02 245.71 l
 </path>
-<path stroke="matlab_orange" pen="heavier" join="1">
+<path stroke="0.929398 0.694107 0.125488" pen="1.25" join="1">
 274.232 231.835 m
 304.02 231.835 l
 </path>
-<path stroke="black" pen="normal">
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 306.254 256.825">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 315.328 256.825">=</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 327.467 256.825">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 333.217 256.825">:</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 336.412 256.825">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 306.254 242.95">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 315.328 242.95">=</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 327.467 242.95">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 333.217 242.95">:</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 336.412 242.95">3</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 306.254 229.075">1</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 315.328 229.075">=</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 327.467 229.075">0</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 333.217 229.075">:</text>
+<text stroke="0.129410 0.129410 0.129410" pos="0 0" transformations="affine" size="15" valign="baseline" matrix="0.75 0 0 0.75 336.412 229.075">6</text>
+<path stroke="0.129410 0.129410 0.129410" pen="0.75">
 271.253 223.585 m
 271.253 267.835 l
 345.503 267.835 l
@@ -2443,12 +2228,5 @@ h
 271.253 223.585 l
 h
 </path>
-<text stroke="black" pos="180 25" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="25 150" matrix="0 1 -1 0 25 150" transformations="rigid" size="small" halign="center" valign="baseline">Response $y(t)$</text>
-<text stroke="black" pos="180 265" transformations="translations" size="normal" halign="center" valign="baseline">\textbf{Step Response ($w_n = 4\,\mathrm{rad/s}$)}</text>
-<text stroke="black" pos="285 242" transformations="translations" size="script" valign="baseline">$\zeta = 0.1$</text>
-<text stroke="black" pos="285 228" transformations="translations" size="script" valign="baseline">$\zeta = 0.3$</text>
-<text stroke="black" pos="285 214" transformations="translations" size="script" valign="baseline">$\zeta = 0.6$</text>
-</group>
 </page>
 </ipe>

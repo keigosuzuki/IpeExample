@@ -1,58 +1,64 @@
-# MATLAB グラフの Ipe 連携サンプル & テンプレート
+# MATLAB Plot to Ipe Integration Example
 
-MATLAB で出力したグラフ（ベクター PDF）を `pdftoipe` で変換し、Ipe 上で数式ラベルや注釈の編集・スライドへの組み込みを行うサンプルプロジェクトです。
-
----
-
-## 📁 含まれているファイル
-
-- **`generate_plot.m`**: 減衰振動波形（2次遅れ系応答）を描画し、ベクター PDF `plot_raw.pdf` を出力する MATLAB スクリプト。
-- **`plot_raw.pdf`**: MATLAB から出力された生のベクター PDF。
-- **`plot_raw.ipe`**: `pdftoipe plot_raw.pdf plot_raw.ipe` により変換された中間 Ipe ファイル。
-- **`matlab_graph_standalone.ipe` / `.pdf`**: 
-  - MATLAB のグラフパスを取り込み、軸ラベルや凡例、タイトルを Ipe の LaTeX 数式フォント（`font_notosans.isy`）および MATLAB カラーパレット（`color_matlab.isy`）で整えた単体グラフテンプレート。
-- **`matlab_graph_slide.ipe` / `.pdf`**:
-  - 16:9 スライド（`slide_suzuki_16_9.isy`）上に MATLAB グラフを配置し、数式解説や箇条書き、引き出し線注釈を追加したプレゼンテーション用スライドテンプレート。
+MATLAB で出力したベクタープロット（PDF）を、スタイル崩れなく Ipe スライドや論文に直接インポートして仕上げるワークフローの作例集です。
 
 ---
 
-## 🚀 使い方・ワークフロー
+## 1. ワークフロー概要
 
-### 1. MATLAB 側でベクター PDF を出力
-`exportgraphics` を使用して、解像度に依存しないベクター形式（ContentType: vector）で出力します。
+```mermaid
+flowchart LR
+    A["1. MATLAB 解析・プロット<br/>setup_ipe_plot(fig, 'slide_multi')<br/>export_ipe_plot(fig, 'out.pdf')"] --> B["2. Ipe でのインポート<br/>Ipelets > Insert MATLAB Plot<br/>(スライド中央へ自動配置)"]
+    B --> C["3. Ipe 上での微調整・仕上げ<br/>(注釈矢印・数式・ハイライト追加)"]
+```
+
+---
+
+## 2. MATLAB 側の設定 (`MATLABExample/PlotTools`)
+
+[MATLABExample/PlotTools/setup_ipe_plot.m](../../../MATLABExample/PlotTools/setup_ipe_plot.m) および [export_ipe_plot.m](../../../MATLABExample/PlotTools/export_ipe_plot.m) を使用します。
+
+### プリセット一覧
+
+| プリセット名 | 用途 | 物理寸法 (mm) | 基準フォント |
+| :--- | :--- | :--- | :--- |
+| **`'slide_single'`** | スライド用 単一プロット | $140 \times 105$ | 13 pt |
+| **`'slide_multi'`** | スライド用 複合マルチプロット (2x1, 2x2, 3x3 等) | $200 \times 125$ | 10 pt |
+| **`'paper_column'`** | 学会論文 1段組幅 (RSJ等) | $84 \times 65$ | 8.5 pt |
+| **`'paper_full'`** | 学会論文 2段ぶち抜き幅 | $174 \times 75$ | 9 pt |
+| **`'paper_multi'`** | 学会論文 複合サブプロット | $174 \times 110$ | 8.5 pt |
+
+### スクリプト例
 
 ```matlab
-% グラフの描画
-fig = figure('Visible', 'off');
-plot(t, y1, 'LineWidth', 1.8, 'Color', [0.00, 0.45, 0.74]);
+% 1. 通常通りプロットを作成
+fig = figure();
+subplot(2, 2, 1); plot(t, y); xlabel('Time $t$ [s]'); ylabel('Response $y(t)$');
 ...
-% ベクターPDFとして保存
-exportgraphics(fig, 'plot_raw.pdf', 'ContentType', 'vector');
+
+% 2. Ipe用プリセットを一括適用
+setup_ipe_plot(fig, 'slide_multi');
+
+% 3. 透明背景のベクターPDFとしてエクスポート
+export_ipe_plot(fig, 'my_plot.pdf');
 ```
 
-### 2. Ipe 上での簡単インポート（推奨: `matlab_import.lua`）
-Ipe のメニューから一発でスライドに挿入できます：
-1. Ipe でスライドを開く。
-2. **`Ipelets` > `MATLAB Plot Importer` > `Insert MATLAB Plot (Original 1:1 Size)`** を実行。
-3. `plot_raw.pdf` を選択するだけで、薄いグリッド・MATLABカラー・目盛り数値・LaTeX数式凡例が自動適用されて中央に挿入されます。
+---
 
-### 3. コマンドラインで変換する場合（手動ワークフロー）
-```sh
-pdftoipe plot_raw.pdf plot_raw.ipe
-ipe matlab_graph_standalone.ipe
-# または
-ipe matlab_graph_slide.ipe
-```
+## 3. Ipe 側でのインポート (`IpeExample/ipelets`)
 
-- **グループ解除 (`Ctrl + U`)**: インポートしたグラフは 1 つのグループになっているため、解除してプロット線や軸を個別に編集可能です。
-- **数式・ラベルの編集**: テキストオブジェクトをダブルクリックして、`$\zeta = 0.1$` や `時間 $t\ [\mathrm{s}]$` などの LaTeX 数式を直接打ち直せます。
-- **配色の統一**: `styles/color_matlab.isy`（`matlab_blue`, `matlab_red`, `matlab_orange` 等）を使うことで、MATLAB の配色と完全一致した注釈や枠線を描くことができます。
+1. Ipe でスライドまたは原稿を開く。
+2. メニューから **`Ipelets -> Insert MATLAB Plot`** を選択。
+3. エクスポートした PDF を選択すると、ダイアログが表示され：
+   - **配置モード**: `Auto-Fit to Slide Frame` / `Original 1:1 Size`
+   - **カラーパレット自動適用**: `color_matlab.isy`（`matlab_blue`, `matlab_red` 等）
+4. スライド中央に適切なフォントサイズ（True-Size LaTeX）と線画スタイルで一発配置されます。
+5. `Ctrl+U` (Ungroup) で個別の曲線やテキストを自由に編集・装飾できます。
 
-### 4. PDF へのコンパイル（コマンドライン）
-```sh
-# 単一ページのクイック確認
-iperender -pdf matlab_graph_slide.ipe output.pdf
+---
 
-# 完全な PDF 出力
-ipetoipe -pdf matlab_graph_slide.ipe output.pdf
-```
+## 4. サンプルファイル
+
+- `generate_plot_examples.m`: MATLAB 側でのプロット出力スクリプト（3種プリセットの作例）
+- `plot_slide_single.pdf` / `plot_slide_multi.pdf` / `plot_paper_column.pdf`: 生成されたベクター PDF
+- `matlab_graph_slide.ipe` / `matlab_graph_slide.pdf`: Ipe スライドに統合した完成作例
