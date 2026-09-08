@@ -2577,27 +2577,27 @@ h
 266.468 220.46 l
 h
 </path>
-<text stroke="black" pos="43.97 140.56" transformations="translations" size="script" halign="right" valign="baseline">0</text>
-<text stroke="black" pos="43.97 246.78" transformations="translations" size="script" halign="right" valign="baseline">0.8</text>
-<text stroke="black" pos="303.49 256.54" transformations="translations" size="script" valign="baseline">$\zeta = 0.1$</text>
-<text stroke="black" pos="303.49 241.70" transformations="translations" size="script" valign="baseline">$\zeta = 0.3$</text>
-<text stroke="black" pos="200.97 5.35" transformations="translations" size="footnote" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="43.97 114.01" transformations="translations" size="script" halign="right" valign="baseline">-0.2</text>
-<text stroke="black" pos="43.97 87.45" transformations="translations" size="script" halign="right" valign="baseline">-0.4</text>
-<text stroke="black" pos="303.49 226.86" transformations="translations" size="script" valign="baseline">$\zeta = 0.6$</text>
-<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 25.47 156.96">Response $y(t)$</text>
-<text stroke="black" pos="43.97 34.34" transformations="translations" size="script" halign="right" valign="baseline">-0.8</text>
-<text stroke="black" pos="43.97 60.90" transformations="translations" size="script" halign="right" valign="baseline">-0.6</text>
-<text stroke="black" pos="43.97 193.67" transformations="translations" size="script" halign="right" valign="baseline">0.4</text>
 <text stroke="black" pos="200.97 285.00" transformations="translations" size="small" halign="center" valign="baseline">Step Response($\omega_n = 4\,\mathrm{rad/s}$)</text>
-<text stroke="black" pos="43.97 167.12" transformations="translations" size="script" halign="right" valign="baseline">0.2</text>
+<text stroke="black" pos="303.49 226.86" transformations="translations" size="script" valign="baseline">$\zeta = 0.6$</text>
+<text stroke="black" pos="43.97 87.45" transformations="translations" size="script" halign="right" valign="baseline">-0.4</text>
+<text stroke="black" pos="303.49 241.70" transformations="translations" size="script" valign="baseline">$\zeta = 0.3$</text>
 <text stroke="black" pos="43.97 220.23" transformations="translations" size="script" halign="right" valign="baseline">0.6</text>
+<text stroke="black" pos="43.97 114.01" transformations="translations" size="script" halign="right" valign="baseline">-0.2</text>
+<text stroke="black" pos="43.97 34.34" transformations="translations" size="script" halign="right" valign="baseline">-0.8</text>
+<text stroke="black" pos="200.97 5.35" transformations="translations" size="footnote" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="303.49 256.54" transformations="translations" size="script" valign="baseline">$\zeta = 0.1$</text>
+<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 17.47 156.96">Response $y(t)$</text>
 <text stroke="black" pos="43.97 21.94" transformations="translations" size="script" halign="right" valign="baseline">0</text>
 <text stroke="black" pos="105.62 21.94" transformations="translations" size="script" halign="center" valign="baseline">1</text>
 <text stroke="black" pos="167.02 21.94" transformations="translations" size="script" halign="center" valign="baseline">2</text>
 <text stroke="black" pos="228.42 21.94" transformations="translations" size="script" halign="center" valign="baseline">3</text>
 <text stroke="black" pos="289.82 21.94" transformations="translations" size="script" halign="center" valign="baseline">4</text>
 <text stroke="black" pos="351.22 21.94" transformations="translations" size="script" halign="center" valign="baseline">5</text>
+<text stroke="black" pos="43.97 167.12" transformations="translations" size="script" halign="right" valign="baseline">0.2</text>
+<text stroke="black" pos="43.97 140.56" transformations="translations" size="script" halign="right" valign="baseline">0</text>
+<text stroke="black" pos="43.97 246.78" transformations="translations" size="script" halign="right" valign="baseline">0.8</text>
+<text stroke="black" pos="43.97 193.67" transformations="translations" size="script" halign="right" valign="baseline">0.4</text>
+<text stroke="black" pos="43.97 60.90" transformations="translations" size="script" halign="right" valign="baseline">-0.6</text>
 </group>
 </page>
 <page title="MATLAB Composite Multi-Plot Integration">
@@ -5433,59 +5433,59 @@ h
 476.444 30.4 m
 476.444 151.4 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 35.8588 m
 476.4440 35.8588 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 41.2161 m
 476.4440 41.2161 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 45.7455 m
 476.4440 45.7455 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 49.6691 m
 476.4440 49.6691 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 53.1299 m
 476.4440 53.1299 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 76.5927 m
 476.4440 76.5927 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 88.5066 m
 476.4440 88.5066 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 96.9597 m
 476.4440 96.9597 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 103.5160 m
 476.4440 103.5160 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 108.8740 m
 476.4440 108.8740 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 113.4030 m
 476.4440 113.4030 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 117.3270 m
 476.4440 117.3270 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 120.7870 m
 476.4440 120.7870 l
 </path>
-<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">
+<path stroke="lightgray" pen="ultrathin" dash="dotted">
 287.4440 144.2500 m
 476.4440 144.2500 l
 </path>
@@ -6027,22 +6027,12 @@ h
 475.489 30.7073 l
 476.444 30.4 l
 </path>
-<text stroke="black" pos="282.94 292.00" transformations="translations" size="script" halign="right" valign="baseline">1</text>
-<text stroke="black" pos="33.94 100.60" transformations="translations" size="script" halign="right" valign="baseline">0</text>
-<text stroke="black" pos="282.94 53.83" transformations="translations" size="script" halign="right" valign="baseline">$10^{-}$</text>
-<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 264.44 258.40">Velocity $\dot{y}(t)$</text>
 <text stroke="black" pos="33.94 316.00" transformations="translations" size="script" halign="right" valign="baseline">1</text>
 <text stroke="black" pos="282.94 316.00" transformations="translations" size="script" halign="right" valign="baseline">2</text>
-<text stroke="black" pos="131.94 5.00" transformations="translations" size="footnote" halign="center" valign="baseline">Displacement $y(t)$</text>
-<text stroke="black" pos="381.44 5.00" transformations="translations" size="footnote" halign="center" valign="baseline">Frequency $f$ [Hz]</text>
-<text stroke="black" pos="282.94 121.48" transformations="translations" size="script" halign="right" valign="baseline">$10^{0}$</text>
-<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 264.44 90.90">Magnitude $|G(j\omega)|$</text>
-<text stroke="black" pos="282.94 268.00" transformations="translations" size="script" halign="right" valign="baseline">0</text>
+<text stroke="black" pos="33.94 100.60" transformations="translations" size="script" halign="right" valign="baseline">0</text>
+<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 7.44 90.90">Velocity $\dot{y}(t)$</text>
 <text stroke="black" pos="33.94 276.98" transformations="translations" size="script" halign="right" valign="baseline">0.5</text>
-<text stroke="black" pos="282.94 196.00" transformations="translations" size="script" halign="right" valign="baseline">-3</text>
-<text stroke="black" pos="131.94 173.00" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="381.44 173.00" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
-<text stroke="black" pos="33.94 76.40" transformations="translations" size="script" halign="right" valign="baseline">-1</text>
+<text stroke="black" pos="282.94 220.00" transformations="translations" size="script" halign="right" valign="baseline">-2</text>
 <text stroke="black" pos="33.94 186.00" transformations="translations" size="script" halign="right" valign="baseline">0</text>
 <text stroke="black" pos="72.74 186.00" transformations="translations" size="script" halign="center" valign="baseline">1</text>
 <text stroke="black" pos="110.54 186.00" transformations="translations" size="script" halign="center" valign="baseline">2</text>
@@ -6055,26 +6045,35 @@ h
 <text stroke="black" pos="397.94 186.00" transformations="translations" size="script" halign="center" valign="baseline">3</text>
 <text stroke="black" pos="435.94 186.00" transformations="translations" size="script" halign="center" valign="baseline">4</text>
 <text stroke="black" pos="473.94 186.00" transformations="translations" size="script" halign="center" valign="baseline">5</text>
-<text stroke="black" pos="282.94 57.45" transformations="translations" size="script" halign="right" valign="baseline">1</text>
+<text stroke="black" pos="33.94 76.40" transformations="translations" size="script" halign="right" valign="baseline">-1</text>
+<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 256.44 258.40">Velocity $\dot{y}(t)$</text>
+<text stroke="black" pos="131.94 5.00" transformations="translations" size="footnote" halign="center" valign="baseline">Displacement $y(t)$</text>
+<text stroke="black" pos="381.44 5.00" transformations="translations" size="footnote" halign="center" valign="baseline">Frequency $f$ [Hz]</text>
+<text stroke="black" pos="282.94 121.48" transformations="translations" size="script" halign="right" valign="baseline">$10^{0}$</text>
+<text stroke="black" pos="282.94 53.83" transformations="translations" size="script" halign="right" valign="baseline">$10^{-1}$</text>
+<text stroke="black" pos="282.94 196.00" transformations="translations" size="script" halign="right" valign="baseline">-3</text>
+<text stroke="black" pos="131.94 173.00" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="381.44 173.00" transformations="translations" size="small" halign="center" valign="baseline">Time $t$ [s]</text>
+<text stroke="black" pos="282.94 292.00" transformations="translations" size="script" halign="right" valign="baseline">1</text>
+<text stroke="black" pos="282.94 268.00" transformations="translations" size="script" halign="right" valign="baseline">0</text>
+<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 7.44 258.40">Displacement $y(t)$</text>
 <text stroke="black" pos="33.94 237.96" transformations="translations" size="script" halign="right" valign="baseline">0</text>
 <text stroke="black" pos="282.94 244.00" transformations="translations" size="script" halign="right" valign="baseline">-1</text>
-<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 15.44 90.90">Velocity $\dot{y}(t)$</text>
-<text stroke="black" pos="33.94 124.80" transformations="translations" size="script" halign="right" valign="baseline">1</text>
-<text stroke="black" pos="33.94 28.00" transformations="translations" size="script" halign="right" valign="baseline">-3</text>
-<text stroke="black" pos="33.94 52.20" transformations="translations" size="script" halign="right" valign="baseline">-2</text>
-<text stroke="black" pos="282.94 220.00" transformations="translations" size="script" halign="right" valign="baseline">-2</text>
 <text stroke="black" pos="33.94 149.00" transformations="translations" size="script" halign="right" valign="baseline">2</text>
-<text stroke="black" pos="33.94 198.94" transformations="translations" size="script" halign="right" valign="baseline">-0.5</text>
+<text stroke="black" pos="33.94 28.00" transformations="translations" size="script" halign="right" valign="baseline">-3</text>
+<text stroke="black" pos="33.94 124.80" transformations="translations" size="script" halign="right" valign="baseline">1</text>
+<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 256.44 90.90">Magnitude $|G(j\omega)|$</text>
+<text stroke="black" pos="33.94 52.20" transformations="translations" size="script" halign="right" valign="baseline">-2</text>
 <text stroke="black" pos="33.94 18.00" transformations="translations" size="script" halign="right" valign="baseline">-0.5</text>
 <text stroke="black" pos="101.03 18.00" transformations="translations" size="script" halign="center" valign="baseline">0</text>
 <text stroke="black" pos="158.60 18.00" transformations="translations" size="script" halign="center" valign="baseline">0.5</text>
 <text stroke="black" pos="223.94 18.00" transformations="translations" size="script" halign="center" valign="baseline">1</text>
-<text stroke="black" pos="282.94 18.00" transformations="translations" size="script" halign="right" valign="baseline">0</text>
+<text stroke="black" pos="290.44 18.00" transformations="translations" size="script" halign="center" valign="baseline">0</text>
 <text stroke="black" pos="331.44 18.00" transformations="translations" size="script" halign="center" valign="baseline">5</text>
 <text stroke="black" pos="376.44 18.00" transformations="translations" size="script" halign="center" valign="baseline">10</text>
 <text stroke="black" pos="423.94 18.00" transformations="translations" size="script" halign="center" valign="baseline">15</text>
 <text stroke="black" pos="471.44 18.00" transformations="translations" size="script" halign="center" valign="baseline">20</text>
-<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 15.44 258.40">Displacement $y(t)$</text>
+<text stroke="black" pos="33.94 198.94" transformations="translations" size="script" halign="right" valign="baseline">-0.5</text>
 </group>
 </page>
 </ipe>

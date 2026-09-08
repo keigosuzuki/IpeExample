@@ -273,11 +273,11 @@ local function cleanAndMergeMatlabIpeXml(content)
       if width > 3 * height and width > 10 then
         -- Horizontal dotted grid line
         local midY = (minY + maxY) / 2
-        return string.format('<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', minX, midY, maxX, midY)
+        return string.format('<path stroke="lightgray" pen="ultrathin" dash="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', minX, midY, maxX, midY)
       elseif height > 3 * width and height > 10 then
         -- Vertical dotted grid line
         local midX = (minX + maxX) / 2
-        return string.format('<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', midX, minY, midX, maxY)
+        return string.format('<path stroke="lightgray" pen="ultrathin" dash="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', midX, minY, midX, maxY)
       end
     end
 
@@ -429,29 +429,35 @@ local function cleanAndMergeMatlabIpeXml(content)
   for i = 1, #textBlocks do
     local tb = textBlocks[i]
     if not tb.skip and tb.str == "1" then
-      -- Check if next item is "0"
+      -- Check if next item is "0" to form base "10"
       for j = 1, #textBlocks do
         local tb0 = textBlocks[j]
         if not tb0.skip and tb0.str == "0" and math.abs(tb0.ty - tb.ty) < 2.0 and (tb0.tx - tb.tx) >= 3.0 and (tb0.tx - tb.tx) <= 7.0 then
           -- We have a "10" base at tb.tx, tb.ty
-          -- Search for superscript near tb0.tx, tb0.ty
-          local foundExp = false
+          -- Search for ALL superscript characters near tb.tx, tb.ty
+          local expList = {}
           for k = 1, #textBlocks do
             local expTb = textBlocks[k]
             if not expTb.skip and k ~= i and k ~= j then
               local dX = expTb.tx - tb.tx
               local dY = expTb.ty - tb.ty
-              if dX >= 5.0 and dX <= 22.0 and dY >= 1.5 and dY <= 9.0 then
-                local expStr = expTb.str:gsub("!", "-")
-                tb.str = string.format("$10^{%s}$", expStr)
-                tb0.skip = true
-                expTb.skip = true
-                foundExp = true
-                break
+              if dX >= 5.0 and dX <= 25.0 and dY >= 1.0 and dY <= 10.0 then
+                table.insert(expList, expTb)
               end
             end
           end
-          if not foundExp then
+
+          if #expList > 0 then
+            table.sort(expList, function(u, v) return u.tx < v.tx end)
+            local expParts = {}
+            for _, e in ipairs(expList) do
+              table.insert(expParts, (e.str:gsub("!", "-")))
+              e.skip = true
+            end
+            local expStr = table.concat(expParts)
+            tb.str = string.format("$10^{%s}$", expStr)
+            tb0.skip = true
+          else
             tb.str = "10"
             tb0.skip = true
           end
@@ -515,7 +521,7 @@ local function cleanAndMergeMatlabIpeXml(content)
           end
         end
 
-        local posX = targetBox and (targetBox.minX - 22.0) or (first.tx - 22.0)
+        local posX = targetBox and (targetBox.minX - 34.0) or (first.tx - 34.0)
         local posY = targetBox and targetBox.midY or midY
 
         local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', posX, posY, fullStr)
@@ -567,11 +573,16 @@ local function cleanAndMergeMatlabIpeXml(content)
                 if targetBox then posX = targetBox.midX end
               elseif strAcc:find("%$10%^") then
                 fontSize = "script"
-                halign = ' halign="right"'
-                if targetBox then posX = targetBox.minX - 3.5 end
+                local isYTick = targetBox and (grp.ty >= targetBox.minY - 2.0) and (posX < targetBox.minX + 8)
+                if isYTick then
+                  halign = ' halign="right"'
+                  posX = targetBox.minX - 3.5
+                else
+                  halign = ' halign="center"'
+                end
               elseif isPureNum then
                 fontSize = "script"
-                local isYTick = targetBox and (posX < targetBox.minX + 8)
+                local isYTick = targetBox and (grp.ty >= targetBox.minY - 2.0) and (posX < targetBox.minX + 8)
                 if isYTick then
                   halign = ' halign="right"'
                   posX = targetBox.minX - 3.5
@@ -625,11 +636,16 @@ local function cleanAndMergeMatlabIpeXml(content)
             if targetBox then posX = targetBox.midX end
           elseif strAcc:find("%$10%^") then
             fontSize = "script"
-            halign = ' halign="right"'
-            if targetBox then posX = targetBox.minX - 3.5 end
+            local isYTick = targetBox and (grp.ty >= targetBox.minY - 2.0) and (posX < targetBox.minX + 8)
+            if isYTick then
+              halign = ' halign="right"'
+              posX = targetBox.minX - 3.5
+            else
+              halign = ' halign="center"'
+            end
           elseif isPureNum then
             fontSize = "script"
-            local isYTick = targetBox and (posX < targetBox.minX + 8)
+            local isYTick = targetBox and (grp.ty >= targetBox.minY - 2.0) and (posX < targetBox.minX + 8)
             if isYTick then
               halign = ' halign="right"'
               posX = targetBox.minX - 3.5
