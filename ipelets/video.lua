@@ -18,8 +18,30 @@ and 1-click Pympress presentation export.
 
 local V = ipe.Vector
 
-local SCRIPT_DIR = debug.getinfo(1, "S").source:sub(2):match("(.*/)") or "./"
-local INJECT_SCRIPT = SCRIPT_DIR .. "inject_media.py"
+local function getInjectScriptPath()
+  local candidates = {
+    "/home/keigo-suzuki/Documents/Repositories/IpeExample/ipelets/inject_media.py",
+    "./ipelets/inject_media.py",
+    "../ipelets/inject_media.py",
+    "inject_media.py",
+  }
+  local envPath = os.getenv("IPELETPATH")
+  if envPath then
+    for dir in envPath:gmatch("[^:]+") do
+      if dir ~= "_" and dir ~= "" then
+        table.insert(candidates, 1, dir .. "/inject_media.py")
+      end
+    end
+  end
+  for _, path in ipairs(candidates) do
+    local f = io.open(path, "r")
+    if f then
+      f:close()
+      return path
+    end
+  end
+  return "inject_media.py"
+end
 
 local PRESET_SIZES = {
   { label = "16:9 Medium (384 x 216 pt)", w = 384, h = 216 },
@@ -287,7 +309,8 @@ local function exportForPympress(model)
   end
 
   -- 2. Inject media annotations via inject_media.py
-  local injectCmd = string.format("python3 %q %q", INJECT_SCRIPT, pdfPath)
+  local injectScript = getInjectScriptPath()
+  local injectCmd = string.format("python3 %q %q", injectScript, pdfPath)
   local injRes = os.execute(injectCmd)
   if injRes == 0 or injRes == true then
     model.ui:explain(string.format("Exported Pympress presentation: %s", pdfPath))
