@@ -191,6 +191,82 @@ Segoe UI や Meiryo、ヒラギノなどの商用・OS 付属フォントは再�
 - Ipe で実際に開いて `Ipelets > Style Switcher` から切り替え、太字・斜体・和文・数式・`\good`/`\bad` アイコンなどが崩れずに表示されること。
 - コマンドラインで素早く確認したい場合は `iperender -pdf <file>.ipe <file>.pdf` で単体レンダリングできます(複数ページのテンプレートを丸ごと書き出す場合は `iperender` ではなく `ipetoipe -pdf` を使ってください。`iperender` は 1 ページのみの書き出しです)。
 
+## Pympress での動画・アニメーション再生 (Media / Video 連携)
+
+本リポジトリの `video.lua` および `inject_media.py` を用いることで、Ipe で作成したプレゼンテーションスライド内に **動画（MP4 / GIF / MOV / WebM 等）を埋め込み、Pympress で発表スライド内にインライン再生** させることができます。
+
+### 1. 動作概要
+1. **Ipe 上での動画配置**:
+   - `Ipelets` > `Media` > `Insert Video (MP4 / GIF / MOV)...` を実行。
+   - `ffmpeg` が動画の第1フレーム（サムネイル）を自動抽出し、Ipe キャンバス上にポスター画像として配置されます。
+   - スライド編集画面上でも動画の位置・サイズ・レイアウトを視覚的に確認できます。
+2. **Pympress 向け PDF 出力**:
+   - `Ipelets` > `Media` > `Export Presentation for Pympress` を実行。
+   - `ipetoipe -pdf` で PDF を出力後、`inject_media.py` が自動で PDF 規格準拠の `/Subtype /Movie` アノテーションを埋め込みます。
+3. **Pympress での発表・再生**:
+   - `pympress <file>.pdf` で起動。対象スライドに切り替えると、Pympress の GStreamer/VLC オーバーレイによりスライド内で直接動画が再生されます。
+
+### 2. 環境構築と設定 (初回のみ)
+
+#### A. 必須パッケージのインストール
+Linux (Ubuntu / Debian 系) の場合:
+
+```bash
+# Pympress, Poppler, ffmpeg (動画処理・サムネイル抽出用)
+sudo apt install pympress poppler-utils ffmpeg
+
+# Python ライブラリ (PDF アノテーション注入 & VLC 連携)
+pip install pikepdf python-vlc --break-system-packages
+```
+
+※ システム標準の GStreamer で H.264 MP4 を直接再生したい場合は、以下を追加インストールしてください。
+```bash
+sudo apt install gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
+```
+
+#### B. Pympress の設定 (Wayland / Linux 環境)
+Ubuntu 等の Wayland セッションでは、VLC バックエンドが別ウィンドウを開いてしまう制約があるため、GTK3 / Wayland ネイティブの **GStreamer パイプライン (`gtksink`)** を有効にします。
+
+`~/.config/pympress` （設定ファイル）を開き、以下のように設定します。
+
+```ini
+[gstreamer]
+enabled = on
+init_options = 
+mime_types = 
+
+[vlc]
+enabled = off
+```
+
+### 3. Ipe での操作手順
+
+1. **動画の挿入**:
+   - Ipe メニューから `Ipelets` > `Media` > `Insert Video (MP4 / GIF / MOV)...` を選択。
+   - 動画ファイルパスを選択（相対パスまたは絶対パス）。
+   - サイズプリセット（16:9 / 4:3 / 1:1 / カスタム）を選択。
+   - オプション（コントロール表示、ループ再生、自動再生、サムネイル抽出）を確認して「Insert Video」をクリック。
+   - キャンバス上の配置したい位置をクリックして設置します。
+2. **ワンクリック書き出し & プレビュー**:
+   - `Ipelets` > `Media` > `Launch in Pympress (Preview)` をクリックすると、PDF 変換・メディア注入・Pympress 起動が一括で実行されます。
+3. **コマンドラインからの手動書き出し**:
+   ```bash
+   ipetoipe -pdf presentation.ipe presentation.pdf
+   python3 /path/to/IpeExample/ipelets/inject_media.py presentation.pdf
+   pympress presentation.pdf
+   ```
+
+### 4. 動画フォーマットと推奨事項
+
+| フォーマット | 特徴と推奨環境 |
+|---|---|
+| **WebM (`.webm`, VP8/VP9)** | **最も推奨（Linux/Wayland）**。GStreamer `gtksink` により追加コーデック不要でスライド内に安定描画。 |
+| **GIF (`.gif`)** | GdkPixbuf で軽量・確実にアニメーション再生。 |
+| **MP4 / MOV (`.mp4`, `.mov`, H.264)** | 一般的な動画形式。`video.lua` が挿入時に自動で同名 `.webm` をバックグラウンド生成・優先リンクするため、MP4 を指定するだけで自動対応されます。 |
+
+> [!NOTE]
+> 発表用 PC にスライド PDF を持ち出す際は、PDF と同じディレクトリ（または指定した相対パス）に動画ファイル（`.webm`, `.mp4` など）も一緒に配置してください。
+
 ## Ipe について
 
 Ipeはpdfなどベクター形式の図を作成できるフリーのドローソフトです。([公式サイト](http://ipe.otfried.org/) / [Wikipedia](https://ja.wikipedia.org/wiki/Ipe) / [Facebook](https://www.facebook.com/drawing.editor.Ipe7/))
@@ -205,3 +281,4 @@ Ipeはpdfなどベクター形式の図を作成できるフリーのドロー�
 ### インストール方法
 1. [Ipe official page](http://ipe.otfried.org/)から最新版を自分のOS (Windows/macOS/Linux) に合わせてダウンロード
 2. PC内の好きな場所に置く (例:WindowsならCドライブ直下やProgram Filesの中など)
+
