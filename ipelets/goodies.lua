@@ -524,3 +524,14 @@ methods = {
   { label = "Regular k-gon", run = regularKGon },
   { label = "Ellipse from foci", run = ellipse },
 }
+
+-- Suppress duplicate built-in goodies ipelet if loaded from standard dirs
+if _G.ipelets then
+  for i = #_G.ipelets, 1, -1 do
+    local entry = _G.ipelets[i]
+    if entry.name == "goodies" and entry.path ~= path then
+      entry.label = nil
+      table.remove(_G.ipelets, i)
+    end
+  end
+end

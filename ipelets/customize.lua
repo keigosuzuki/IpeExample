@@ -2,17 +2,8 @@
 prefs.autosave_filename = "./%s.autosave"
 prefs.autosave_interval = nil
 prefs.editor_size = { 500, 500 }
--- external editor settings for visual studio code
--- if config.platform == "win" then
--- 	prefs.external_editor = "code.cmd --wait %s"
--- elseif config.platform == "apple" then
--- 	prefs.external_editor = "code --wait %s"
--- end
--- prefs.editable_textfile = config.latexdir .. "/temp.tex"
 -- default stylesheets added to newly created docs
 prefs.styles = { "basic", "preamble" }
--- default latex engine setting
--- prefs.tex_engine = "luatex"
 -- default latex autorun setting
 prefs.auto_run_latex = true
 -- auto export document when saved as .ipe
@@ -28,3 +19,19 @@ shortcuts.next_page = "Right"
 shortcuts.ipelet_1_goodies = "Alt+B"   -- Insert rounded rectangle
 shortcuts.ipelet_11_goodies = "Ctrl+R" -- Precise rotate
 shortcuts.ipelet_12_goodies = "Ctrl+K" -- Precise stretch
+
+-- Automatically deduplicate ipelets (keeps the first occurrence from IPELETPATH, suppresses built-in duplicates)
+if _G.ipelets then
+  local seen = {}
+  local i = 1
+  while i <= #_G.ipelets do
+    local item = _G.ipelets[i]
+    if seen[item.name] then
+      item.label = nil
+      table.remove(_G.ipelets, i)
+    else
+      seen[item.name] = true
+      i = i + 1
+    end
+  end
+end

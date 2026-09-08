@@ -39,26 +39,45 @@ local function styleDir()
   return repoRoot .. "/styles"
 end
 
+local function hasSheet(doc, sheetName)
+  for i = 1, doc:sheets():count() do
+    if doc:sheets():sheet(i):name() == sheetName then
+      return true
+    end
+  end
+  return false
+end
+
 -- Ensure color_matlab.isy is attached to the current document
 local function ensureMatlabColors(model)
   local doc = model.doc
-  local sheets = doc:sheets()
-  for i = 1, sheets:count() do
-    if sheets:sheet(i):name() == "color_matlab" then
-      return true -- Already attached
-    end
+  if hasSheet(doc, "color_matlab") then
+    return true
   end
 
-  local sheetPath = styleDir() .. "/color_matlab.isy"
-  local sheet = ipe.Sheet(sheetPath)
+  local sPath = styleDir() .. "/color_matlab.isy"
+  local sheet = ipe.Sheet(sPath)
   if not sheet then
-    model:warning("Could not find style sheet", sheetPath)
+    sheet = ipe.Sheet("styles/color_matlab.isy")
+  end
+  if not sheet then
+    model:warning("Could not load color_matlab.isy", "Looked in: " .. sPath)
     return false
   end
 
+  local basicIdx = nil
+  for i = 1, doc:sheets():count() do
+    local n = doc:sheets():sheet(i):name()
+    if n == "basic" or n == "standard" then
+      basicIdx = i
+      break
+    end
+  end
+  local insertPos = basicIdx or (doc:sheets():count() + 1)
+
   local t = { label = "attach MATLAB color palette", model = model, style_sheets_changed = true }
   t.redo = function(t, d)
-    d:sheets():insert(1, sheet:clone())
+    d:sheets():insert(insertPos, sheet:clone())
   end
   t.undo = function(t, d)
     for i = 1, d:sheets():count() do
@@ -69,107 +88,96 @@ local function ensureMatlabColors(model)
     end
   end
   model:register(t)
-  model:runLatex()
   return true
 end
 
 -- Parse and clean MATLAB-generated IPE XML
 local function cleanAndMergeMatlabIpeXml(content, discardText)
-  -- 1. Replace gray/black grid line art with light gray pen
-  content = content:gsub('stroke="0%.15 0%.15 0%.15"([^>]*)pen="0%.5"', 'stroke="0.85 0.85 0.85"%1pen="ultrathin"')
-  content = content:gsub('stroke="0%.2 0%.2 0%.2"([^>]*)pen="0%.5"', 'stroke="0.85 0.85 0.85"%1pen="ultrathin"')
-  content = content:gsub('stroke="black"([^>]*)pen="0%.5"', 'stroke="0.85 0.85 0.85"%1pen="ultrathin"')
-  content = content:gsub('stroke="0%.15 0%.15 0%.15"', 'stroke="black"')
+  -- 1. Remove outermost background path
+  content = content:gsub('<path fill="1%.0+ 1%.0+ 1%.0+">\n%s*[%-%d%.]+%s+[%-%d%.]+%s+m\n.-h\n%s*</path>', function(p)
+    if p:find("%-1%.05") or p:find("369%.45") or p:find("0%.73") then
+      return ""
+    end
+    return p
+  end, 1)
 
-  -- 2. Map standard MATLAB RGB colors to symbolic color names
-  local colorMap = {
-    ['0 0%.447 0%.741'] = 'matlab_blue',
-    ['0%.85 0%.325 0%.098'] = 'matlab_red',
-    ['0%.929 0%.694 0%.125'] = 'matlab_yellow',
-    ['0%.494 0%.184 0%.556'] = 'matlab_purple',
-    ['0%.466 0%.674 0%.188'] = 'matlab_green',
-    ['0%.301 0%.745 0%.933'] = 'matlab_cyan',
-    ['0%.635 0%.078 0%.184'] = 'matlab_darkred',
-  }
+  -- 2. Clean Grid lines: convert dark opaque 0.129410 fill to light gray
+  content = content:gsub('fill="0%.12941%d+ 0%.12941%d+ 0%.12941%d+" fillrule="wind"', 'fill="0.88 0.88 0.88" fillrule="wind"')
+  content = content:gsub('fill="0%.12941%d+ 0%.12941%d+ 0%.12941%d+"', 'fill="0.88 0.88 0.88"')
 
-  for rgbPattern, symColor in pairs(colorMap) do
-    content = content:gsub('stroke="' .. rgbPattern .. '"', 'stroke="' .. symColor .. '" pen="heavier"')
-    content = content:gsub('fill="' .. rgbPattern .. '"', 'fill="' .. symColor .. '"')
-  end
+  -- 3. Map MATLAB standard 7 RGB curve colors to named symbolic colors
+  content = content:gsub('stroke="0%.0+ 0%.45%d+ 0%.74%d+" pen="[^"]*"', 'stroke="matlab_blue" pen="heavier"')
+  content = content:gsub('stroke="0%.0+ 0%.45%d+ 0%.74%d+"', 'stroke="matlab_blue" pen="heavier"')
+  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.10%d+" pen="[^"]*"', 'stroke="matlab_red" pen="heavier"')
+  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.10%d+"', 'stroke="matlab_red" pen="heavier"')
+  content = content:gsub('stroke="0%.92%d+ 0%.69%d+ 0%.12%d+" pen="[^"]*"', 'stroke="matlab_orange" pen="heavier"')
+  content = content:gsub('stroke="0%.92%d+ 0%.69%d+ 0%.12%d+"', 'stroke="matlab_orange" pen="heavier"')
+  content = content:gsub('stroke="0%.49%d+ 0%.18%d+ 0%.55%d+" pen="[^"]*"', 'stroke="matlab_purple" pen="heavier"')
+  content = content:gsub('stroke="0%.49%d+ 0%.18%d+ 0%.55%d+"', 'stroke="matlab_purple" pen="heavier"')
+  content = content:gsub('stroke="0%.46%d+ 0%.67%d+ 0%.18%d+" pen="[^"]*"', 'stroke="matlab_green" pen="heavier"')
+  content = content:gsub('stroke="0%.46%d+ 0%.67%d+ 0%.18%d+"', 'stroke="matlab_green" pen="heavier"')
+  content = content:gsub('stroke="0%.30%d+ 0%.74%d+ 0%.93%d+" pen="[^"]*"', 'stroke="matlab_cyan" pen="heavier"')
+  content = content:gsub('stroke="0%.30%d+ 0%.74%d+ 0%.93%d+"', 'stroke="matlab_cyan" pen="heavier"')
+  content = content:gsub('stroke="0%.63%d+ 0%.07%d+ 0%.18%d+" pen="[^"]*"', 'stroke="matlab_brown" pen="heavier"')
+  content = content:gsub('stroke="0%.63%d+ 0%.07%d+ 0%.18%d+"', 'stroke="matlab_brown" pen="heavier"')
+
+  -- 4. Box borders and ticks
+  content = content:gsub('stroke="0%.12941%d+ 0%.12941%d+ 0%.12941%d+" pen="[^"]*"', 'stroke="black" pen="normal"')
+  content = content:gsub('stroke="0%.12941%d+ 0%.12941%d+ 0%.12941%d+"', 'stroke="black"')
 
   if discardText then
     content = content:gsub('<text[^>]*>.-</text>%s*', '')
     return content
   end
 
-  -- 3. Extract and cluster fragmented text objects
-  local rawTexts = {}
-  local minY, maxY = 1e9, -1e9
-  local minX, maxX = 1e9, -1e9
-
-  for stroke, pos, mat, size, val, str in content:gmatch('<text stroke="([^"]*)" pos="([^"]*)"%s*([^>]*)size="([^"]*)"[^>]*>([^<]*)</text>') do
-    local px, py = pos:match("([%+%-%d%.]+)%s+([%+%-%d%.]+)")
-    px = tonumber(px) or 0
-    py = tonumber(py) or 0
-
-    local m1, m2, m3, m4, tx, ty = mat:match('matrix="([%+%-%d%.]+)%s+([%+%-%d%.]+)%s+([%+%-%d%.]+)%s+([%+%-%d%.]+)%s+([%+%-%d%.]+)%s+([%+%-%d%.]+)"')
-    if tx and ty then
-      tx = tonumber(tx) + px
-      ty = tonumber(ty) + py
-    else
-      tx = px
-      ty = py
+  -- 5. Text processing: Parse isolated text elements and merge them
+  local textPattern = '<text[^>]*matrix="([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)"[^>]*>([^<]*)</text>'
+  
+  local textBlocks = {}
+  local maxY = -99999
+  local minY = 99999
+  for a, b, c, d, tx, ty, str in content:gmatch(textPattern) do
+    local na, nb, nc, nd = tonumber(a), tonumber(b), tonumber(c), tonumber(d)
+    local ntx, nty = tonumber(tx), tonumber(ty)
+    if str and str ~= "" then
+      textBlocks[#textBlocks + 1] = {
+        a = na, b = nb, c = nc, d = nd,
+        tx = ntx, ty = nty,
+        str = str
+      }
+      if nty > maxY then maxY = nty end
+      if nty < minY then minY = nty end
     end
-
-    if tx < minX then minX = tx end
-    if tx > maxX then maxX = tx end
-    if ty < minY then minY = ty end
-    if ty > maxY then maxY = ty end
-
-    local isRotated = false
-    if m1 and (math.abs(tonumber(m1)) < 0.1 and math.abs(tonumber(m2) or 0) > 0.8) then
-      isRotated = true
-    end
-
-    rawTexts[#rawTexts + 1] = {
-      str = str,
-      tx = tx,
-      ty = ty,
-      isRotated = isRotated,
-      size = size,
-    }
   end
 
-  if #rawTexts == 0 then
+  if #textBlocks == 0 then
     return content
   end
 
-  -- Group texts by horizontal line (Y-coord threshold 4pt)
-  local yGroups = {}
-  for _, item in ipairs(rawTexts) do
-    local foundGroup = false
-    for _, grp in ipairs(yGroups) do
-      if not item.isRotated and not grp.isRotated and math.abs(grp.ty - item.ty) < 4.0 then
-        table.insert(grp.items, item)
-        foundGroup = true
-        break
-      elseif item.isRotated and grp.isRotated and math.abs(grp.tx - item.tx) < 4.0 then
-        table.insert(grp.items, item)
-        foundGroup = true
-        break
-      end
+  -- Group texts by alignment line
+  local groups = {}
+  for _, item in ipairs(textBlocks) do
+    local isRotated = (math.abs(item.b or 0) > 0.1 or math.abs(item.c or 0) > 0.1)
+    local key
+    if isRotated then
+      key = "rot_" .. math.floor((item.tx or 0) + 0.5)
+    else
+      key = "hor_" .. math.floor((item.ty or 0) + 0.5)
     end
-    if not foundGroup then
-      table.insert(yGroups, { ty = item.ty, tx = item.tx, isRotated = item.isRotated, items = { item } })
+    if not groups[key] then
+      groups[key] = { isRotated = isRotated, ty = item.ty, tx = item.tx, items = {} }
     end
+    table.insert(groups[key].items, item)
   end
 
   local mergedXmlList = {}
-  for _, grp in ipairs(yGroups) do
+  for key, grp in pairs(groups) do
     if grp.isRotated then
       table.sort(grp.items, function(u, v) return u.ty < v.ty end)
       local fullStr = ""
-      for _, it in ipairs(grp.items) do fullStr = fullStr .. it.str end
+      for _, it in ipairs(grp.items) do
+        if it.str then fullStr = fullStr .. it.str end
+      end
       fullStr = fullStr:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       if fullStr ~= "" then
         local first = grp.items[1]
@@ -190,7 +198,9 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
         local curr = grp.items[i]
         if (curr.tx - prev.tx) > 20 then
           local strAcc = ""
-          for _, it in ipairs(cluster) do strAcc = strAcc .. it.str end
+          for _, it in ipairs(cluster) do
+            if it.str then strAcc = strAcc .. it.str end
+          end
           strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
           strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
           if strAcc ~= "" then
@@ -207,7 +217,9 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
       end
       -- Flush remaining cluster
       local strAcc = ""
-      for _, it in ipairs(cluster) do strAcc = strAcc .. it.str end
+      for _, it in ipairs(cluster) do
+        if it.str then strAcc = strAcc .. it.str end
+      end
       strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
       if strAcc ~= "" then
