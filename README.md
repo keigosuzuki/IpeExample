@@ -15,7 +15,8 @@ Ipe に機能を付け加えたり設定するためのファイルが入って�
 - `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
 - `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
 - `pagenumbers.lua`: ページ番号自動付与フック。
-- `customize.lua`: エディタ設定・自動保存・ショートカット（`Alt+B` 等）定義。
+- `textbox_background.lua`: 選択したテキストボックス（または複数選択・図形群）の周囲に白（または任意色）の背景ボックス（四角または角丸）を自動計算して一括挿入・グルーピングする ipelet（`Alt+W`: 四角背景, `Alt+Shift+W`: 角丸背景, `Alt+Ctrl+W`: 背景除去）。
+- `customize.lua`: エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）定義。
 
 ### styles
 Ipe のスタイルシート (.isy) が入っています。

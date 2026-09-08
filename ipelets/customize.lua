@@ -25,3 +25,6 @@ shortcuts.previous_page = "Left"
 shortcuts.next_page = "Right"
 
 shortcuts.ipelet_1_rounded_rectangle = "Alt+B"
+shortcuts.ipelet_1_textbox_background = "Alt+W"
+shortcuts.ipelet_2_textbox_background = "Alt+Shift+W"
+shortcuts.ipelet_5_textbox_background = "Alt+Ctrl+W"
