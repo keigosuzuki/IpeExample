@@ -20,18 +20,3 @@ shortcuts.ipelet_1_goodies = "Alt+B"   -- Insert rounded rectangle
 shortcuts.ipelet_11_goodies = "Ctrl+R" -- Precise rotate
 shortcuts.ipelet_12_goodies = "Ctrl+K" -- Precise stretch
 
--- Automatically deduplicate ipelets (keeps the first occurrence from IPELETPATH, suppresses built-in duplicates)
-if _G.ipelets then
-  local seen = {}
-  local i = 1
-  while i <= #_G.ipelets do
-    local item = _G.ipelets[i]
-    if seen[item.name] then
-      item.label = nil
-      table.remove(_G.ipelets, i)
-    else
-      seen[item.name] = true
-      i = i + 1
-    end
-  end
-end
