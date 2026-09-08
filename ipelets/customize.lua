@@ -311,6 +311,172 @@ local function addWhiteBackgroundToText(model)
 end
 
 ----------------------------------------------------------------------
+-- TeX Table Generator Extension (under Goodies)
+----------------------------------------------------------------------
+local PRESET_ACADEMIC = [[\begin{tabular}{ccc}
+\hline\hline
+Item & Parameter & Value \\
+\hline
+A & $x_1$ & 10.5 \\
+B & $x_2$ & 20.3 \\
+\hline\hline
+\end{tabular}]]
+
+local PRESET_EQUIVALENT = [[\begin{tabular}{ccccc}
+\hline\hline
+項目 & $C_d\ \si{[nF]}$ & $L_m\ \si{[H]}$ & $C_m\ \si{[nF]}$ & $R_m\ \si{[k\ohm]}$ \\
+\hline
+$a$相 & 9.63 & 0.24 & $7.56 \times 10^{-2}$ & 1.14 \\
+$b$相 & 9.25 & 0.23 & $8.05 \times 10^{-2}$ & 1.19 \\
+\hline\hline
+\end{tabular}]]
+
+local PRESET_FEM = [[\begin{tabular}{ccccc}
+\hline\hline
+\multirow{2}{*}{次数} & \multirow{2}{*}{周波数 $\si{[kHz]}$} & \multicolumn{3}{c}{質量寄与率 $\si{[\percent]}$} \\
+ & & $x$ & $y$ & $z$ \\
+\hline
+20 & 35.957 & $2.4 \times 10^{-6}$ & $1.0 \times 10^{-4}$ & $2.5 \times 10^{-7}$ \\
+21 & 38.592 & 36.5 & $8.6 \times 10^{-1}$ & $2.3 \times 10^{-7}$ \\
+22 & 38.600 & $8.6 \times 10^{-1}$ & 36.5 & $1.7 \times 10^{-8}$ \\
+23 & 41.870 & $2.5 \times 10^{-8}$ & $1.1 \times 10^{-4}$ & $2.8 \times 10^{-7}$ \\
+24 & 41.894 & $1.0 \times 10^{-5}$ & $4.1 \times 10^{-4}$ & $5.1 \times 10^{-8}$ \\
+\hline\hline
+\end{tabular}]]
+
+local function tsvToTabular(text)
+  local lines = {}
+  for line in text:gmatch("[^\r\n]+") do
+    if line:match("%S") then
+      lines[#lines + 1] = line
+    end
+  end
+  if #lines == 0 then return nil end
+
+  local rows = {}
+  local maxCols = 0
+  for _, line in ipairs(lines) do
+    local cells = {}
+    if line:match("|") then
+      for c in line:gmatch("[^|]+") do
+        local cell = c:match("^%s*(.-)%s*$")
+        if not cell:match("^%:?%-+%:?$") and #cell > 0 then
+          cells[#cells + 1] = cell
+        end
+      end
+    elseif line:match("\t") then
+      for c in line:gmatch("[^\t]+") do
+        cells[#cells + 1] = c:match("^%s*(.-)%s*$")
+      end
+    elseif line:match(",") then
+      for c in line:gmatch("[^,]+") do
+        cells[#cells + 1] = c:match("^%s*(.-)%s*$")
+      end
+    else
+      for c in line:gmatch("%S+") do
+        cells[#cells + 1] = c
+      end
+    end
+    if #cells > 0 then
+      rows[#rows + 1] = cells
+      if #cells > maxCols then maxCols = #cells end
+    end
+  end
+
+  if #rows == 0 or maxCols == 0 then return nil end
+
+  local colAlign = string.rep("c", maxCols)
+  local res = "\\begin{tabular}{" .. colAlign .. "}\n"
+  res = res .. "\\hline\\hline\n"
+  for rIdx, row in ipairs(rows) do
+    local rowCells = {}
+    for cIdx = 1, maxCols do
+      rowCells[#rowCells + 1] = row[cIdx] or ""
+    end
+    res = res .. table.concat(rowCells, " & ") .. " \\\\\n"
+    if rIdx == 1 then
+      res = res .. "\\hline\n"
+    end
+  end
+  res = res .. "\\hline\\hline\n"
+  res = res .. "\\end{tabular}"
+  return res
+end
+
+local function formatTableSource(inputStr, presetIdx)
+  if not inputStr or inputStr:match("^%s*$") then
+    if presetIdx == 2 then return PRESET_EQUIVALENT end
+    if presetIdx == 3 then return PRESET_FEM end
+    return PRESET_ACADEMIC
+  end
+
+  inputStr = inputStr:match("^%s*(.-)%s*$")
+  if inputStr:find("\\begin{tabular}") then
+    return inputStr
+  end
+
+  local converted = tsvToTabular(inputStr)
+  return converted or inputStr
+end
+
+local function insertTeXTable(model)
+  local d = ipeui.Dialog(model.ui:win(), "Insert TeX Table")
+  local presets = {
+    "Academic 3-Line Table (Template)",
+    "Equivalent Circuit Parameters (Page 16 style)",
+    "FEM / Mode Comparison (Page 17 style)",
+    "Paste TSV / CSV / Markdown Data",
+  }
+  d:add("lbl1", "label", { label = "Select Preset or enter/paste Table Data (TSV, CSV, Markdown, LaTeX):" }, 1, 1, 1, 4)
+  d:add("preset", "combo", presets, 2, 1, 1, 4)
+  d:add("table_text", "text", {
+    syntax = "latex",
+    focus = true,
+  }, 3, 1, 1, 4)
+  d:set("table_text", PRESET_ACADEMIC)
+
+  d:add("lbl2", "label", { label = "Font Size:" }, 4, 1)
+  local sizes = { "small", "footnote", "normal", "large", "script", "tiny" }
+  d:add("size", "combo", sizes, 4, 2)
+  d:set("size", 1) -- default "small"
+
+  presets.action = function(dialog)
+    local idx = dialog:get("preset")
+    if idx == 1 then
+      dialog:set("table_text", PRESET_ACADEMIC)
+    elseif idx == 2 then
+      dialog:set("table_text", PRESET_EQUIVALENT)
+    elseif idx == 3 then
+      dialog:set("table_text", PRESET_FEM)
+    elseif idx == 4 then
+      dialog:set("table_text", "")
+    end
+  end
+
+  d:addButton("ok", "&Insert Table", "accept")
+  d:addButton("cancel", "&Cancel", "reject")
+
+  local r = d:execute()
+  if not r then return end
+
+  local presetIdx = d:get("preset")
+  local inputStr = d:get("table_text")
+  local sizeName = sizes[d:get("size")] or "small"
+
+  local tableCode = formatTableSource(inputStr, presetIdx)
+  if not tableCode or tableCode:match("^%s*$") then return end
+
+  local pos = model.ui:pos() or V(100, 100)
+  local obj = ipe.Text(model.attributes, tableCode, pos)
+  obj:set("textsize", sizeName)
+  obj:set("transformations", "translations")
+
+  model:creation("insert TeX table", obj)
+  model:autoRunLatex()
+  model.ui:explain("Inserted TeX table")
+end
+
+----------------------------------------------------------------------
 -- Register Goodies methods & shortcuts
 ----------------------------------------------------------------------
 if _G.ipelets then
@@ -328,6 +494,12 @@ if _G.ipelets then
       ip.methods[#ip.methods + 1] = {
         label = "Inspect selected object Z-order",
         run = inspectZOrder,
+      }
+
+      -- 3. Insert TeX Table method (Menu only)
+      ip.methods[#ip.methods + 1] = {
+        label = "Insert TeX Table...",
+        run = insertTeXTable,
       }
       break
     end
