@@ -98,6 +98,19 @@ local function createPlaceholderBox(model, w, h, videoPath)
   return { bg, playIcon, labelText }
 end
 
+local function ensureWebMVersion(videoPath)
+  if videoPath:lower():match("%.mp4$") or videoPath:lower():match("%.mov$") or videoPath:lower():match("%.mkv$") then
+    local webmPath = videoPath:gsub("%.[^.]+$", ".webm")
+    local f = io.open(webmPath, "r")
+    if not f then
+      local cmd = string.format("ffmpeg -y -i %q -c:v libvpx -b:v 1M -c:a libvorbis %q > /dev/null 2>&1 &", videoPath, webmPath)
+      os.execute(cmd)
+    else
+      f:close()
+    end
+  end
+end
+
 local function extractPosterBitmap(videoPath, w, h)
   -- Check if video file exists
   local f = io.open(videoPath, "r")
@@ -241,6 +254,7 @@ local function insertVideo(model)
     return
   end
   videoPath = videoPath:match("^%s*(.-)%s*$")
+  ensureWebMVersion(videoPath)
 
   local w = tonumber(d:get("width")) or 384
   local h = tonumber(d:get("height")) or 216

@@ -64,8 +64,15 @@ def inject_media_annotations(input_pdf_path: str, output_pdf_path: str = None) -
                     autostart = params.get("autostart", "1") != "0"
 
                     # Normalize filepath relative to the PDF directory if needed
-                    # If absolute path, keep it, or make it relative if in the same tree
                     target_file = filepath
+                    # On Linux/Wayland, if a .webm (VP8/VP9) counterpart exists, prefer it for native GStreamer embedding
+                    candidate_path = input_path.parent / target_file
+                    if target_file.lower().endswith((".mp4", ".mov", ".mkv")):
+                        stem_webm = candidate_path.with_suffix(".webm")
+                        if stem_webm.exists():
+                            target_file = str(stem_webm.name)
+                        elif pathlib.Path(target_file).with_suffix(".webm").exists():
+                            target_file = str(pathlib.Path(target_file).with_suffix(".webm"))
 
                     # Create native PDF /Subtype /Movie annotation
                     movie_annot = pikepdf.Dictionary({

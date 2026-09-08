@@ -2465,7 +2465,7 @@ h
 <view layers="alpha pagenumbers_page" active="alpha"/>
 <text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="440 -12" stroke="black" type="label" halign="right" valign="baseline" size="footnote">1/1</text>
 <text transformations="translations" pos="456 -12" stroke="black" type="label" halign="right" valign="baseline" size="footnote">1/1</text>
-<group layer="alpha" matrix="1 0 0 1 220 24" url="movie:sample_animation.mp4?controls=1&amp;loop=1&amp;autostart=1">
+<group layer="alpha" matrix="1 0 0 1 220 24" url="movie:sample_animation.webm?controls=1&amp;loop=1&amp;autostart=1">
 <image rect="0 0 224 126" bitmap="1"/>
 <path stroke="black" pen="heavier">
 0 0 m
@@ -2483,8 +2483,8 @@ h
 <text transformations="translations" pos="0 150" stroke="black" type="minipage" width="200" valign="top">\begin{itemize}
   \item \textbf{Video in Pympress}
   \begin{itemize}
-    \item MP4 / GIF / MOV / WebM
-    \item Built-in player overlay
+    \item WebM (VP8/VP9) / GIF / MP4
+    \item Native Wayland/GTK player
     \item Loop \&amp; Controls enabled
   \end{itemize}
   \item \textbf{Ipe Workflow}
