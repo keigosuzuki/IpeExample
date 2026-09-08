@@ -237,6 +237,33 @@ local function formatGenericPlotText(str)
   str = str:gsub("^([a-zA-Z])%s+(%[[%a%/]+%])", "$%1$ %2")
   str = str:gsub("^([a-zA-Z])(%[[%a%/]+%])", "$%1$ %2")
 
+  -- Phase angle and greek characters
+  str = str:gsub("Phase%s*%?%s*%[deg%]", "Phase $\\phi$ [deg]")
+  str = str:gsub("Phase%?%s*%[deg%]", "Phase $\\phi$ [deg]")
+  str = str:gsub("Phase%s*%?", "Phase $\\phi$")
+  str = str:gsub("Phase%?", "Phase $\\phi$")
+
+  -- Units and spacing
+  str = str:gsub("%[kH%s*z%]", "[kHz]")
+  str = str:gsub("%[k%s*Hz%]", "[kHz]")
+  str = str:gsub("%[k%s*H%s*z%]", "[kHz]")
+  str = str:gsub("kH%s*z", "kHz")
+  str = str:gsub("(%d+)%s*N%s*m", "%1 Nm")
+  str = str:gsub("(%d+%.%d+)%s*N%s*m", "%1 Nm")
+  str = str:gsub("(%d+)%s*r%s*p%s*m", "%1 rpm")
+
+  -- Electrical Power, Pelec, etc.
+  str = str:gsub("Electrical%s*Power%s*P%s*elec%s*%[W%]", "Electrical Power $P_{\\mathrm{elec}}$ [W]")
+  str = str:gsub("ElectricalPowerP%s*%[W%]%s*elec", "Electrical Power $P_{\\mathrm{elec}}$ [W]")
+  str = str:gsub("ElectricalPowerP%s*elec%s*%[W%]", "Electrical Power $P_{\\mathrm{elec}}$ [W]")
+  str = str:gsub("ElectricalPower", "Electrical Power ")
+  str = str:gsub("Minimum%s*P%s*elec%s*Point", "Minimum $P_{\\mathrm{elec}}$ Point")
+  str = str:gsub("M%s*inimum%s*P%s*elec%s*Point", "Minimum $P_{\\mathrm{elec}}$ Point")
+  str = str:gsub("M%s+inimum", "Minimum")
+  str = str:gsub("OptimalPath", "Optimal Path")
+  str = str:gsub("Optimal%s*Path", "Optimal Path")
+  str = str:gsub("(%a+)%s*(%$[A-Za-z])", "%1 %2")
+
   return str
 end
 
@@ -300,7 +327,21 @@ local function cleanAndMergeMatlabIpeXml(content)
         count = count + 1
       end
     end
-    if count >= 4 and (maxX - minX) > 80 and (maxY - minY) > 50 then
+    local isRect = (count == 4 or count == 5)
+    if isRect then
+      for x, y in body:gmatch("([%-%d%.]+)%s+([%-%d%.]+)%s+[ml]") do
+        local nx, ny = tonumber(x), tonumber(y)
+        if nx and ny then
+          local onX = (math.abs(nx - minX) < 1.5 or math.abs(nx - maxX) < 1.5)
+          local onY = (math.abs(ny - minY) < 1.5 or math.abs(ny - maxY) < 1.5)
+          if not (onX and onY) then
+            isRect = false
+            break
+          end
+        end
+      end
+    end
+    if isRect and (maxX - minX) > 80 and (maxY - minY) > 50 then
       local found = false
       for _, b in ipairs(plotBoxes) do
         if math.abs(b.minX - minX) < 8 and math.abs(b.minY - minY) < 8 then
@@ -311,24 +352,6 @@ local function cleanAndMergeMatlabIpeXml(content)
       if not found then
         table.insert(plotBoxes, { minX = minX, maxX = maxX, minY = minY, maxY = maxY, midX = (minX + maxX)/2, midY = (minY + maxY)/2 })
       end
-    end
-  end
-
-  -- Fallback if single plot
-  if #plotBoxes == 0 then
-    local minX, maxX = 999999, -999999
-    local minY, maxY = 999999, -999999
-    for x, y in content:gmatch("([%-%d%.]+)%s+([%-%d%.]+)%s+[ml]") do
-      local nx, ny = tonumber(x), tonumber(y)
-      if nx and ny then
-        if nx < minX then minX = nx end
-        if nx > maxX then maxX = nx end
-        if ny < minY then minY = ny end
-        if ny > maxY then maxY = ny end
-      end
-    end
-    if maxX > minX and maxY > minY then
-      table.insert(plotBoxes, { minX = minX, maxX = maxX, minY = minY, maxY = maxY, midX = (minX + maxX)/2, midY = (minY + maxY)/2 })
     end
   end
 
@@ -344,9 +367,16 @@ local function cleanAndMergeMatlabIpeXml(content)
 
     -- Generic Fill Mapping
     if fill_r and fill_g and fill_b then
-      local cName = matchColor(tonumber(fill_r), tonumber(fill_g), tonumber(fill_b))
-      if cName == "lightgray" or cName == "white" then
-        newAttr = newAttr:gsub('fill="[^"]*"', 'fill="' .. cName .. '"')
+      local fr, fg, fb = tonumber(fill_r), tonumber(fill_g), tonumber(fill_b)
+      local maxDiff = math.max(math.abs(fr - fg), math.abs(fg - fb), math.abs(fr - fb))
+      if maxDiff < 0.05 and fr > 0.10 and fr < 0.20 then
+        -- 3D grid line drawn as thin filled polygon with 15% opacity in PDF
+        newAttr = newAttr:gsub('fill="[^"]*"', 'fill="lightgray"')
+      else
+        local cName = matchColor(fr, fg, fb)
+        if cName == "lightgray" or cName == "white" then
+          newAttr = newAttr:gsub('fill="[^"]*"', 'fill="' .. cName .. '"')
+        end
       end
     elseif fill_gray then
       local g = tonumber(fill_gray)
@@ -457,12 +487,50 @@ local function cleanAndMergeMatlabIpeXml(content)
             local expStr = table.concat(expParts)
             tb.str = string.format("$10^{%s}$", expStr)
             tb0.skip = true
-          else
-            tb.str = "10"
-            tb0.skip = true
           end
           break
         end
+      end
+    end
+  end
+
+  -- Pre-merge subscripts (e.g. "P" + "elec", "V" + "in", "N" + "ref", etc.)
+  for i = 1, #textBlocks do
+    local tb = textBlocks[i]
+    if not tb.skip and #tb.str == 1 and tb.str:match("^[A-Z]$") then
+      local isRotated = (math.abs(tb.b or 0) > 0.1 or math.abs(tb.c or 0) > 0.1)
+      local subList = {}
+      for j = 1, #textBlocks do
+        local subTb = textBlocks[j]
+        if not subTb.skip and j ~= i then
+          if not isRotated then
+            local dX = subTb.tx - tb.tx
+            local dY = tb.ty - subTb.ty
+            if dX >= 3.0 and dX <= 28.0 and dY >= 0.8 and dY <= 3.8 then
+              table.insert(subList, subTb)
+            end
+          else
+            local dY = subTb.ty - tb.ty
+            local dX = subTb.tx - tb.tx
+            if dY >= 3.0 and dY <= 28.0 and dX >= 0.8 and dX <= 3.8 then
+              table.insert(subList, subTb)
+            end
+          end
+        end
+      end
+      if #subList > 0 then
+        if not isRotated then
+          table.sort(subList, function(u, v) return u.tx < v.tx end)
+        else
+          table.sort(subList, function(u, v) return u.ty < v.ty end)
+        end
+        local subParts = {}
+        for _, s in ipairs(subList) do
+          table.insert(subParts, s.str)
+          s.skip = true
+        end
+        local subStr = table.concat(subParts)
+        tb.str = string.format("$%s_{\\mathrm{%s}}$", tb.str, subStr)
       end
     end
   end
@@ -521,7 +589,7 @@ local function cleanAndMergeMatlabIpeXml(content)
           end
         end
 
-        local posX = targetBox and (targetBox.minX - 34.0) or (first.tx - 34.0)
+        local posX = targetBox and (targetBox.minX - 34.0) or first.tx
         local posY = targetBox and targetBox.midY or midY
 
         local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', posX, posY, fullStr)
