@@ -324,13 +324,11 @@ if _G.ipelets then
       local bgMethodIdx = #ip.methods
       shortcuts["ipelet_" .. bgMethodIdx .. "_goodies"] = "Alt+W"
 
-      -- 2. Inspect selected object Z-order method (Alt+Z)
+      -- 2. Inspect selected object Z-order method (Menu only)
       ip.methods[#ip.methods + 1] = {
         label = "Inspect selected object Z-order",
         run = inspectZOrder,
       }
-      local zMethodIdx = #ip.methods
-      shortcuts["ipelet_" .. zMethodIdx .. "_goodies"] = "Alt+Z"
       break
     end
   end
