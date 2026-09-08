@@ -2466,7 +2466,7 @@ h
 <text layer="pagenumbers_page" matrix="1 0 0 1 118 -194" transformations="translations" pos="440 -12" stroke="black" type="label" halign="right" valign="baseline" size="footnote">1/1</text>
 <text transformations="translations" pos="456 -12" stroke="black" type="label" halign="right" valign="baseline" size="footnote">1/1</text>
 <group layer="alpha" matrix="1 0 0 1 220 24" url="movie:sample_animation.mp4?controls=1&amp;loop=1&amp;autostart=1">
-<image rect="1 0 -1 0" bitmap="1"/>
+<image rect="0 0 224 126" bitmap="1"/>
 <path stroke="black" pen="heavier">
 0 0 m
 224 0 l

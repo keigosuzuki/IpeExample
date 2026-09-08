@@ -256,7 +256,9 @@ local function insertVideo(model)
   end
 
   if bitmap then
-    local r = ipe.Rect(V(0, 0), V(w, h))
+    local r = ipe.Rect()
+    r:add(V(0, 0))
+    r:add(V(w, h))
     local img = ipe.Image(r, bitmap)
     table.insert(elements, img)
 
