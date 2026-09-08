@@ -15,4 +15,6 @@
 <color name="matlab_green" value="0.466 0.674 0.188"/>
 <color name="matlab_cyan" value="0.301 0.745 0.933"/>
 <color name="matlab_brown" value="0.635 0.078 0.184"/>
+<pen name="ultrathin" value="0.2"/>
+<pen name="heavier" value="0.8"/>
 </ipestyle>

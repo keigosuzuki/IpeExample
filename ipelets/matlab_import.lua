@@ -249,7 +249,90 @@ local function cleanAndMergeMatlabIpeXml(content)
     return p
   end, 1)
 
-  -- 2. Normalize and map paths (strokes, fills, pens) generically
+  -- 2. Convert dotted/dashed subpath clusters into clean native Ipe dotted paths
+  content = content:gsub('<path([^>]*)>(.-)</path>', function(attr, body)
+    local m_count = 0
+    for _ in body:gmatch("%f[%w]m%f[%W]") do m_count = m_count + 1 end
+
+    if m_count >= 5 then
+      local minX, maxX = 999999, -999999
+      local minY, maxY = 999999, -999999
+      for x, y in body:gmatch("([%-%d%.]+)%s+([%-%d%.]+)%s+[ml]") do
+        local nx, ny = tonumber(x), tonumber(y)
+        if nx and ny then
+          if nx < minX then minX = nx end
+          if nx > maxX then maxX = nx end
+          if ny < minY then minY = ny end
+          if ny > maxY then maxY = ny end
+        end
+      end
+
+      local width = maxX - minX
+      local height = maxY - minY
+
+      if width > 3 * height and width > 10 then
+        -- Horizontal dotted grid line
+        local midY = (minY + maxY) / 2
+        return string.format('<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', minX, midY, maxX, midY)
+      elseif height > 3 * width and height > 10 then
+        -- Vertical dotted grid line
+        local midX = (minX + maxX) / 2
+        return string.format('<path stroke="lightgray" pen="ultrathin" dashstyle="dotted">\n%.4f %.4f m\n%.4f %.4f l\n</path>', midX, minY, midX, maxY)
+      end
+    end
+
+    return '<path' .. attr .. '>' .. body .. '</path>'
+  end)
+
+  -- 3. Detect Subplot Box Rectangles for precise center alignments
+  local plotBoxes = {}
+  for body in content:gmatch('<path[^>]*>(.-)</path>') do
+    local minX, maxX = 999999, -999999
+    local minY, maxY = 999999, -999999
+    local count = 0
+    for x, y in body:gmatch("([%-%d%.]+)%s+([%-%d%.]+)%s+[ml]") do
+      local nx, ny = tonumber(x), tonumber(y)
+      if nx and ny then
+        if nx < minX then minX = nx end
+        if nx > maxX then maxX = nx end
+        if ny < minY then minY = ny end
+        if ny > maxY then maxY = ny end
+        count = count + 1
+      end
+    end
+    if count >= 4 and (maxX - minX) > 80 and (maxY - minY) > 50 then
+      local found = false
+      for _, b in ipairs(plotBoxes) do
+        if math.abs(b.minX - minX) < 8 and math.abs(b.minY - minY) < 8 then
+          found = true
+          break
+        end
+      end
+      if not found then
+        table.insert(plotBoxes, { minX = minX, maxX = maxX, minY = minY, maxY = maxY, midX = (minX + maxX)/2, midY = (minY + maxY)/2 })
+      end
+    end
+  end
+
+  -- Fallback if single plot
+  if #plotBoxes == 0 then
+    local minX, maxX = 999999, -999999
+    local minY, maxY = 999999, -999999
+    for x, y in content:gmatch("([%-%d%.]+)%s+([%-%d%.]+)%s+[ml]") do
+      local nx, ny = tonumber(x), tonumber(y)
+      if nx and ny then
+        if nx < minX then minX = nx end
+        if nx > maxX then maxX = nx end
+        if ny < minY then minY = ny end
+        if ny > maxY then maxY = ny end
+      end
+    end
+    if maxX > minX and maxY > minY then
+      table.insert(plotBoxes, { minX = minX, maxX = maxX, minY = minY, maxY = maxY, midX = (minX + maxX)/2, midY = (minY + maxY)/2 })
+    end
+  end
+
+  -- 4. Normalize and map paths (strokes, fills, pens) generically
   content = content:gsub('<path([^>]*)>', function(attr)
     local fill_r, fill_g, fill_b = attr:match('fill="([%d%.]+)%s+([%d%.]+)%s+([%d%.]+)"')
     local fill_gray = attr:match('fill="([%d%.]+)"')
@@ -305,12 +388,10 @@ local function cleanAndMergeMatlabIpeXml(content)
     return '<path' .. newAttr .. '>'
   end)
 
-  -- 3. Geometric Text Processing: Cluster glyphs, restore spaces, detect superscript log-axes
+  -- 5. Geometric Text Processing: Parse isolated text elements
   local textPattern = '<text[^>]*matrix="([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)%s+([%-%d%.]+)"[^>]*>([^<]*)</text>'
   
   local textBlocks = {}
-  local maxY = -99999
-  local minY = 99999
   for a, b, c, d, tx, ty, str in content:gmatch(textPattern) do
     local na, nb, nc, nd = tonumber(a), tonumber(b), tonumber(c), tonumber(d)
     local ntx, nty = tonumber(tx), tonumber(ty)
@@ -318,10 +399,9 @@ local function cleanAndMergeMatlabIpeXml(content)
       textBlocks[#textBlocks + 1] = {
         a = na, b = nb, c = nc, d = nd,
         tx = ntx, ty = nty,
-        str = str
+        str = str,
+        skip = false
       }
-      if nty > maxY then maxY = nty end
-      if nty < minY then minY = nty end
     end
   end
 
@@ -329,19 +409,74 @@ local function cleanAndMergeMatlabIpeXml(content)
     return content
   end
 
+  -- Helper function to find best matching plot box for a given (x, y) point
+  local function findBox(x, y)
+    local best = nil
+    local bestDist = 999999
+    for _, b in ipairs(plotBoxes) do
+      local dx = (x < b.minX) and (b.minX - x) or ((x > b.maxX) and (x - b.maxX) or 0)
+      local dy = (y < b.minY) and (b.minY - y) or ((y > b.maxY) and (y - b.maxY) or 0)
+      local dist = dx*dx + dy*dy
+      if dist < bestDist then
+        bestDist = dist
+        best = b
+      end
+    end
+    return best
+  end
+
+  -- Pre-merge log-axis "10" and superscript (e.g. "1" + "0" + "!1" / "0")
+  for i = 1, #textBlocks do
+    local tb = textBlocks[i]
+    if not tb.skip and tb.str == "1" then
+      -- Check if next item is "0"
+      for j = 1, #textBlocks do
+        local tb0 = textBlocks[j]
+        if not tb0.skip and tb0.str == "0" and math.abs(tb0.ty - tb.ty) < 2.0 and (tb0.tx - tb.tx) >= 3.0 and (tb0.tx - tb.tx) <= 7.0 then
+          -- We have a "10" base at tb.tx, tb.ty
+          -- Search for superscript near tb0.tx, tb0.ty
+          local foundExp = false
+          for k = 1, #textBlocks do
+            local expTb = textBlocks[k]
+            if not expTb.skip and k ~= i and k ~= j then
+              local dX = expTb.tx - tb.tx
+              local dY = expTb.ty - tb.ty
+              if dX >= 5.0 and dX <= 22.0 and dY >= 1.5 and dY <= 9.0 then
+                local expStr = expTb.str:gsub("!", "-")
+                tb.str = string.format("$10^{%s}$", expStr)
+                tb0.skip = true
+                expTb.skip = true
+                foundExp = true
+                break
+              end
+            end
+          end
+          if not foundExp then
+            tb.str = "10"
+            tb0.skip = true
+          end
+          break
+        end
+      end
+    end
+  end
+
+  -- Group remaining text blocks by orientation and horizontal rows
   local groups = {}
   for _, item in ipairs(textBlocks) do
-    local isRotated = (math.abs(item.b or 0) > 0.1 or math.abs(item.c or 0) > 0.1)
-    local key
-    if isRotated then
-      key = "rot_" .. math.floor((item.tx or 0) + 0.5)
-    else
-      key = "hor_" .. math.floor((item.ty or 0) + 0.5)
+    if not item.skip then
+      local isRotated = (math.abs(item.b or 0) > 0.1 or math.abs(item.c or 0) > 0.1)
+      local key
+      if isRotated then
+        key = "rot_" .. math.floor((item.tx or 0) + 0.5)
+      else
+        key = "hor_" .. math.floor((item.ty or 0) + 0.5)
+      end
+      if not groups[key] then
+        groups[key] = { isRotated = isRotated, ty = item.ty, tx = item.tx, items = {} }
+      end
+      table.insert(groups[key].items, item)
     end
-    if not groups[key] then
-      groups[key] = { isRotated = isRotated, ty = item.ty, tx = item.tx, items = {} }
-    end
-    table.insert(groups[key].items, item)
   end
 
   local mergedXmlList = {}
@@ -353,7 +488,6 @@ local function cleanAndMergeMatlabIpeXml(content)
         if i > 1 then
           local prev = grp.items[i-1]
           local deltaY = it.ty - prev.ty
-          -- Add space only when distance between characters clearly indicates a word gap (>13.0 pt)
           if deltaY > 13.0 then
             table.insert(parts, " ")
           end
@@ -367,15 +501,28 @@ local function cleanAndMergeMatlabIpeXml(content)
         local first = grp.items[1]
         local last = grp.items[#grp.items]
         local midY = (first.ty + last.ty) / 2
-        local posX = first.tx - 18.0 -- Move sufficiently left to prevent overlapping tick numbers
-        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', posX, midY, fullStr)
+
+        -- Find corresponding plot box (the subplot directly to the right of the Y-axis label)
+        local targetBox = nil
+        local bestDist = 999999
+        for _, b in ipairs(plotBoxes) do
+          if b.minX >= first.tx - 15.0 and midY >= b.minY - 15.0 and midY <= b.maxY + 15.0 then
+            local dist = math.abs(b.minX - first.tx) + math.abs(b.midY - midY)
+            if dist < bestDist then
+              bestDist = dist
+              targetBox = b
+            end
+          end
+        end
+
+        local posX = targetBox and (targetBox.minX - 22.0) or (first.tx - 22.0)
+        local posY = targetBox and targetBox.midY or midY
+
+        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="footnote" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', posX, posY, fullStr)
         mergedXmlList[#mergedXmlList + 1] = xml
       end
     else
       table.sort(grp.items, function(u, v) return u.tx < v.tx end)
-      
-      local isTitle = (grp.ty >= maxY - 8)
-      local isXLabel = (grp.ty <= minY + 8)
 
       local cluster = { grp.items[1] }
       for i = 2, #grp.items do
@@ -397,21 +544,43 @@ local function cleanAndMergeMatlabIpeXml(content)
           local strAcc = table.concat(parts):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
           strAcc = formatGenericPlotText(strAcc)
           if strAcc ~= "" then
-            -- Filter out isolated single letter artifacts near title (e.g. leftover subscript "n" from \omega_n)
+            local isPureNum = (tonumber(strAcc) ~= nil) or (strAcc:match("^[%-%+%.%d]+$") ~= nil)
+            local targetBox = findBox(cluster[1].tx, grp.ty)
+
+            local isTitle = (targetBox and grp.ty >= targetBox.maxY - 2) and not isPureNum and not strAcc:find("%$10%^")
+            local isXLabel = (targetBox and grp.ty <= targetBox.minY - 10) and not isPureNum and not strAcc:find("%$10%^")
+
             if not (isTitle and #strAcc == 1 and (strAcc == "n" or strAcc == "d" or strAcc == "i")) then
               strAcc = sanitizeLatex(strAcc)
               local fontSize = "script"
               local halign = ""
+              local posX = cluster[1].tx
+              local posY = cluster[1].ty
+
               if isTitle then
                 fontSize = "small"
                 halign = ' halign="center"'
-              elseif isXLabel or strAcc:find("%[") or strAcc:find("%$") then
+                if targetBox then posX = targetBox.midX end
+              elseif isXLabel then
                 fontSize = "footnote"
                 halign = ' halign="center"'
-              elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
+                if targetBox then posX = targetBox.midX end
+              elseif strAcc:find("%$10%^") then
+                fontSize = "script"
                 halign = ' halign="right"'
+                if targetBox then posX = targetBox.minX - 3.5 end
+              elseif isPureNum then
+                fontSize = "script"
+                local isYTick = targetBox and (posX < targetBox.minX + 8)
+                if isYTick then
+                  halign = ' halign="right"'
+                  posX = targetBox.minX - 3.5
+                else
+                  halign = ' halign="center"'
+                end
               end
-              mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, halign, strAcc)
+
+              mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', posX, posY, fontSize, halign, strAcc)
             end
           end
           cluster = { curr }
@@ -433,21 +602,43 @@ local function cleanAndMergeMatlabIpeXml(content)
       local strAcc = table.concat(parts):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       strAcc = formatGenericPlotText(strAcc)
       if strAcc ~= "" then
-        -- Filter out isolated single letter artifacts near title (e.g. leftover subscript "n" from \omega_n)
+        local isPureNum = (tonumber(strAcc) ~= nil) or (strAcc:match("^[%-%+%.%d]+$") ~= nil)
+        local targetBox = findBox(cluster[1].tx, grp.ty)
+
+        local isTitle = (targetBox and grp.ty >= targetBox.maxY - 2) and not isPureNum and not strAcc:find("%$10%^")
+        local isXLabel = (targetBox and grp.ty <= targetBox.minY - 10) and not isPureNum and not strAcc:find("%$10%^")
+
         if not (isTitle and #strAcc == 1 and (strAcc == "n" or strAcc == "d" or strAcc == "i")) then
           strAcc = sanitizeLatex(strAcc)
           local fontSize = "script"
           local halign = ""
+          local posX = cluster[1].tx
+          local posY = cluster[1].ty
+
           if isTitle then
             fontSize = "small"
             halign = ' halign="center"'
-          elseif isXLabel or strAcc:find("%[") or strAcc:find("%$") then
+            if targetBox then posX = targetBox.midX end
+          elseif isXLabel then
             fontSize = "footnote"
             halign = ' halign="center"'
-          elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
+            if targetBox then posX = targetBox.midX end
+          elseif strAcc:find("%$10%^") then
+            fontSize = "script"
             halign = ' halign="right"'
+            if targetBox then posX = targetBox.minX - 3.5 end
+          elseif isPureNum then
+            fontSize = "script"
+            local isYTick = targetBox and (posX < targetBox.minX + 8)
+            if isYTick then
+              halign = ' halign="right"'
+              posX = targetBox.minX - 3.5
+            else
+              halign = ' halign="center"'
+            end
           end
-          mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, halign, strAcc)
+
+          mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', posX, posY, fontSize, halign, strAcc)
         end
       end
     end
