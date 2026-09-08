@@ -2,8 +2,17 @@
 prefs.autosave_filename = "./%s.autosave"
 prefs.autosave_interval = nil
 prefs.editor_size = { 500, 500 }
+-- external editor settings for visual studio code
+-- if config.platform == "win" then
+-- 	prefs.external_editor = "code.cmd --wait %s"
+-- elseif config.platform == "apple" then
+-- 	prefs.external_editor = "code --wait %s"
+-- end
+-- prefs.editable_textfile = config.latexdir .. "/temp.tex"
 -- default stylesheets added to newly created docs
 prefs.styles = { "basic", "preamble" }
+-- default latex engine setting
+-- prefs.tex_engine = "luatex"
 -- default latex autorun setting
 prefs.auto_run_latex = true
 -- auto export document when saved as .ipe
@@ -15,8 +24,4 @@ shortcuts.next_view = "Down"
 shortcuts.previous_page = "Left"
 shortcuts.next_page = "Right"
 
--- Goodies shortcuts
-shortcuts.ipelet_1_goodies = "Alt+B"   -- Insert rounded rectangle
-shortcuts.ipelet_11_goodies = "Ctrl+R" -- Precise rotate
-shortcuts.ipelet_12_goodies = "Ctrl+K" -- Precise stretch
-
+shortcuts.ipelet_1_rounded_rectangle = "Alt+B"
