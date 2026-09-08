@@ -22,7 +22,7 @@ hold off;
 
 xlabel('Time $t$ [s]');
 ylabel('Response $y(t)$');
-title('Step Response ($w_n = 4\,\mathrm{rad/s}$)');
+title('Step Response ($\omega_n = 4\,\mathrm{rad/s}$)');
 legend('Location', 'northeast');
 
 setup_ipe_plot(fig1, 'slide_single');
