@@ -16,6 +16,7 @@ Ipe に機能を付け加えたり設定するためのファイルが入って�
 - `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
 - `pagenumbers.lua`: ページ番号自動付与フック。
 - `table.lua`: LaTeX `tabular` による表挿入 ipelet（学術3本線表・グリッド生成、および Excel/TSV/CSV/Markdown からの一括自動変換挿入）。
+- `video.lua` / `inject_media.py`: 動画・アニメーション挿入 & Pympress 向けプレゼンテーション出力 ipelet（MP4, GIF, MOV, WebM 対応、ffmpeg によるサムネイル自動抽出、Pympress / pdfpc 向け PDF Movie アノテーションのワンクリック埋め込み・プレビュー起動）。
 - `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、**「Inspect selected object Z-order」**（選択オブジェクトの前後順・レイヤー・内容の確認）、**前後移動コマンド（`Ctrl+F`, `Ctrl+B`, `Ctrl+Shift+F/B`）時のリアルタイム Z 順フィードバック**、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）を統合定義。
 
 ### styles
