@@ -2,9 +2,9 @@
 -- table ipelet (TeX Table Generator)
 ----------------------------------------------------------------------
 --
--- Inserts a beautifully formatted LaTeX tabular table into the Ipe
--- canvas. Supports academic 3-line table templates, custom row/column
--- grids, and automatic conversion from Excel/TSV/CSV/Markdown.
+-- Inserts a LaTeX tabular table into the Ipe canvas.
+-- Supports academic 3-line table templates, custom row/column grids,
+-- and automatic conversion from Excel / TSV / CSV / Markdown.
 ----------------------------------------------------------------------
 
 label = "Table"
@@ -53,6 +53,21 @@ local function generateGridTabular(rows, cols, align)
   return res
 end
 
+local function splitLine(line, sep)
+  local t = {}
+  local pos = 1
+  while true do
+    local s, e = line:find(sep, pos, true)
+    if not s then
+      table.insert(t, line:sub(pos))
+      break
+    end
+    table.insert(t, line:sub(pos, s - 1))
+    pos = e + 1
+  end
+  return t
+end
+
 local function tsvToTabular(text)
   local lines = {}
   for line in text:gmatch("[^\r\n]+") do
@@ -66,19 +81,22 @@ local function tsvToTabular(text)
   local maxCols = 0
   for _, line in ipairs(lines) do
     local cells = {}
-    if line:match("|") then
-      for c in line:gmatch("[^|]+") do
+    if line:find("|") then
+      local raw = splitLine(line, "|")
+      for _, c in ipairs(raw) do
         local cell = c:match("^%s*(.-)%s*$")
-        if not cell:match("^%:?%-+%:?$") and #cell > 0 then
+        if cell ~= "" and not cell:match("^%:?%-+%:?$") then
           cells[#cells + 1] = cell
         end
       end
-    elseif line:match("\t") then
-      for c in line:gmatch("[^\t]+") do
+    elseif line:find("\t") then
+      local raw = splitLine(line, "\t")
+      for _, c in ipairs(raw) do
         cells[#cells + 1] = c:match("^%s*(.-)%s*$")
       end
-    elseif line:match(",") then
-      for c in line:gmatch("[^,]+") do
+    elseif line:find(",") then
+      local raw = splitLine(line, ",")
+      for _, c in ipairs(raw) do
         cells[#cells + 1] = c:match("^%s*(.-)%s*$")
       end
     else
@@ -110,6 +128,79 @@ local function tsvToTabular(text)
   return res
 end
 
+----------------------------------------------------------------------
+-- TABLETOOL: Interactive canvas placement tool
+----------------------------------------------------------------------
+
+local TABLETOOL = {}
+TABLETOOL.__index = TABLETOOL
+
+function TABLETOOL:new(model, tableCode, sizeName)
+  local tool = {}
+  _G.setmetatable(tool, TABLETOOL)
+  tool.model = model
+  tool.tableCode = tableCode
+  tool.sizeName = sizeName
+  tool.pos = model.ui:pos() or V(200, 400)
+  model.ui:shapeTool(tool)
+  tool.setColor(0.0, 0.45, 0.85)
+  tool.setSnapping(true, true)
+  tool:updateShape()
+  model.ui:explain("Click on canvas to place TeX table (or press Esc to cancel)")
+  return tool
+end
+
+function TABLETOOL:updateShape()
+  local p = self.pos
+  local s = 12
+  local crossH = {
+    type = "curve", closed = false;
+    { type = "segment"; V(p.x - s, p.y), V(p.x + s, p.y) }
+  }
+  local crossV = {
+    type = "curve", closed = false;
+    { type = "segment"; V(p.x, p.y - s), V(p.x, p.y + s) }
+  }
+  local corner = {
+    type = "curve", closed = false;
+    { type = "segment"; V(p.x, p.y - 6), V(p.x, p.y) },
+    { type = "segment"; V(p.x, p.y), V(p.x + 18, p.y) }
+  }
+  self.setShape({ crossH, crossV, corner })
+end
+
+function TABLETOOL:mouseButton(button, modifiers, press)
+  if not press then return end
+  self.pos = self.model.ui:pos()
+  self.model.ui:finishTool()
+  local obj = ipe.Text(self.model.attributes, self.tableCode, self.pos)
+  obj:set("textsize", self.sizeName)
+  obj:set("transformations", "translations")
+  self.model:creation("insert TeX table", obj)
+  self.model:autoRunLatex()
+  self.model.ui:explain("Inserted TeX table")
+end
+
+function TABLETOOL:mouseMove()
+  self.pos = self.model.ui:pos()
+  self:updateShape()
+  self.model.ui:update(false)
+end
+
+function TABLETOOL:key(text, modifiers)
+  if text == "\027" then -- Esc
+    self.model.ui:finishTool()
+    self.model.ui:explain("Cancelled table insertion")
+    return true
+  else
+    return false
+  end
+end
+
+----------------------------------------------------------------------
+-- Dialog & Insertion Action
+----------------------------------------------------------------------
+
 local function insertTeXTable(model)
   local d = ipeui.Dialog(model.ui:win(), "Insert TeX Table")
   local presets = {
@@ -118,18 +209,6 @@ local function insertTeXTable(model)
     "Custom Grid (4 Rows x 4 Cols)",
     "Paste TSV / CSV / Markdown / LaTeX",
   }
-  d:add("lbl1", "label", { label = "Select Preset or enter/paste Table Data:" }, 1, 1, 1, 4)
-  d:add("preset", "combo", presets, 2, 1, 1, 4)
-  d:add("table_text", "text", {
-    syntax = "latex",
-    focus = true,
-  }, 3, 1, 1, 4)
-  d:set("table_text", DEFAULT_TEMPLATE)
-
-  d:add("lbl2", "label", { label = "Font Size:" }, 4, 1)
-  local sizes = { "small", "footnote", "normal", "large", "script", "tiny" }
-  d:add("size", "combo", sizes, 4, 2)
-  d:set("size", 1) -- default "small"
 
   presets.action = function(dialog)
     local idx = dialog:get("preset")
@@ -143,6 +222,19 @@ local function insertTeXTable(model)
       dialog:set("table_text", "")
     end
   end
+
+  d:add("lbl1", "label", { label = "Select Preset or enter/paste Table Data:" }, 1, 1, 1, 4)
+  d:add("preset", "combo", presets, 2, 1, 1, 4)
+  d:add("table_text", "text", {
+    syntax = "latex",
+    focus = true,
+  }, 3, 1, 1, 4)
+  d:set("table_text", DEFAULT_TEMPLATE)
+
+  d:add("lbl2", "label", { label = "Font Size:" }, 4, 1)
+  local sizes = { "small", "footnote", "normal", "large", "script", "tiny" }
+  d:add("size", "combo", sizes, 4, 2)
+  d:set("size", 1) -- default "small"
 
   d:addButton("ok", "&Insert Table", "accept")
   d:addButton("cancel", "&Cancel", "reject")
@@ -167,14 +259,7 @@ local function insertTeXTable(model)
 
   if not tableCode or tableCode:match("^%s*$") then return end
 
-  local pos = model.ui:pos() or V(100, 100)
-  local obj = ipe.Text(model.attributes, tableCode, pos)
-  obj:set("textsize", sizeName)
-  obj:set("transformations", "translations")
-
-  model:creation("insert TeX table", obj)
-  model:autoRunLatex()
-  model.ui:explain("Inserted TeX table")
+  TABLETOOL:new(model, tableCode, sizeName)
 end
 
 methods = {
