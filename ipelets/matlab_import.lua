@@ -3,20 +3,19 @@
 ----------------------------------------------------------------------
 --
 -- Features:
--- 1. Automatically cleans and fixes MATLAB vector graphics:
---    - Converts dark opaque grid lines to subtle light gray lines.
+-- 1. Seamlessly imports MATLAB vector plots (PDF / IPE):
+--    - Supports both transparent background PDFs (from export_ipe_plot)
+--      and traditional white-background PDFs.
+--    - Converts grid lines to light subtle gray.
 --    - Maps MATLAB RGB curve colors to symbolic colors in color_matlab.isy
---      (matlab_blue, matlab_red, matlab_orange, etc.) with pen="heavier".
---    - Fixes axis borders and ticks to clean black.
---    - Strips the opaque full-page background rectangle so slide
---      background templates remain intact.
--- 2. Smart text merging & true-size LaTeX typography:
---    - Text uses transformations="translations" so font size is never
---      shrunk by affine scaling (Title: large, Axis: normal, Ticks/Legend: small).
---    - Automatically restores broken Greek math formulas (e.g. \zeta).
---    - Fixes rotated Y-axis labels.
--- 3. Ensures the MATLAB color palette (color_matlab.isy) is attached.
--- 4. Interactive Import Dialog for scale mode & options.
+--      (matlab_blue, matlab_red, matlab_orange, matlab_purple, etc.).
+-- 2. Smart LaTeX Typography & Alignment:
+--    - Merges fragmented letter sequences into coherent LaTeX text.
+--    - Preserves true font sizes using transformations="translations".
+--    - Automatically sets halign="right" on Y-axis tick numbers.
+--    - Rotates Y-axis labels with transformations="rigid" and halign="center".
+-- 3. Automatically attaches MATLAB color palette (color_matlab.isy).
+-- 4. Single-click import with interactive placement options.
 --
 ----------------------------------------------------------------------
 
@@ -32,7 +31,6 @@ or slide. Automatically attaches the MATLAB color palette, preserves
 proper LaTeX text sizes (normal/large/small), and cleans grid lines.
 ]]
 
--- Sibling "styles" directory from this ipelet's path
 local function styleDir()
   local ipeletDir = (path and path:match("^(.*)[/\\][^/\\]+$")) or "."
   local repoRoot = ipeletDir:match("^(.*)[/\\][^/\\]+$") or ipeletDir
@@ -48,7 +46,6 @@ local function hasSheet(doc, sheetName)
   return false
 end
 
--- Ensure color_matlab.isy is attached to the current document
 local function ensureMatlabColors(model)
   local doc = model.doc
   if hasSheet(doc, "color_matlab") then
@@ -91,9 +88,8 @@ local function ensureMatlabColors(model)
   return true
 end
 
--- Parse and clean MATLAB-generated IPE XML
 local function cleanAndMergeMatlabIpeXml(content, discardText)
-  -- 1. Remove outermost background path
+  -- 1. Remove full-page solid background if present
   content = content:gsub('<path fill="1%.0+ 1%.0+ 1%.0+">\n%s*[%-%d%.]+%s+[%-%d%.]+%s+m\n.-h\n%s*</path>', function(p)
     if p:find("%-1%.05") or p:find("369%.45") or p:find("0%.73") then
       return ""
@@ -106,10 +102,10 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
   content = content:gsub('fill="0%.12941%d+ 0%.12941%d+ 0%.12941%d+"', 'fill="0.88 0.88 0.88"')
 
   -- 3. Map MATLAB standard 7 RGB curve colors to named symbolic colors
-  content = content:gsub('stroke="0%.0+ 0%.45%d+ 0%.74%d+" pen="[^"]*"', 'stroke="matlab_blue" pen="heavier"')
-  content = content:gsub('stroke="0%.0+ 0%.45%d+ 0%.74%d+"', 'stroke="matlab_blue" pen="heavier"')
-  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.10%d+" pen="[^"]*"', 'stroke="matlab_red" pen="heavier"')
-  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.10%d+"', 'stroke="matlab_red" pen="heavier"')
+  content = content:gsub('stroke="0%.0+ 0%.44[67]%d* 0%.74%d+" pen="[^"]*"', 'stroke="matlab_blue" pen="heavier"')
+  content = content:gsub('stroke="0%.0+ 0%.44[67]%d* 0%.74%d+"', 'stroke="matlab_blue" pen="heavier"')
+  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.09[89]%d*" pen="[^"]*"', 'stroke="matlab_red" pen="heavier"')
+  content = content:gsub('stroke="0%.85%d+ 0%.32%d+ 0%.09[89]%d*"', 'stroke="matlab_red" pen="heavier"')
   content = content:gsub('stroke="0%.92%d+ 0%.69%d+ 0%.12%d+" pen="[^"]*"', 'stroke="matlab_orange" pen="heavier"')
   content = content:gsub('stroke="0%.92%d+ 0%.69%d+ 0%.12%d+"', 'stroke="matlab_orange" pen="heavier"')
   content = content:gsub('stroke="0%.49%d+ 0%.18%d+ 0%.55%d+" pen="[^"]*"', 'stroke="matlab_purple" pen="heavier"')
@@ -183,7 +179,7 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
         local first = grp.items[1]
         local last = grp.items[#grp.items]
         local midY = (first.ty + last.ty) / 2
-        local xml = string.format('<text stroke="black" pos="0 0" transformations="affine" size="normal" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY - 20, fullStr)
+        local xml = string.format('<text stroke="black" pos="0 0" transformations="rigid" size="small" halign="center" valign="baseline" matrix="0 1 -1 0 %.2f %.2f">%s</text>', first.tx, midY)
         mergedXmlList[#mergedXmlList + 1] = xml
       end
     else
@@ -204,11 +200,19 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
           strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
           strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
           if strAcc ~= "" then
-            local fontSize = "small"
-            if isTitle then fontSize = "large"
-            elseif isXLabel then fontSize = "normal"
+            local fontSize = "script"
+            local halign = ""
+            if isTitle then
+              fontSize = "small"
+              halign = ' halign="center"'
+            elseif isXLabel then
+              fontSize = "small"
+              halign = ' halign="center"'
+            elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
+              -- Tick numbers: use halign="right"
+              halign = ' halign="right"'
             end
-            mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s" valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, strAcc)
+            mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, halign, strAcc)
           end
           cluster = { curr }
         else
@@ -223,11 +227,18 @@ local function cleanAndMergeMatlabIpeXml(content, discardText)
       strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
       if strAcc ~= "" then
-        local fontSize = "small"
-        if isTitle then fontSize = "large"
-        elseif isXLabel then fontSize = "normal"
+        local fontSize = "script"
+        local halign = ""
+        if isTitle then
+          fontSize = "small"
+          halign = ' halign="center"'
+        elseif isXLabel then
+          fontSize = "small"
+          halign = ' halign="center"'
+        elseif tonumber(strAcc) or strAcc:match("^[%-%+%.%d]+$") then
+          halign = ' halign="right"'
         end
-        mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s" valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, strAcc)
+        mergedXmlList[#mergedXmlList + 1] = string.format('<text stroke="black" pos="%.2f %.2f" transformations="translations" size="%s"%s valign="baseline">%s</text>', cluster[1].tx, cluster[1].ty, fontSize, halign, strAcc)
       end
     end
   end
@@ -250,10 +261,9 @@ local function importPlot(model)
   local file = ipeui.fileDialog(win, "open", "Select MATLAB Vector PDF or IPE File", filter, nil, nil)
   if not file then return end
 
-  -- Show Options Dialog
   local d = ipeui.Dialog(win, "MATLAB Plot Import Options")
   d:add("lbl1", "label", { label = "Import Scale / Placement Mode:" }, 1, 1)
-  local modeOptions = { "Original 1:1 Size (Recommended)", "Auto-Fit to Slide Frame", "Clean Line Art Only (Discard Text)" }
+  local modeOptions = { "Auto-Fit to Slide Frame (Recommended)", "Original 1:1 Size", "Clean Line Art Only (Discard Text)" }
   d:add("mode", "combo", modeOptions, 2, 1)
   d:add("attach_colors", "checkbox", { label = "Ensure MATLAB color palette attached (color_matlab.isy)" }, 3, 1)
   d:set("attach_colors", true)
@@ -262,7 +272,7 @@ local function importPlot(model)
   if not d:execute() then return end
 
   local modeIdx = d:get("mode")
-  local scaleMode = (modeIdx == 2 and "fit") or "original"
+  local scaleMode = (modeIdx == 1 and "fit") or "original"
   local discardText = (modeIdx == 3)
   local doAttachColors = d:get("attach_colors")
 
@@ -325,7 +335,7 @@ local function importPlot(model)
     local totalW = totalBox:width()
     local totalH = totalBox:height()
 
-    -- Remove full-page background rectangles
+    -- Remove full-page background rectangles if any remain
     local skipIndices = {}
     for i = 1, math.min(3, #p) do
       local b = p:bbox(i)
@@ -354,8 +364,8 @@ local function importPlot(model)
 
     local scale = 1.0
     if scaleMode == "fit" then
-      local maxTargetW = fs.x * 0.65
-      local maxTargetH = fs.y * 0.70
+      local maxTargetW = fs.x * 0.82
+      local maxTargetH = fs.y * 0.78
       if curW > maxTargetW or curH > maxTargetH then
         local scaleW = maxTargetW / curW
         local scaleH = maxTargetH / curH
