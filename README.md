@@ -2,31 +2,36 @@
 
 このレポジトリは，Ipeの公式バイナリに含まれないオリジナルのIpeのテンプレートやスクリプトなどを管理しています。
 
-## 各ディレクトリの説明
+## ディレクトリ構成と概要
 
-### bin
-Ipe に関係する.exeファイルが入っています。
-
-### ipelets
-Ipe に機能を付け加えたり設定するためのファイルが入っています。
-- `goodies.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Insert rounded rectangle」**（角丸四角形描画、`Alt+B`）、**「Round selected rectangle」**、半径調整機能を統合した拡張 ipelet。
-- `matlab_import.lua`: MATLAB で出力したベクター PDF / IPE をスライドや図面に直接インポートし、MATLAB カラーパレット（`color_matlab.isy`）の自動適用、スケーリング（1:1 / スライドフィット / 線画のみ選択ダイアログ）、不要な白背景の除去を行う ipelet。
-- `style_switcher.lua`: フォントやプロジェクター用カラーモードを切り替える ipelet。
-- `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
-- `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
-- `pagenumbers.lua`: ページ番号自動付与フック。
-- `table.lua`: LaTeX `tabular` による表挿入 ipelet（学術3本線表・グリッド生成、および Excel/TSV/CSV/Markdown からの一括自動変換挿入）。
-- `video.lua` / `inject_media.py`: 動画・アニメーション挿入 & Pympress 向けプレゼンテーション出力 ipelet（MP4, GIF, MOV, WebM 対応、ffmpeg によるサムネイル自動抽出、Pympress / pdfpc 向け PDF Movie アノテーションのワンクリック埋め込み・プレビュー起動）。
-- `goodies.lua` / `customize.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Add white background to text」**（テキスト白背景挿入 & グループ化、`Alt+W`）、**「Inspect selected object Z-order」**（選択オブジェクトの前後順・レイヤー・内容の確認）、**前後移動コマンド（`Ctrl+F`, `Ctrl+B`, `Ctrl+Shift+F/B`）時のリアルタイム Z 順フィードバック**、エディタ設定・自動保存・ショートカット（`Alt+B`, `Alt+W` 等）を統合定義。
-
-### styles
-Ipe のスタイルシート (.isy) が入っています。
-
-### templates
-Ipe を用いたテンプレート(プレゼンテーション用スライドなど)が入っています。
-
-### examples
-MATLAB グラフ連携のサンプルスクリプトやテンプレート (`examples/matlab_plot_example/`) が入っています。
+```text
+IpeExample/
+├── ipelets/         # 拡張機能・プラグインスクリプト (.lua, .py)
+│   ├── customize.lua          # エディタ設定・テキスト白背景 (Alt+W)・Z順インスペクタ & 移動HUD
+│   ├── rounded_rectangle.lua  # 角丸四角形ツール (Alt+B, 半径ライブ調整)
+│   ├── table.lua              # LaTeX表挿入 (学術3本線表・グリッド・TSV/Markdown変換)
+│   ├── video.lua              # 動画挿入 (MP4/WebM/GIF) & サムネイル自動描画
+│   ├── inject_media.py        # Pympress 向け PDF Movie アノテーション注入
+│   ├── matlab_import.lua      # MATLAB ベクター図インポート & パレット自動適用
+│   ├── style_switcher.lua     # フォント・カラーモード動的切替
+│   ├── handout.lua            # Appendix 除外 配布用 PDF 出力
+│   ├── pagenumbers.lua        # ページ番号自動付与
+│   └── pdfandipeimport.lua    # 汎用 PDF / IPE 挿入
+├── styles/          # スタイルシート群 (.isy)
+│   ├── color_*.isy            # カラーパレット (JAXA, 東大, CUD, MATLAB 等)
+│   ├── color_mode_*.isy       # 投影用カラー上書き (プロジェクターモード)
+│   ├── font_*.isy             # 和欧文フォント設定 (Noto, IBM Plex, Meiryo, Times)
+│   ├── layout_*.isy           # スライド (16:9 / 4:3)・ポスター用紙レイアウト
+│   └── basic.isy              # 共通描画設定・破線定義
+├── templates/       # 発表用テンプレート (.ipe, .pdf)
+│   ├── template_slide_suzuki_16_9.ipe  # 16:9 スライドテンプレート (動画デモ同梱)
+│   ├── template_slide_suzuki_4_3.ipe   # 4:3 スライドテンプレート
+│   └── template_poster_suzuki.ipe      # ポスターテンプレート
+├── examples/        # サンプルファイル
+│   ├── sample_animation.*     # 動作検証用サンプル動画 (WebM / MP4 / GIF)
+│   └── matlab_plot_example/   # MATLAB 連携プロット例
+└── bin/             # 補助実行ファイル (Windows用)
+```
 
 ## Ipe の設定（参照先パスの設定）
 
