@@ -6,7 +6,7 @@
 Modified version by Jurgen van Zundert, April 2017
 --]]
 
-label = "Pagenumbers"
+-- label = "Pagenumbers"
 
 about = [[
 An Ipelet for printing customizable pagenumbers to the pages.

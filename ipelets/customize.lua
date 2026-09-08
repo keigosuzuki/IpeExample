@@ -24,4 +24,7 @@ shortcuts.next_view = "Down"
 shortcuts.previous_page = "Left"
 shortcuts.next_page = "Right"
 
-shortcuts.ipelet_1_rounded_rectangle = "Alt+B"
+-- Goodies shortcuts
+shortcuts.ipelet_1_goodies = "Alt+B"   -- Insert rounded rectangle
+shortcuts.ipelet_11_goodies = "Ctrl+R" -- Precise rotate
+shortcuts.ipelet_12_goodies = "Ctrl+K" -- Precise stretch

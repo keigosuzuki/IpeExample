@@ -9,9 +9,13 @@ Ipe に関係する.exeファイルが入っています。
 
 ### ipelets
 Ipe に機能を付け加えたり設定するためのファイルが入っています。
-- `matlab_import.lua`: MATLAB で出力したベクター PDF / IPE をスライドや図面に直接インポートし、MATLAB カラーパレット（`color_matlab.isy`）の自動適用、スケーリング、不要な白背景の除去を行う ipelet。
+- `goodies.lua`: 標準 Goodies（回転・反転・精密変形・精密ボックス等）に加えて **「Insert rounded rectangle」**（角丸四角形描画、`Alt+B`）、**「Round selected rectangle」**、半径調整機能を統合した拡張 ipelet。
+- `matlab_import.lua`: MATLAB で出力したベクター PDF / IPE をスライドや図面に直接インポートし、MATLAB カラーパレット（`color_matlab.isy`）の自動適用、スケーリング（1:1 / スライドフィット / 線画のみ選択ダイアログ）、不要な白背景の除去を行う ipelet。
 - `style_switcher.lua`: フォントやプロジェクター用カラーモードを切り替える ipelet。
 - `pdfandipeimport.lua`: 汎用 PDF / IPE 挿入 ipelet。
+- `handout.lua`: Appendix ページを除外した配布用 PDF をワンクリック出力する ipelet。
+- `pagenumbers.lua`: ページ番号自動付与フック。
+- `customize.lua`: エディタ設定・自動保存・ショートカット（`Alt+B` 等）定義。
 
 ### styles
 Ipe のスタイルシート (.isy) が入っています。
