@@ -9,8 +9,10 @@
 --    - Converts grid lines to light subtle gray (fill="0.88 0.88 0.88").
 --    - Maps MATLAB RGB curve colors to symbolic colors in color_matlab.isy
 --      (matlab_blue, matlab_red, matlab_orange, matlab_purple, etc.).
--- 2. Smart LaTeX Typography & Alignment:
+-- 2. Smart LaTeX Typography, Sanitization & Alignment:
 --    - Merges fragmented letter sequences into coherent LaTeX text.
+--    - Automatically sanitizes LaTeX special characters (_, %, &, #, etc.)
+--      outside math mode to guarantee zero LaTeX compilation errors.
 --    - Preserves true font sizes using transformations="translations".
 --    - Automatically sets halign="right" on Y-axis tick numbers.
 --    - Rotates Y-axis labels with transformations="rigid" and halign="center".
@@ -85,6 +87,54 @@ local function ensureMatlabColors(model)
   end
   model:register(t)
   return true
+end
+
+-- Escape unescaped LaTeX special characters outside math mode ($...$)
+local function sanitizeLatex(str)
+  local parts = {}
+  local inMath = false
+  local lastIdx = 1
+  local pos = 1
+  local len = #str
+  while pos <= len do
+    local c = str:sub(pos, pos)
+    if c == '$' then
+      local before = str:sub(lastIdx, pos - 1)
+      if inMath then
+        parts[#parts + 1] = before .. '$'
+        inMath = false
+      else
+        before = before:gsub('([_%%&#^~])', function(m)
+          if m == '_' then return '\\_'
+          elseif m == '%' then return '\\%'
+          elseif m == '&' then return '\\&'
+          elseif m == '#' then return '\\#'
+          elseif m == '^' then return '\\^{}'
+          elseif m == '~' then return '\\textasciitilde{}'
+          end
+        end)
+        parts[#parts + 1] = before .. '$'
+        inMath = true
+      end
+      lastIdx = pos + 1
+    end
+    pos = pos + 1
+  end
+
+  local remaining = str:sub(lastIdx)
+  if not inMath then
+    remaining = remaining:gsub('([_%%&#^~])', function(m)
+      if m == '_' then return '\\_'
+      elseif m == '%' then return '\\%'
+      elseif m == '&' then return '\\&'
+      elseif m == '#' then return '\\#'
+      elseif m == '^' then return '\\^{}'
+      elseif m == '~' then return '\\textasciitilde{}'
+      end
+    end)
+  end
+  parts[#parts + 1] = remaining
+  return table.concat(parts)
 end
 
 local function cleanAndMergeMatlabIpeXml(content)
@@ -169,6 +219,7 @@ local function cleanAndMergeMatlabIpeXml(content)
       end
       fullStr = fullStr:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       if fullStr ~= "" then
+        fullStr = sanitizeLatex(fullStr)
         local first = grp.items[1]
         local last = grp.items[#grp.items]
         local midY = (first.ty + last.ty) / 2
@@ -193,6 +244,7 @@ local function cleanAndMergeMatlabIpeXml(content)
           strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
           strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
           if strAcc ~= "" then
+            strAcc = sanitizeLatex(strAcc)
             local fontSize = "script"
             local halign = ""
             if isTitle then
@@ -219,6 +271,7 @@ local function cleanAndMergeMatlabIpeXml(content)
       strAcc = strAcc:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
       strAcc = strAcc:gsub("1%s*=%s*", "$\\zeta = $")
       if strAcc ~= "" then
+        strAcc = sanitizeLatex(strAcc)
         local fontSize = "script"
         local halign = ""
         if isTitle then
@@ -347,7 +400,7 @@ local function importPlot(model)
     end
 
     local targetCenterX = fs.x / 2
-    local targetCenterY = fs.y / 2 - 10 -- slightly lower to leave room for title/bullets
+    local targetCenterY = fs.y / 2 - 10
 
     local srcCenterX = contentBox:left() + curW / 2
     local srcCenterY = contentBox:bottom() + curH / 2
