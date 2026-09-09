@@ -19,8 +19,9 @@ and 1-click Pympress presentation export.
 local V = ipe.Vector
 
 local function getInjectScriptPath()
+  local ipeletDir = (path and path:match("^(.*)[/\\][^/\\]+$")) or "."
   local candidates = {
-    "/home/keigo-suzuki/Documents/Repositories/IpeExample/ipelets/inject_media.py",
+    ipeletDir .. "/inject_media.py",
     "./ipelets/inject_media.py",
     "../ipelets/inject_media.py",
     "inject_media.py",

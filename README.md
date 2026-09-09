@@ -134,10 +134,10 @@ Windows では、「システム環境変数の編集」（または PowerShell 
 
 | スタイルシート | 欧文フォント | 和文フォント | 入手方法 / ダウンロード元 |
 |---|---|---|---|
-| [`font_notosans.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_notosans.isy) | Noto Sans Regular | Source Han Sans JP (源ノ角ゴシック) | <ul><li>欧文: [Google Fonts: Noto Sans](https://fonts.google.com/specimen/Noto+Sans)</li><li>和文: [GitHub: adobe-fonts/source-han-sans](https://github.com/adobe-fonts/source-han-sans) (または [Google Fonts: Noto Sans JP](https://fonts.google.com/specimen/Noto+Sans+JP))</li></ul> |
-| [`font_plexsans.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_plexsans.isy) | IBM Plex Sans | IBM Plex Sans JP | <ul><li>欧文: [Google Fonts: IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) / [GitHub: IBM/plex](https://github.com/IBM/plex)</li><li>和文: [Google Fonts: IBM Plex Sans JP](https://fonts.google.com/specimen/IBM+Plex+Sans+JP)</li></ul> |
-| [`font_meiryo_segoe.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_meiryo_segoe.isy) | Segoe UI | Meiryo (メイリオ) | Windows 標準搭載フォント（Windows 以外の環境ではライセンスを持つ Windows PC からコピー） |
-| [`font_times.isy`](file:///home/keigo-suzuki/Documents/Repositories/IpeExample/styles/font_times.isy) | Times / Helvetica | 原ノ味フォント (Harano Aji) | TeX Live 標準同梱（追加インストール不要） |
+| [`font_notosans.isy`](styles/font_notosans.isy) | Noto Sans Regular | Source Han Sans JP (源ノ角ゴシック) | <ul><li>欧文: [Google Fonts: Noto Sans](https://fonts.google.com/specimen/Noto+Sans)</li><li>和文: [GitHub: adobe-fonts/source-han-sans](https://github.com/adobe-fonts/source-han-sans) (または [Google Fonts: Noto Sans JP](https://fonts.google.com/specimen/Noto+Sans+JP))</li></ul> |
+| [`font_plexsans.isy`](styles/font_plexsans.isy) | IBM Plex Sans | IBM Plex Sans JP | <ul><li>欧文: [Google Fonts: IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) / [GitHub: IBM/plex](https://github.com/IBM/plex)</li><li>和文: [Google Fonts: IBM Plex Sans JP](https://fonts.google.com/specimen/IBM+Plex+Sans+JP)</li></ul> |
+| [`font_meiryo_segoe.isy`](styles/font_meiryo_segoe.isy) | Segoe UI | Meiryo (メイリオ) | Windows 標準搭載フォント（Windows 以外の環境ではライセンスを持つ Windows PC からコピー） |
+| [`font_times.isy`](styles/font_times.isy) | Times / Helvetica | 原ノ味フォント (Harano Aji) | TeX Live 標準同梱（追加インストール不要） |
 
 #### OS別フォント追加手順
 

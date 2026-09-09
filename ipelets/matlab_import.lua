@@ -199,13 +199,11 @@ local function formatGenericPlotText(str)
     return str
   end
 
-  -- Common math replacements
-  str = str:gsub("!1", "$10^{-1}$")
-  str = str:gsub("10!1", "$10^{-1}$")
-  str = str:gsub("100", "$10^0$")
-  str = str:gsub("101", "$10^1$")
-  str = str:gsub("102", "$10^2$")
-  str = str:gsub("103", "$10^3$")
+  -- Common math replacements (isolated log-scale ticks or exponents)
+  str = str:gsub("^!1$", "$10^{-1}$")
+  str = str:gsub("^10!1$", "$10^{-1}$")
+  str = str:gsub("^10%-(%d+)$", "$10^{-%1}$")
+  str = str:gsub("^10%^(%d+)$", "$10^{%1}$")
 
   -- Symbol font glyph mappings & omega equations
   str = str:gsub("%(!%s*=%s*([%d%.]+)%s*rad%/s%)", "($\\omega_n = %1\\,\\mathrm{rad/s}$)")
@@ -267,7 +265,7 @@ local function formatGenericPlotText(str)
   return str
 end
 
-local function cleanAndMergeMatlabIpeXml(content)
+local function cleanAndMergeMatlabIpeXml(content, preserveOriginalColors)
   -- 1. Remove full-page solid background if present
   content = content:gsub('<path fill="1%.0+ 1%.0+ 1%.0+">\n%s*[%-%d%.]+%s+[%-%d%.]+%s+m\n.-h\n%s*</path>', function(p)
     if p:find("%-1%.05") or p:find("369%.45") or p:find("0%.73") then
@@ -373,9 +371,15 @@ local function cleanAndMergeMatlabIpeXml(content)
         -- 3D grid line drawn as thin filled polygon with 15% opacity in PDF
         newAttr = newAttr:gsub('fill="[^"]*"', 'fill="lightgray"')
       else
-        local cName = matchColor(fr, fg, fb)
-        if cName == "lightgray" or cName == "white" then
-          newAttr = newAttr:gsub('fill="[^"]*"', 'fill="' .. cName .. '"')
+        if preserveOriginalColors then
+          if fr > 0.98 and fg > 0.98 and fb > 0.98 then
+            newAttr = newAttr:gsub('fill="[^"]*"', 'fill="white"')
+          end
+        else
+          local cName = matchColor(fr, fg, fb)
+          if cName == "lightgray" or cName == "white" then
+            newAttr = newAttr:gsub('fill="[^"]*"', 'fill="' .. cName .. '"')
+          end
         end
       end
     elseif fill_gray then
@@ -388,16 +392,34 @@ local function cleanAndMergeMatlabIpeXml(content)
     -- Generic Stroke & Pen Mapping
     if stroke_r and stroke_g and stroke_b then
       local r, g, b = tonumber(stroke_r), tonumber(stroke_g), tonumber(stroke_b)
-      local cName = matchColor(r, g, b)
       local pName = pen_val and matchPen(tonumber(pen_val)) or "normal"
-      
-      if cName == "lightgray" then
-        pName = "ultrathin"
-      elseif cName:find("^matlab_") and (not pen_val or tonumber(pen_val) >= 0.8) then
-        pName = "heavier"
+      local maxDiff = math.max(math.abs(r - g), math.abs(g - b), math.abs(r - b))
+      local lum = 0.299 * r + 0.587 * g + 0.114 * b
+
+      if preserveOriginalColors then
+        if maxDiff < 0.08 and lum > 0.70 then
+          newAttr = newAttr:gsub('stroke="[^"]*"', 'stroke="lightgray"')
+          pName = "ultrathin"
+        elseif maxDiff < 0.08 and lum <= 0.15 then
+          newAttr = newAttr:gsub('stroke="[^"]*"', 'stroke="black"')
+          if not pen_val or tonumber(pen_val) < 0.8 then
+            pName = "normal"
+          end
+        else
+          if not pen_val or tonumber(pen_val) >= 0.8 then
+            pName = "heavier"
+          end
+        end
+      else
+        local cName = matchColor(r, g, b)
+        if cName == "lightgray" then
+          pName = "ultrathin"
+        elseif cName:find("^matlab_") and (not pen_val or tonumber(pen_val) >= 0.8) then
+          pName = "heavier"
+        end
+        newAttr = newAttr:gsub('stroke="[^"]*"', 'stroke="' .. cName .. '"')
       end
 
-      newAttr = newAttr:gsub('stroke="[^"]*"', 'stroke="' .. cName .. '"')
       if pen_val then
         newAttr = newAttr:gsub('pen="[^"]*"', 'pen="' .. pName .. '"')
       else
@@ -735,7 +757,7 @@ local function cleanAndMergeMatlabIpeXml(content)
   return content
 end
 
-local function importPlot(model)
+local function importPlot(model, preserveOriginalColors)
   local filter = {
     "PDF, IPE (*.pdf *.ipe *.xml)", "*.pdf;*.ipe;*.xml",
     "PDF Files (*.pdf)", "*.pdf",
@@ -767,7 +789,7 @@ local function importPlot(model)
       if f then
         local rawXml = f:read("*all")
         f:close()
-        local cleanedXml = cleanAndMergeMatlabIpeXml(rawXml)
+        local cleanedXml = cleanAndMergeMatlabIpeXml(rawXml, preserveOriginalColors)
         local fw = io.open(tmpipe, "w")
         if fw then
           fw:write(cleanedXml)
@@ -871,10 +893,20 @@ local function importPlot(model)
   end
 
   if model.ui and model.ui.explain then
-    model.ui:explain("MATLAB plot inserted (generic color mapping & clean TeX applied)")
+    local modeMsg = preserveOriginalColors and "original colors preserved" or "mapped to color palette"
+    model.ui:explain(string.format("MATLAB plot inserted (%s, clean TeX applied)", modeMsg))
   end
 end
 
-function run(model)
-  importPlot(model)
+methods = {
+  { label = "Insert MATLAB Plot (Map to Color Palette)", run = function(model) importPlot(model, false) end },
+  { label = "Insert MATLAB Plot (Preserve Original Colors)", run = function(model) importPlot(model, true) end },
+}
+
+function run(model, num)
+  if num == 2 then
+    importPlot(model, true)
+  else
+    importPlot(model, false)
+  end
 end
