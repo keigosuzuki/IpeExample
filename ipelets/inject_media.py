@@ -74,24 +74,78 @@ def inject_media_annotations(input_pdf_path: str, output_pdf_path: str = None) -
                         elif pathlib.Path(target_file).with_suffix(".webm").exists():
                             target_file = str(pathlib.Path(target_file).with_suffix(".webm"))
 
-                    # Create native PDF /Subtype /Movie annotation
-                    movie_annot = pikepdf.Dictionary({
-                        "/Type": pikepdf.Name("/Annot"),
-                        "/Subtype": pikepdf.Name("/Movie"),
-                        "/Rect": annot.Rect,
-                        "/Movie": pikepdf.Dictionary({
-                            "/F": pikepdf.String(target_file),
-                        }),
-                        "/A": pikepdf.Dictionary({
-                            "/Mode": pikepdf.Name("/Repeat" if repeat else "/Once"),
-                            "/ShowControls": show_controls,
-                        }),
-                        "/Border": pikepdf.Array([0, 0, 0]),
-                    })
+                    # MIME type determination
+                    ext = pathlib.Path(target_file).suffix.lower()
+                    mime_map = {
+                        ".webm": "video/webm",
+                        ".mp4": "video/mp4",
+                        ".m4v": "video/mp4",
+                        ".mov": "video/quicktime",
+                        ".ogg": "video/ogg",
+                        ".ogv": "video/ogg",
+                        ".avi": "video/x-msvideo",
+                        ".mkv": "video/x-matroska",
+                    }
+                    mime_type = mime_map.get(ext, "video/webm")
 
-                    new_annots.append(movie_annot)
+                    # Create native PDF 1.7 Screen Annotation + Rendition Action
+                    # This enables Poppler / Pympress to read `autoplay=True` and start playback upon page entry!
+                    filespec = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/Filespec"),
+                        "/F": pikepdf.String(target_file),
+                        "/UF": pikepdf.String(target_file),
+                    }))
+
+                    media_clip = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/MediaClip"),
+                        "/S": pikepdf.Name("/MCD"),
+                        "/N": pikepdf.String(f"Clip: {target_file}"),
+                        "/D": filespec,
+                        "/CT": pikepdf.String(mime_type),
+                    }))
+
+                    play_params = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/MediaPlayParams"),
+                        "/A": pikepdf.Dictionary({
+                            "/Type": pikepdf.Name("/MediaAutoplay"),
+                            "/A": autostart,
+                        }),
+                        "/C": pikepdf.Dictionary({
+                            "/Type": pikepdf.Name("/MediaControls"),
+                            "/C": show_controls,
+                        }),
+                        "/RC": 0 if repeat else 1,
+                    }))
+
+                    rendition = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/Rendition"),
+                        "/S": pikepdf.Name("/MR"),
+                        "/N": pikepdf.String(f"Rendition: {target_file}"),
+                        "/C": media_clip,
+                        "/P": play_params,
+                    }))
+
+                    screen_annot = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/Annot"),
+                        "/Subtype": pikepdf.Name("/Screen"),
+                        "/Rect": annot.Rect,
+                        "/P": page.obj,
+                        "/Border": pikepdf.Array([0, 0, 0]),
+                    }))
+
+                    action = pdf.make_indirect(pikepdf.Dictionary({
+                        "/Type": pikepdf.Name("/Action"),
+                        "/S": pikepdf.Name("/Rendition"),
+                        "/OP": 0,
+                        "/R": rendition,
+                        "/AN": screen_annot,
+                    }))
+
+                    screen_annot["/A"] = action
+                    new_annots.append(screen_annot)
                     count += 1
                     converted = True
+
 
             if not converted:
                 new_annots.append(annot)
