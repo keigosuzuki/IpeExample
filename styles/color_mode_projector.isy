@@ -1,0 +1,4 @@
+<!-- basic.isy より後に読み込むこと。組み込みの black を投影時の視認性向上のためグレーに上書きする。 -->
+<ipestyle name="color_mode_projector">
+<color name="black" value="0.235 0.235 0.235"/>
+</ipestyle>
